@@ -110,7 +110,7 @@ body {
   width: 15%;
   position: relative;
   display: inline-block;
-  left: 40%;
+  right: 35%;
   bottom: 10px;
 }
 
@@ -118,9 +118,28 @@ body {
   height: 15%;
   width: 15%;
   position: relative;
-  left: 35%;
+  right: 43%;
   top: 3px;
   cursor: pointer;
+}
+
+.create-post button {
+  border: none;
+  border-radius: 10%;
+  padding: 10px 20px;
+  text-align: center;
+  position: relative;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  font-size: 16px;
+  top: -30%;
+  left: 45%;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
+  background-color: #303030;
+  color: #f6f6f6;
 }
 
 .post-container {
