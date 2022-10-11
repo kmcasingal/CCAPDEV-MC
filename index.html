@@ -2,27 +2,43 @@
   <head>
     <title>AnonX</title>
     <link rel="stylesheet" href="homeStyle.css" />
+    <script src="script.js"></script>
   </head>
   <body>
+    <a name="top"></a>
     <div class="header">
       <div class="header-logo">
-        <img src="images/logo.png" />
+        <img src="images/logo.png" onclick="document.location='index.html'" />
       </div>
       <div class="header-search">
         <input type="text" placeholder="Search" />
       </div>
       <div class="header-profile">
-        <img src="images/profilePic.jpg" />
+        <img src="images/profilePic.jpg" onclick="menu()" />
       </div>
     </div>
+    <div class="header-menu">
+      <table>
+        <tr>
+          <td>Profile</td>
+        </tr>
+        <tr>
+          <td onclick="document.location='createPost.html'">Create Post</td>
+        </tr>
+        <tr>
+          <td>Log Out</td>
+        </tr>
+      </table>
+    </div>
     <button
-      class="buttonPostPage"
+      class="button-PostPage"
       onclick="document.location='createPost.html'"
     >
       Create a post
     </button>
+    <button class="scrollbutton" onclick="scrollUp()">Back to Top</button>
     <div class="post-container">
-      <p>Anonymous says</p>
+      <p>Post by you:</p>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
         lacinia est id aliquam facilisis. Interdum et malesuada fames ac ante
@@ -41,9 +57,12 @@
         euismod sapien finibus non. Cras sit amet hendrerit nisi, in
         sollicitudin dliam.
       </p>
+      <div class="comment-container">
+        <input type="text" placeholder="Comment here" />
+      </div>
     </div>
     <div class="post-container">
-      <p>Anonymous says</p>
+      <p>Post by Anonymous:</p>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
         lacinia est id aliquam facilisis. Interdum et malesuada fames ac ante
@@ -62,9 +81,12 @@
         euismod sapien finibus non. Cras sit amet hendrerit nisi, in
         sollicitudin diam.
       </p>
+      <div class="comment-container">
+        <input type="text" placeholder="Comment here" />
+      </div>
     </div>
     <div class="post-container">
-      <p>Anonymous says</p>
+      <p>Post by Anonymous:</p>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
         lacinia est id aliquam facilisis. Interdum et malesuada fames ac ante
@@ -83,9 +105,12 @@
         euismod sapien finibus non. Cras sit amet hendrerit nisi, in
         sollicitudin diam.
       </p>
+      <div class="comment-container">
+        <input type="text" placeholder="Comment here" />
+      </div>
     </div>
     <div class="post-container">
-      <p>Anonymous says</p>
+      <p>Post by Anonymous:</p>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
         lacinia est id aliquam facilisis. Interdum et malesuada fames ac ante
@@ -104,9 +129,12 @@
         euismod sapien finibus non. Cras sit amet hendrerit nisi, in
         sollicitudin diam.
       </p>
+      <div class="comment-container">
+        <input type="text" placeholder="Comment here" />
+      </div>
     </div>
     <div class="post-container">
-      <p>Anonymous says</p>
+      <p>Post by Anonymous:</p>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
         lacinia est id aliquam facilisis. Interdum et malesuada fames ac ante
@@ -125,6 +153,9 @@
         euismod sapien finibus non. Cras sit amet hendrerit nisi, in
         sollicitudin diam.
       </p>
+      <div class="comment-container">
+        <input type="text" placeholder="Comment here" />
+      </div>
     </div>
   </body>
 </html>

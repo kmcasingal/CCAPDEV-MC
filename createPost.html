@@ -2,6 +2,7 @@
   <head>
     <title>AnonX</title>
     <link rel="stylesheet" href="homeStyle.css" />
+    <script src="script.js"></script>
   </head>
   <body>
     <div class="header">
@@ -12,8 +13,21 @@
         <input type="text" placeholder="Search" />
       </div>
       <div class="header-profile">
-        <img src="images/profilePic.jpg" />
+        <img src="images/profilePic.jpg" onclick="menu()" />
       </div>
+    </div>
+    <div class="header-menu">
+      <table>
+        <tr>
+          <td>Profile</td>
+        </tr>
+        <tr>
+          <td onclick="document.location='createPost.html'">Create Post</td>
+        </tr>
+        <tr>
+          <td>Log Out</td>
+        </tr>
+      </table>
     </div>
     <div class="create-post">
       <input type="text" placeholder="Create post" />
@@ -21,7 +35,7 @@
       <input type="checkbox" id="anonToggle" value="anonOn" />
       <button>Post</button>
     </div>
-    <button class="buttonHome" onclick="document.location='index.html'">
+    <button class="button-home" onclick="document.location='index.html'">
       Back to Home
     </button>
   </body>
