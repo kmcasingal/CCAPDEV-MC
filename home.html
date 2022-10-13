@@ -1,0 +1,105 @@
+<html>
+  <head>
+    <title>AnonX</title>
+    <link rel="stylesheet" href="homeStyle.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <a name="top"></a>
+    <div class="header">
+      <div class="header-logo">
+        <a href="home.html"><img src="images/logo.png" /></a>
+      </div>
+      <div class="header-search">
+        <input type="text" placeholder="Search" />
+      </div>
+      <div class="header-profile">
+        <img src="images/profilePic.jpg" onclick="menu()" />
+      </div>
+    </div>
+    <div class="header-menu">
+      <table>
+        <tr>
+          <td>Profile</td>
+        </tr>
+        <tr>
+          <td> <a href="createPost.html">Create Post</a></td>
+        </tr>
+        <tr>
+          <td> <a href="createPost.html">Log Out</a></td>
+        </tr>
+      </table>
+    </div>
+    <button
+      class="button-PostPage"
+      onclick="document.location='createPost.html'"
+    >
+      Create a post
+    </button>
+    <button class="scrollbutton" onclick="scrollUp()">Back to Top</button>
+    <div class="post-container">
+      <img src="images/pencil.png" />
+      <img src="images/trash.png" />
+      <p>Post by you:</p>
+      <p>I like shrek. 10/10 :)</p>
+      <div class="tag-container">
+        Tags: shrek, disney 
+      </div>
+      <div class="comment-container">
+        <input type="text" placeholder="Comment here" />
+      </div>
+    </div>
+    <div class="post-container">
+      <p>Post by FilmLover420:</p>
+      <p>
+        The new Thor: Love and Thunder was very good and unique! I hecking love
+        Marvel movies! I give it a 0/10.
+      </p>
+      <div class="tag-container">
+        Tags: avengers, thor, love-and-thunder, marvel
+      </div>
+      <div class="comment-container">
+        <input type="text" placeholder="Comment here" />
+      </div>
+    </div>
+    <div class="post-container">
+      <p>Post by Anonymous:</p>
+      <p>
+        I don't know if I should pursue AI or game dev. Any advice?
+      </p>
+      <div class="tag-container">
+        Tags: ai, game-dev, programmer, software
+      </div>
+      <div class="comment-container">
+        <input type="text" placeholder="Comment here" />
+      </div>
+    </div>
+    <div class="post-container">
+      <p>Post by bobTheBuilder:</p>
+      <p>
+        guys i wanna color my hair like parang i want pink or ash gray wdyt?
+      </p>
+      <div class="tag-container">
+        Tags: hair-color, wdyt
+      </div>
+      <div class="comment-container">
+        <input type="text" placeholder="Comment here" />
+      </div>
+    </div>
+    <div class="post-container">
+      <p>Post by Matsuo Bashō:</p>
+      <p>
+        An old silent pond <br>
+        A frog jumps into the pond— <br>
+        Splash! Silence again.
+      </p>
+      <div class="tag-container">
+        Tags: poetry, haiku 
+      </div>
+      <div class="comment-container">
+        <input type="text" placeholder="Comment here" />
+      </div>
+    </div>
+  </body>
+</html>
