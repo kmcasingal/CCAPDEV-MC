@@ -1,7 +1,8 @@
 html,
 body {
   scroll-behavior: smooth;
-  font-family: Arial, Helvetica, sans-serif;
+  text-decoration: none;
+  font-family: Helvetica, sans-serif;
   background-color: #303030;
   color: #f6f6f6;
   margin-bottom: 3%;
@@ -130,7 +131,7 @@ body {
   margin-left: auto;
   margin-right: auto;
   cursor: pointer;
-  background-color: #606060;
+  background-color: #FCCC71;
   color: #f6f6f6;
 }
 
@@ -292,6 +293,11 @@ body {
   margin-left: auto;
   margin-right: auto;
   cursor: pointer;
-  background-color: #606060;
+  background-color: #FCCC71;
   color: #f6f6f6;
+}
+
+a:link,a{
+text-decoration: none;
+color: white;
 }
