@@ -73,6 +73,12 @@ hr {
   text-indent: 15px;
 }
 
+.header-search img {
+  height: 25px;
+  width: 25px;
+  visibility: hidden;
+}
+
 .header-profile {
   cursor: pointer;
   display: inline-block;
@@ -205,8 +211,8 @@ hr {
   height: 15%;
   width: 15%;
   position: relative;
-  right: 44%;
-  top: 4px;
+  right: 43%;
+  top: 2px;
   cursor: pointer;
 }
 
@@ -220,7 +226,7 @@ hr {
   display: flex;
   justify-content: center;
   font-size: 15px;
-  top: -27.5%;
+  top: -31%;
   left: 45%;
   margin-left: auto;
   margin-right: auto;
@@ -280,6 +286,22 @@ hr {
   color: rgb(200, 199, 199);
 }
 
+.full-post-text {
+  cursor: pointer;
+  position: relative;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 30px;
+  font-style: italic bold;
+  font-size: smaller;
+  text-decoration: underline;
+  color: rgba(200, 199, 199, 0.599);
+}
+
+.full-post-text:hover{
+  opacity: 0.5;
+}
+
 .comment-container {
   position: relative;
   width: 100%;
@@ -333,6 +355,13 @@ hr {
 .scrollbutton:hover {
   background-color: #fccc71;
   transition: 0.3s;
+}
+
+.register-header {
+  font-size: xx-large;
+  padding: 0 2rem;
+  align-items: center;
+  margin-top: 7%;
 }
 
 a:link,
