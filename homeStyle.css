@@ -6,9 +6,12 @@ body {
   background-color: #303030;
   color: #f6f6f6;
   margin-bottom: 3%;
+  position: relative;
 }
 
 .header {
+  display: flex;
+  justify-content: space-evenly;
   position: fixed;
   z-index: 5;
   top: 0;
