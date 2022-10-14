@@ -74,9 +74,15 @@ hr {
 }
 
 .header-search img {
+  position: relative;
+  top: 8px;
+  left: 6px;
   height: 25px;
   width: 25px;
-  visibility: hidden;
+}
+
+.header-search img:hover {
+  opacity: 0.5;
 }
 
 .header-profile {
@@ -298,7 +304,7 @@ hr {
   color: rgba(200, 199, 199, 0.599);
 }
 
-.full-post-text:hover{
+.full-post-text:hover {
   opacity: 0.5;
 }
 
