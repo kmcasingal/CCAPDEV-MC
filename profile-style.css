@@ -38,12 +38,19 @@ hr {
   color: #f1f1f1;
 }
 
+.header-profile img {
+  height: 10%;
+}
+
 .header-profile a:hover {
   background-color: rgb(224, 224, 224);
   color: white;
 }
 
 .header-profile a.active {
+  position: absolute;
+  top: 34%;
+  left: 15%;
   background-color: #fccc71;
   color: white;
 }
