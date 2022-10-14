@@ -7,7 +7,6 @@
 
 body {
   font-family: "Helvetica", sans-serif;
-  text-shadow: 0px 0px 3px rgb(0, 0, 0);
   overflow: hidden;
 }
 
@@ -180,8 +179,9 @@ a:hover {
 
 .btn-reg {
   cursor: pointer;
-  display: block;
-  width: 100%;
+  position: relative;
+  padding: 15px;
+  width: 41%;
   height: 50px;
   border-radius: 25px;
   outline: white;
@@ -195,6 +195,10 @@ a:hover {
   font-weight: bold;
   margin: 1rem 0;
   transition: 0.5s;
+  top: 20%;
+  left: -41%;
+  vertical-align: 10px;
+  text-align: center;
 }
 
 .btn:hover {
