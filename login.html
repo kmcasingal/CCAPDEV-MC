@@ -1,42 +1,44 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>AnonX - Log In</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" type="text/css" media="all" href="style.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
-      rel="stylesheet"
-    />
+<head>
+	<title> AnonX - log in</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="all" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a81368914x.js"></script>
-  </head>
-  <body>
-    <div class="container">
-      <h1 class="header">Post Anonymously</h1>
-      <div class="login-content">
-        <form action="index.html">
-          <img src="images/anon-avatar.png" />
-          <div class="input-div one">
-            <div class="i">
-              <i class="fas fa-user"></i>
-            </div>
-            <div class="div">
-              <input type="text" class="input" placeholder="Username" />
-            </div>
-          </div>
-          <div class="input-div password">
-            <div class="i">
-              <i class="fas fa-lock"></i>
-            </div>
-            <div class="div">
-              <input type="password" class="input" placeholder="Password" />
-            </div>
-          </div>
-          <a href="#">Forgot Password?</a>
-          <input type="submit" class="btn" value="Login" />
-        </form>
-      </div>
+</head>
+<body>
+	<div>
+		<img src="./logo.png" width="13%" style="margin-left: 5%; margin-top: 3%; position: absolute;">
+	</div>
+	<div class="container">
+		
+		<h1 class="header"> Post Anonymously</h1>
+		<div class="login-content">
+			<form action="Login.html">
+				<img src="./avatar.svg">
+           		<div class="input-div one">
+           		   <div class="i">
+           		   		<i class="fas fa-user"></i>
+           		   </div>
+           		   <div class="div">
+           		   		<input type="text" class="input" placeholder="Username">
+           		   </div>
+           		</div>
+           		<div class="input-div password">
+           		   <div class="i"> 
+           		    	<i class="fas fa-lock"></i>
+           		   </div>
+           		   <div class="div">
+           		    	<input type="password" class="input" placeholder="Password">
+            	   </div>
+            	</div>
+            	<a href="#">Forgot Password?</a>
+            	<input id="login" type="submit" class="btn" value="Login">
+				<hr>
+				<input id="register" type="submit" class="btn-reg" value="Create New Account">
+            </form>
+        </div>
     </div>
-  </body>
+</body>
 </html>
