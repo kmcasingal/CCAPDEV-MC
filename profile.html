@@ -3,67 +3,82 @@
     <head>
         <title> AnonX - profile</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" media="all" href="style.css">
+        <link rel="stylesheet" type="text/css" media="all" href="./profile-style.css">
         <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
         <script src="https://kit.fontawesome.com/a81368914x.js"></script>
     </head>
     <body>
         <div class="container">
-            <div class="main">
-                <div class="topbar">
-                    <a href="">logout</a>
-                    <a href="">Home</a>
+            <!-- Header -->
+            <div class="header-profile">
+                <a href="index.html" class="logo"> <img src="logo2.png" width="80px" height="40px" alt="logo"></a>
+                <div class="header-right">
+                    <a href="Login.html" class="active">Log out</a>
                 </div>
-                <div class="row">
-                    <div class="col-md-4 mt-1">
-                        <div class="card text-center sidebar">
-                            <div class="card-body">
-                                <img src="CHANGE THIS.jpg" class="rounded-circle" alt="image" width="150">
-                                <div class="mt-3">
-                                    <h3>Username</h3>
-                                    <a href="">Home</a>
-                                    <a href="">Setting</a>
-                                    <a href="">Sign out</a>
-                                </div>
-                            </div>
+            </div>
+
+            <div class="main">
+                <!-- Sidebar -->
+                <div class="sidebar">
+                    <a href="index.html"> <img src="home.png" alt="home" width="25px" height="25px"/>Home</a>
+                    <a href="tags.html"> <img src="hashtag.png" width="25px" height="25px">Tags</a>
+                    <a href="notification.html"> <img src="notification.png" width="20px" height="25px">Notification</a>
+                    <a href="profile.html"> <img src="profile.png" width="25px" height="25px">Profile</a>
+                </div>
+                
+                <div class="profile-right">
+                    <div class="header-information">
+                        <div class="profile-picture">
+                            <img src="./cat.jpg" class="rounded-circle" alt="image" width="150">
                         </div>
-                        <div class="col-md-8 mt-1">
-                            <div class="card mb-3 content">
-                                <h1 class="m-3 pt-3">About</h1>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <h5>Full name</h5>
-                                        </div>
-                                        <div class="col-md-9 text-secondary">
-                                            Kri Cad
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <h5>Username</h5>
-                                        </div>
-                                        <div class="col-md-9 text-secondary">
-                                            @naruto_run
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <h5>Biography</h5>
-                                        </div>
-                                        <div class="col-md-9 text-secondary">
-                                            My pamilee oh my family oh my god
-                                        </div>
-                                    </div>
-                                        </div>
-                                    </div>
-                                </div>
+                        <div class="fullname">
+                        <h5>Full name</h5>
+                            Krischelle Cadao
+                        </div>
+                            
+                        <div class="username">
+                            <h5>Username</h5>
+                                @naruto_run
+                        </div>
+                            
+                            <div class="bio">
+                                <h5>Biography</h5>
+                                    <p>My pamilee oh my family oh my god 😎 Marina Summers should've won the s1 of Drag Race PH 🏁</p> 
                             </div>
+                    </div>
+
+                    <hr>
+                    <div class="header-post-profile">
+                        <a href="profile.html" class="active">Posts</a>
+                        <a href="index.html" class="media">Media</a>
+                        <a href="index.html" class="comments">Comments</a>
+                    </div>
+                    <hr>
+
+                    <!-- Posts -->
+                    <div class="post-container">
+                        <img src="images/pencil.png" alt="profile pic" />
+                        <img src="images/trash.png" alt="profile pic" />
+                        <p class="username">You</p>
+                        <p>I like shrek. 10/10 :)</p>
+                        <div class="tag-container">Tags: shrek, disney, movies</div>
+                        <hr />
+                        <div class="comment-container">
+                          <p class="username">shrekHater88</p>
+                          <p>
+                            I beg to disagree. The movie "Shrek" is a disgrace of a movie. It does
+                            not even deserve to be called a film.
+                          </p>
+                          <hr />
+                          <p class="username">You</p>
+                          <p>I respect your opinion, even if it is objectively wrong. : )</p>
+                          <hr />
+                          <input type="text" placeholder="Comment here" />
                         </div>
                     </div>
+                </div>  
                 </div>
+            </div> 
             </div>
         </div>
     </body>
