@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AnonX - Home</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/public/assets/homeStyle.css"
+    />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="/public/assets/favicon.ico"
+    />
+  </head>
+  <body>
+    <a name="top"></a>
+    <div class="header">
+      <div class="header-logo">
+        <a href="index.html"><img src="/public/assets/images/logo.png" /></a>
+      </div>
+      <div class="header-search">
+        <input type="text" placeholder="Search" />
+        <a href="search.html"><img src="/public/assets/images/search.png" /></a>
+      </div>
+      <div class="header-profile">
+        <img src="/public/assets/images/profilePic.jpg" onclick="menu()" />
+      </div>
+    </div>
+    <div class="header-menu">
+      <table>
+        <tr>
+          <td onclick="window.location.href='profile.html'">Profile</td>
+        </tr>
+        <tr>
+          <td onclick="window.location.href='createPost.html'">Create Post</td>
+        </tr>
+        <tr>
+          <td onclick="window.location.href='login.html'">Log out</td>
+        </tr>
+      </table>
+    </div>
+    <button
+      class="button-PostPage"
+      onclick="document.location='createPost.html'"
+    >
+      Create a post
+    </button>
+    <button class="scrollbutton" onclick="scrollUp()">Back to Top</button>
+
+    <% for (let i = posts.length - 1; i >= 0; i--){ %>
+    <div class="post-container">
+      <% if (posts[i].user == "You") { %>
+      <img src="/public/assets/images/pencil.png" />
+      <img src="/public/assets/images/trash.png" />
+      <%} %>
+      <p class="username"><%= posts[i].user %></p>
+      <p><%= posts[i].post %></p>
+      <div class="tag-container"> Tag:  <%= posts[i].tag %> </div>
+      <hr />
+      <div class="comment-container">
+        <input type="text" placeholder="Comment here" />
+      </div>
+    </div>
+    <% } %> 
+
+    <%#
+    <div class="post-container">
+      <img src="/public/assets/images/pencil.png" />
+      <img src="/public/assets/images/trash.png" />
+      <p class="username">You</p>
+      <p>I like shrek. 10/10 :)</p>
+      <div class="tag-container">Tags: shrek, disney, movies</div>
+      <hr />
+      <div class="comment-container">
+        <p class="username">shrekHater88</p>
+        <p>
+          I beg to disagree. The movie "Shrek" is a disgrace of a movie. It does
+          not even deserve to be called a film.
+        </p>
+        <hr />
+        <p class="username">You</p>
+        <p>I respect your opinion, even if it is objectively wrong. : )</p>
+        <hr />
+        <input type="text" placeholder="Comment here" />
+      </div>
+    </div>
+    <div class="post-container">
+      <p class="username">FilmLover420</p>
+      <p>
+        The new Thor: Love and Thunder was very good and unique!! I hecking love
+        Marvel movies! I give it a 0/10.
+      </p>
+      <div class="tag-container">
+        Tags: avengers, thor, love-and-thunder, marvel
+      </div>
+      <hr />
+      <div class="comment-container">
+        <p class="username">Xx_PrinceOfTheNorth_xX</p>
+        <p>Nice review! Do you do this for a living???</p>
+        <hr />
+        <p class="username">FilmLover420</p>
+        <p>No. I am unemployed :3</p>
+        <hr />
+        <p class="username">Xx_PrinceOfTheNorth_xX</p>
+        <p>Oh...</p>
+        <hr />
+        <input type="text" placeholder="Comment here" />
+      </div>
+    </div>
+    <div class="post-container">
+      <p class="username">Anonymous</p>
+      <p>I don't know if I should pursue AI or game dev. Any advice?</p>
+      <div class="tag-container">
+        Tags: ai, game-dev, programmer, software, wdyt
+      </div>
+      <hr />
+      <div class="comment-container">
+        <p class="username">TheMotivationGuy</p>
+        <p>
+          Sometimes in life we will face crossroads where we are forced to
+          choose a path, and we are afraid that the path that we might choose
+          will be filled with regret.
+        </p>
+        <hr />
+        <p class="username">Anonymous</p>
+        <p>Is this supposed to help me?</p>
+        <hr />
+        <input type="text" placeholder="Comment here" />
+      </div>
+    </div>
+    <div class="post-container">
+      <p class="username">bobTheBuilder</p>
+      <p>
+        guys i wanna color my hair like parang i want pink or ash gray wdyt?
+      </p>
+      <div class="tag-container">Tags: hair-color, wdyt</div>
+      <hr />
+      <p class="username">Jimbo</p>
+      <p>Do what your heart desires - Jimbo</p>
+      <hr />
+      <p class="username">Chimpanzuck</p>
+      <p>
+        I don't think signing your messages with your name is necessary,
+        Jimbo...
+      </p>
+      <hr />
+      <div class="comment-container">
+        <input type="text" placeholder="Comment here" />
+      </div>
+    </div>
+    <div class="post-container">
+      <p class="username">Matsuo Bashō</p>
+      <p>
+        An old silent pond <br />
+        A frog jumps into the pond— <br />
+        Splash! Silence again.
+      </p>
+      <div class="tag-container">Tags: poetry, haiku</div>
+      <hr />
+      <p class="username">StuckIn2012</p>
+      <p>This iz so deep I saw Adele rolling in it xD #comedy</p>
+      <hr />
+      <div class="comment-container">
+        <input type="text" placeholder="Comment here" />
+      </div>
+    </div>
+    %>
+    <script src="script.js"></script>
+  </body>
+</html>
