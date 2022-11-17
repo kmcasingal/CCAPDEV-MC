@@ -174,7 +174,7 @@ hr {
   position: relative;
   text-decoration: none;
   font-size: 16px;
-  top: 20%;
+  top: 35%;
   left: 185px;
   margin-left: auto;
   margin-right: auto;
@@ -199,9 +199,15 @@ hr {
   height: 25%;
 }
 
-.create-post input[type="text"] {
+#postText {
   height: 77%;
   width: 100%;
+}
+
+#addTag {
+  position: relative;
+  top: 20%;
+  left: 25%;
 }
 
 .create-post p {
@@ -213,13 +219,16 @@ hr {
   bottom: 8px;
 }
 
-.create-post input[type="checkbox"] {
-  height: 15%;
-  width: 15%;
+.create-post input[type="radio"] {
   position: relative;
-  right: 43%;
   top: 2px;
   cursor: pointer;
+  left: -30%;
+}
+
+.anonLabel{
+  position: relative;
+  left: -30%;
 }
 
 .create-post button {
@@ -232,13 +241,11 @@ hr {
   display: flex;
   justify-content: center;
   font-size: 15px;
-  top: -31%;
   left: 45%;
   margin-left: auto;
   margin-right: auto;
   cursor: pointer;
-  background-color: #303030;
-  color: #f6f6f6;
+  color: #303030;
 }
 
 .create-post button:hover {

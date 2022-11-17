@@ -10,7 +10,7 @@
     <link
       rel="shortcut icon"
       type="image/x-icon"
-      href="/public/assets/favicon.ico"
+      href="/public/assets/images/favicon.ico"
     />
   </head>
   <body>
@@ -40,27 +40,32 @@
         </tr>
       </table>
     </div>
-    <button
-      class="button-PostPage"
-      onclick="document.location='createPost.html'"
-    >
-      Create a post
+    <button class="button-PostPage">
+      <a href="/add">Create a post</a>
     </button>
     <button class="scrollbutton" onclick="scrollUp()">Back to Top</button>
 
     <% for (let i = posts.length - 1; i >= 0; i--){ %>
     <div class="post-container">
-      <% if (posts[i].user == "You") { %>
-      <img src="/public/assets/images/pencil.png" />
+      <% if (posts[i].isUser == "true") { %>
+      <a href="edit/<%= posts[i]._id %>"> <img src="/public/assets/images/pencil.png"/> </a>
       <img src="/public/assets/images/trash.png" />
       <%} %>
-      <p class="username"><%= posts[i].user %></p>
+      <p class="username">
+        <% if (posts[i].anon == "true") { %>
+        Anonymous
+        <%} else {%>
+          <%= posts[i].username %>
+        <%} %>
+      </p>
       <p><%= posts[i].post %></p>
       <div class="tag-container"> Tag:  <%= posts[i].tag %> </div>
       <hr />
-      <div class="comment-container">
-        <input type="text" placeholder="Comment here" />
-      </div>
+      <form action="/comment/<%= posts[i]._id %>" method="post">
+        <div class="comment-container">
+          <input type="text" placeholder="Comment here" />
+        </div>
+      </form>
     </div>
     <% } %> 
 

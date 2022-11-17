@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <title>AnonX - Post</title>
+    <link rel="stylesheet" href="/public/assets/homeStyle.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="/public/assets/images/favicon.ico" />
+  </head>
+  <body>
+    <div class="header">
+      <div class="header-logo">
+        <a href="index.html"><img src="/public/assets/images/logo.png" /></a>
+      </div>
+      <div class="header-search">
+        <input type="text" placeholder="Search" />
+        <a href="search.html"><img src="/public/assets/images/search.png" /></a>
+      </div>
+      <div class="header-profile">
+        <img src="/public/assets/images/profilePic.jpg" onclick="menu()" />
+      </div>
+    </div>
+    <div class="header-menu">
+      <table>
+        <tr>
+          <td onclick="window.location.href='profile.html'">Profile</td>
+        </tr>
+        <tr>
+          <td onclick="window.location.href='createPost.html'">Create Post</td>
+        </tr>
+        <tr>
+          <td onclick="window.location.href='login.html'">Log out</td>
+        </tr>
+      </table>
+    </div>
+    <div class="create-post">
+      <form action="/save" method="post">
+        <input type="text" name="postText" id="postText" placeholder="Create post" />
+        <input type="text" name="tag" id="addTag" placeholder="Insert a tag" />
+        <p>Anonymous:</p>
+        <input type="radio" name="anonToggle" id="on" value="true" checked/>
+        <label for="on" class="anonLabel">On</label>
+        <input type="radio" name="anonToggle" id="off" value="false" />
+        <label for="off" class="anonLabel">Off</label>
+        <button type="submit">Post</button>
+      </form>
+    </div>
+    <button class="button-home">
+      <a href="/">Back to Home</a>
+    </button>
+    <script src="script.js"></script>
+  </body>
+</html>
