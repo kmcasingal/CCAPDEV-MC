@@ -49,7 +49,7 @@
     <div class="post-container">
       <% if (posts[i].isUser == "true") { %>
       <a href="edit/<%= posts[i]._id %>"> <img src="/public/assets/images/pencil.png"/> </a>
-      <img src="/public/assets/images/trash.png" />
+      <a href="delete/<%= posts[i]._id %>"> <img src="/public/assets/images/trash.png" /> </a>
       <%} %>
       <p class="username">
         <% if (posts[i].anon == "true") { %>
@@ -61,13 +61,44 @@
       <p><%= posts[i].post %></p>
       <div class="tag-container"> Tag:  <%= posts[i].tag %> </div>
       <hr />
-      <form action="/comment/<%= posts[i]._id %>" method="post">
-        <div class="comment-container">
-          <input type="text" placeholder="Comment here" />
-        </div>
-      </form>
-    </div>
     <% } %> 
+
+     <% for (let i = posts.length - 1; i >= 0; i--){ %>
+        <% for (let j = 0; j < posts[i].comment.length; j++){ %>
+            <div class="comment-container">
+              <% if (posts[i].commenter[j] != null) { %>
+              <% if (posts[i].commenter[j] == "userAnon") { %>
+                <% holder = j %>
+                <a href="edit/<%= posts[i]._id %>"> <img src="/public/assets/images/pencil.png"/> </a>
+                <a href="deleteComment/<%= holder %>/<%= posts[i]._id %>/"> <img src="/public/assets/images/trash.png" /> </a>
+                <p class="username-comment comment-text">Anonymous</p>
+              <%} else if(posts[i].commenter[j] == "user"){%>
+                <a href="edit/<%= posts[i]._id %>"> <img src="/public/assets/images/pencil.png"/> </a>
+                <a href="deleteComment/<%= holder %>/<%= posts[i]._id %>/"> <img src="/public/assets/images/trash.png" /> </a>
+                <p class="username-comment comment-text"><%= posts[i].username %></p>
+                <% } else {%> 
+                  <p class="username-comment comment-text"><%= posts[i].username %></p>
+                  <% } %> 
+              <p class="comment-text"><%= posts[i].comment[j] %></p>
+              <% } %> 
+              <hr />
+          </div>
+        <% } %>
+     <% } %> 
+
+          <% for (let i = posts.length - 1; i >= 0; i--){ %>
+          <form action="/comment/<%= posts[i]._id %>" method="post">
+            <div class="comment-container">
+              <p style="position:relative; left:-4.5%;">Anonymous:</p>
+              <input type="radio" name="anonToggle" id="on" value="true" checked/>
+              <label for="on"">On</label>
+              <input type="radio" name="anonToggle" id="off" value="false" />
+              <label for="off">Off</label>
+              <input type="text"  id="cmnt" name="cmnt" style="position:relative; left:5; width: 80%;"  placeholder="Comment here" />
+            </div>
+          </form>
+        </div>
+        <% } %> 
 
     <%#
     <div class="post-container">

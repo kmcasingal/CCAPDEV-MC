@@ -19,6 +19,11 @@ hr {
   font-weight: bold;
 }
 
+.username-comment {
+  color: #ca9c46;
+  font-weight: bold;
+}
+
 .header {
   display: flex;
   justify-content: space-evenly;
@@ -313,6 +318,11 @@ hr {
 
 .full-post-text:hover {
   opacity: 0.5;
+}
+
+.comment-text {
+ position: relative;
+ left: 5%;
 }
 
 .comment-container {

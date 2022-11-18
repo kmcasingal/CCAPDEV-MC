@@ -16,6 +16,8 @@ const userSchema = {
   tag: String,
   isUser: String,
   anon: String,
+  commenter: Array,
+  comment: Array,
 };
 
 const Post = mongoose.model("post", userSchema);
@@ -34,6 +36,7 @@ app.get("/", (req, res) => {
   });
 });
 
+/*
 app.get("/create", (req, res) => {
   Post.find({}, function (err, rows) {
     // console.log(rows)
@@ -47,6 +50,7 @@ app.get("/create", (req, res) => {
     }
   });
 });
+*/
 
 app.get("/add", (req, res) => {
   res.render("createPost", {
@@ -72,7 +76,7 @@ app.post("/save", (req, res) => {
 });
 
 app.get('/edit/:userId', (req, res) => {
-  let userId = req.params.userId;
+  const userId = req.params.userId; // change to let if nagkamali
 
   console.log("USER ID 1: " + userId);
   Post.find( {_id: userId}, function(err, result){
@@ -83,6 +87,43 @@ app.get('/edit/:userId', (req, res) => {
       res.render("updatePost", {
         posts: result[0],
       });
+    }
+  });
+});
+
+app.post('/comment/:userId', (req, res) => {
+    const userId = req.params.userId; // change to let if nagkamali
+
+  console.log("USER ID 1: " + userId);
+  Post.find( {_id: userId}, function(err, result){
+    if(err){
+      console.log(err);
+    } else {
+      console.log("RESULT PO: " + req.params.userId);
+
+      const userId = req.params.userId;
+      const query = {_id: userId}
+      const anonVal = req.body.anonToggle;
+      let commenterVal = "user";
+
+      console.log("ANON VAAAAAAAAAL: " + anonVal);
+
+      if(anonVal == "true"){
+        commenterVal = "userAnon";
+      } 
+
+      const commentVal = req.body.cmnt;
+      console.log("USER commenter: " + commenterVal);
+
+      Post.updateOne( query, {$push: { commenter: commenterVal, comment: commentVal }}, function(err, result){
+        if(err){
+          console.log(err);
+        } else {
+          console.log(commentVal);
+          res.redirect("/");
+        }
+      });
+
     }
   });
 });
@@ -107,6 +148,39 @@ app.post("/update", (req, res) => {
     }
   });
 });
+
+app.get('/delete/:userId', (req, res) => {
+  const userId = req.params.userId;
+
+  console.log("USER ID 1 DELETE: " + userId);
+  Post.findByIdAndRemove( userId, function(err, result){
+    if(err){
+      console.log(err);
+    } else {
+      console.log("DELETING " + userId);
+      res.redirect("/");
+    }
+  });
+});
+
+app.get('/deleteComment/:commentIndex/:userId', (req, res) => {
+  const commentIndex = req.params.commentIndex;
+  Post.find( {_id:  req.params.userId}, {commenter : 'commenter.2'}, function(err, result){
+    console.log("wew = " + result)
+    Post.updateOne( {_id: req.params.userId}, {"$set" : {"commenter" : result.commenter}}, function(err, result){
+      if(err){
+        console.log(err);
+      } else {
+        //console.log("DELETING " + commenterList);
+        console.log("pumasok")
+        res.redirect("/");
+      }
+    });
+  });
+  // commenterList.splice(commentIndex, 1)
+  
+});
+
 
 app.listen(3000, function () {
   console.log("server started on port 3000");
