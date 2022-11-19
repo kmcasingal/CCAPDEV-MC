@@ -20,19 +20,32 @@ const userSchema = {
   comment: Array,
 };
 
+
+const userCommentSchema = {
+  mainPostId: String,
+  username: String,
+  comment: String,
+  isUser: String,
+  anon: String,
+};
+
 const Post = mongoose.model("post", userSchema);
+const Comment = mongoose.model("comment", userCommentSchema);
 
 app.get("/", (req, res) => {
-  Post.find({}, function (err, rows) {
+  Post.find({}, function (err, postRows) {
     // console.log(rows)
-
-    if (err) {
-      console.log(err);
-    } else {
-      res.render("index", {
-        posts: rows,
-      });
-    }
+    Comment.find({}, function (err, commentRows) {
+       console.log("COMMENT ROWS: " + commentRows)
+      if (err) {
+        console.log(err);
+      } else {
+        res.render("index", {
+          posts: postRows,
+          comments: commentRows
+        });
+      }
+   });
   });
 });
 
@@ -92,16 +105,21 @@ app.get('/edit/:userId', (req, res) => {
 });
 
 app.post('/comment/:userId', (req, res) => {
-    const userId = req.params.userId; // change to let if nagkamali
+  const userId = req.params.userId; // change to let if nagkamali
+
+  const comment = new Comment({
+
+    mainPostId: userId,
+    username: "DLSUaccount",
+    comment: req.body.cmnt,
+    isUser: "true",
+    anon: req.body.anonToggle,
+  });
 
   console.log("USER ID 1: " + userId);
-  Post.find( {_id: userId}, function(err, result){
-    if(err){
-      console.log(err);
-    } else {
+
       console.log("RESULT PO: " + req.params.userId);
 
-      const userId = req.params.userId;
       const query = {_id: userId}
       const anonVal = req.body.anonToggle;
       let commenterVal = "user";
@@ -112,20 +130,14 @@ app.post('/comment/:userId', (req, res) => {
         commenterVal = "userAnon";
       } 
 
-      const commentVal = req.body.cmnt;
-      console.log("USER commenter: " + commenterVal);
-
-      Post.updateOne( query, {$push: { commenter: commenterVal, comment: commentVal }}, function(err, result){
+      comment.save( function(err){
         if(err){
           console.log(err);
         } else {
-          console.log(commentVal);
           res.redirect("/");
         }
       });
 
-    }
-  });
 });
 
 app.post("/update", (req, res) => {
