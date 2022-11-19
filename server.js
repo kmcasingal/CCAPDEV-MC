@@ -36,7 +36,7 @@ app.get("/", (req, res) => {
   Post.find({}, function (err, postRows) {
     // console.log(rows)
     Comment.find({}, function (err, commentRows) {
-       console.log("COMMENT ROWS: " + commentRows)
+      
       if (err) {
         console.log(err);
       } else {
@@ -175,22 +175,18 @@ app.get('/delete/:userId', (req, res) => {
   });
 });
 
-app.get('/deleteComment/:commentIndex/:userId', (req, res) => {
-  const commentIndex = req.params.commentIndex;
-  Post.find( {_id:  req.params.userId}, {commenter : 'commenter.2'}, function(err, result){
-    console.log("wew = " + result)
-    Post.updateOne( {_id: req.params.userId}, {"$set" : {"commenter" : result.commenter}}, function(err, result){
-      if(err){
-        console.log(err);
-      } else {
-        //console.log("DELETING " + commenterList);
-        console.log("pumasok")
-        res.redirect("/");
-      }
-    });
+app.get('/deleteComment/:commentId', (req, res) => {
+  const commentToDelete = req.params.commentId;
+
+  console.log("USER ID 1 DELETE: " + commentToDelete);
+  Comment.findByIdAndRemove( commentToDelete, function(err, result){
+    if(err){
+      console.log(err);
+    } else {
+      console.log("DELETING " + commentToDelete);
+      res.redirect("/");
+    }
   });
-  // commenterList.splice(commentIndex, 1)
-  
 });
 
 

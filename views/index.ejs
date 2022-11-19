@@ -67,11 +67,11 @@
             <% if (comments[j].isUser == "true") { %>
               <% if (comments[j].anon == "true") { %>
                   <a href="edit/<%= posts[i]._id %>"> <img src="/public/assets/images/pencil.png"/> </a>
-                  <a href="deleteComment/<%= 1 %>/<%= posts[i]._id %>/"> <img src="/public/assets/images/trash.png" /> </a>
+                  <a href="deleteComment/<%= comments[j]._id %>"> <img src="/public/assets/images/trash.png" /> </a>
                   <p class="username-comment comment-text">Anonymous</p>
                 <% } else if (comments[j].anon == "false"){%>
                   <a href="edit/<%= posts[i]._id %>"> <img src="/public/assets/images/pencil.png"/> </a>
-                  <a href="deleteComment/<%= 1 %>/<%= posts[i]._id %>/"> <img src="/public/assets/images/trash.png" /> </a>
+                  <a href="deleteComment/<%= comments[j]._id %>"> <img src="/public/assets/images/trash.png" /> </a>
                   <p class="username-comment comment-text"><%= comments[j].username %></p>
                 <% } %> 
               <% } %> 
