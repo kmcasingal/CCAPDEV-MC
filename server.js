@@ -149,8 +149,7 @@ app.post("/update", (req, res) => {
   const tagVal = req.body.tag;
 
   console.log("USER ID 2: " + userId);
-  // ganto dapat
-  // db.posts.updateOne({_id : ObjectId("63763ffa152b951120b2a744")}, {$set: {user: "You", post:"hello i am the main user here xd", tags:["flex", "main"]}})
+ 
   Post.updateOne( query, {post: postVal, isUser: isUserVal, anon: anonVal, tag: tagVal}, function(err, result){
     if(err){
       console.log(err);
@@ -184,6 +183,40 @@ app.get('/deleteComment/:commentId', (req, res) => {
       console.log(err);
     } else {
       console.log("DELETING " + commentToDelete);
+      res.redirect("/");
+    }
+  });
+});
+
+app.get('/editComment/:commentId', (req, res) => {
+  const commentToUpdate = req.params.commentId; // change to let if nagkamali
+
+  console.log("USER ID 1: " + req.params.commentId);
+  Comment.find( {_id: commentToUpdate}, function(err, result){
+    if(err){
+      console.log(err);
+    } else {
+      console.log("RESULT:" + result[0].id);
+      res.render("updateComment", {
+        comment: result[0],
+      });
+    }
+  });
+});
+
+app.post("/updateComment", (req, res) => {
+  const userId = req.body.id;
+  const query = {_id: userId};
+  const commentVal = req.body.postText;
+  const isUserVal = "true";
+  const anonVal = req.body.anonToggle;
+
+  console.log("USER ID 2: " + userId);
+ 
+  Comment.updateOne( query, {comment: commentVal, isUser: isUserVal, anon: anonVal}, function(err, result){
+    if(err){
+      console.log(err);
+    } else {
       res.redirect("/");
     }
   });

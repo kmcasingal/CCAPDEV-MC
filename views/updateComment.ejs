@@ -31,12 +31,11 @@
       </table>
     </div>
     <div class="create-post">
-      <form action="/update" method="post">
-        <input type="hidden" value="<%= posts.id %>" name="id">
-        <input type="text" name="postText" id="postText" value="<%= posts.post %>" />
-        <input type="text" name="tag" id="addTag" placeholder="Insert a tag" />
+      <form action="/updateComment" method="post">
+        <input type="hidden" value="<%= comment.id %>" name="id">
+        <input type="text" name="postText" id="postText" value="<%= comment.comment %>" />
         <p>Anonymous:</p>
-        <% if (posts.anon == "true") { %>
+        <% if (comment.anon == "true") { %>
             <input type="radio" name="anonToggle" id="on" value="true" checked/>
             <label for="on" class="anonLabel">On</label>
             <input type="radio" name="anonToggle" id="off" value="false" />
