@@ -32,6 +32,8 @@
     </div>
     <div class="create-post">
       <form action="/save" method="post">
+        <input type="hidden" value="<%= user._id %>" id="userId" name="userId">
+        <input type="hidden" value="<%= user.username %>" id="username" name="username">
         <input type="text" name="postText" id="postText" placeholder="Create post" />
         <input type="text" name="tag" id="addTag" placeholder="Insert a tag" />
         <p>Anonymous:</p>
@@ -45,6 +47,6 @@
     <button class="button-home">
       <a href="/home">Back to Home</a>
     </button>
-    <script src="script.js"></script>
+    <script src="../public/js/script.js"></script>
   </body>
 </html>

@@ -36,12 +36,12 @@
           <td onclick="window.location.href='createPost.html'">Create Post</td>
         </tr>
         <tr>
-          <td><a href="/login">Log out</a></td>
+          <td><a href="/">Log out</a></td>
         </tr>
       </table>
     </div>
     <button class="button-PostPage">
-      <a href="/add">Create a post</a>
+      <a href="/add/<%= user.id %>">Create a post</a>
     </button>
     <button class="scrollbutton" onclick="scrollUp()">Back to Top</button>
 
@@ -94,6 +94,6 @@
           </div>
           
       <% } %> 
-      <script src="../public/script.js"></script>
+      <script src="../public/js/script.js"></script>
   </body>
 </html>

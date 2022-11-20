@@ -16,6 +16,7 @@ const userSchema = {
 };
 
 const postSchema = {
+  userId: String,
   username: String,
   post: String,
   tag: String,
@@ -26,6 +27,7 @@ const postSchema = {
 };
 
 const userCommentSchema = {
+  userId: String,
   mainPostId: String,
   username: String,
   comment: String,
@@ -38,6 +40,12 @@ const Post = mongoose.model("post", postSchema);
 const Comment = mongoose.model("comment", userCommentSchema);
 
 app.get("/", (req, res) => {
+  res.render("login", {
+    fail: "false",
+  });
+});
+
+app.get("/index", (req, res) => {
   Post.find({}, function (err, postRows) {
     // console.log(rows)
     Comment.find({}, function (err, commentRows) {
@@ -51,12 +59,6 @@ app.get("/", (req, res) => {
         });
       }
    });
-  });
-});
-
-app.get("/login", (req, res) => {
-  res.render("login", {
-    fail: "false",
   });
 });
 
@@ -75,7 +77,7 @@ app.post("/createAccount", (req, res) => {
     if(err){
       console.log(err);
     } else {
-      res.redirect("/login");
+      res.redirect("/");
     }
   });
 });
@@ -96,7 +98,8 @@ app.post("/verifyLogin", (req, res) => {
           } else {
             res.render("index", {
               posts: postRows,
-              comments: commentRows
+              comments: commentRows,
+              user: result,
             });
           }
          });
@@ -111,31 +114,65 @@ app.post("/verifyLogin", (req, res) => {
 });
 
 
-app.get("/add", (req, res) => {
-  res.render("createPost", {
-  });
+app.get("/add/:userId", (req, res) => {
+  console.log("ID PASSED: " + req.params.userId);
+  User.findOne({_id: req.params.userId}, function (err, result) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(result);
+      res.render("createPost", {
+        user: result,
+      });
+    }
+   });
 });
 
 app.post("/save", (req, res) => {
+
+  console.log("ID REQUESTED: " + req.body.userId);
+  console.log("USERNAME REQUESTED: " + req.body.username);
     const post = new Post({
-      username: "DLSUaccount", // temporaryyyyy username -- wala pang login
+      userId: req.body.userId,
+      username: req.body.username, 
       post: req.body.postText,
-      isUser: "true",
       anon: req.body.anonToggle,
       tag: req.body.tag,
     });
-   // console.log( req.body.anonToggle);
+
     post.save( function(err){
       if(err){
+        console.log("INSIDE RESULT1" + result);
         console.log(err);
       } else {
-        res.redirect("/");
+        User.findOne({_id: req.body.userId}, function (err, result) {
+          if (err) {
+            console.log("INSIDE RESULT2" + result.id);
+            console.log(err);
+          } else {
+            Post.find({}, function (err, postRows) {
+              // console.log(rows)
+              Comment.find({}, function (err, commentRows) {
+                if (err) {
+                  console.log(err);
+                } else {
+                  console.log("INSIDE RESULT99" + result);
+                  res.render("index", {
+                    posts: postRows,
+                    comments: commentRows,
+                    user: result,
+                  });
+                }
+             });
+            });
+          }
+         });
       }
     });
 });
 
 app.get('/edit/:userId', (req, res) => {
-  const userId = req.params.userId; // change to let if nagkamali
+  const userId = req.params.userId; 
 
   console.log("USER ID 1: " + userId);
   Post.find( {_id: userId}, function(err, result){
@@ -151,7 +188,7 @@ app.get('/edit/:userId', (req, res) => {
 });
 
 app.post('/comment/:userId', (req, res) => {
-  const userId = req.params.userId; // change to let if nagkamali
+  const userId = req.params.userId; 
 
   const comment = new Comment({
 
@@ -235,7 +272,7 @@ app.get('/deleteComment/:commentId', (req, res) => {
 });
 
 app.get('/editComment/:commentId', (req, res) => {
-  const commentToUpdate = req.params.commentId; // change to let if nagkamali
+  const commentToUpdate = req.params.commentId; 
 
   console.log("USER ID 1: " + req.params.commentId);
   Comment.find( {_id: commentToUpdate}, function(err, result){
