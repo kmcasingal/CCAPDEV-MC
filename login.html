@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> AnonX - log in </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" media="all" href="style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/a81368914x.js"></script>
+    </head>
+    <body>
+        <div>
+            <!-- Fix Logo -->
+            <img src="\logo2.png" width="13%" alt="logo" style="margin-left: 5%; margin-top: 3%; position: absolute;">
+        </div>
+        <!-- Whole body -->
+        <div class="container">
+          <div class="container-flex">
+            <div class="flex-left">
+                <h1 class="header">Post Anonymously</h1>
+            </div>
+          </div>
+          <div class="flex-right">
+            <div class="login-page">
+                <div class="form">
+                    <!-- Register -->
+                    <form class="register-form">
+                        <input type="text" placeholder="Username" required/>
+                        <input type="password" placeholder="Password" required/>
+                        <input type="button"  class="button" id="create" value="create account">
+                        <p class="message">Already registered? <a href="#">Sign In</a></p>
+                    </form>
+
+                    <!-- Login -->
+                    <form class="login-form">
+                        <!-- Username -->
+                        <div class="form-control">
+                            <input type="text" id="username" placeholder="Username" required/>
+                        </div>
+                        <!-- Password -->
+                        <div class="form-control">
+                            <input type="password" id="password" placeholder="Password" required/>
+                        </div>
+                        <!-- Button -->
+                        <input type="button"  class="button" onclick="location.href ='index.html'" id="login" value="login">
+                        <p class="message">Not registered? <a href="#">Create an account</a></p>
+                    </form>
+                </div>
+              </div>
+          </div>
+        </div>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script  src="./script.js"></script>
+    </body>
+</html>
