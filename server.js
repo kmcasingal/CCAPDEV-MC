@@ -22,8 +22,6 @@ const postSchema = {
   tag: String,
   isUser: String,
   anon: String,
-  commenter: Array,
-  comment: Array,
 };
 
 const userCommentSchema = {
@@ -39,27 +37,40 @@ const User = mongoose.model("user", userSchema);
 const Post = mongoose.model("post", postSchema);
 const Comment = mongoose.model("comment", userCommentSchema);
 
-app.get("/", (req, res) => {
-  res.render("login", {
-    fail: "false",
-  });
-});
+let sessionValid = "false";
+let userHomeId = "";
+let userAccount = "";
 
-app.get("/index", (req, res) => {
-  Post.find({}, function (err, postRows) {
-    // console.log(rows)
-    Comment.find({}, function (err, commentRows) {
-      
+app.get("/", (req, res) => {
+  console.log("USERVALEEEEEEEEEEED: " + sessionValid);
+  if(sessionValid == "true"){
+    User.findOne({_id: userHomeId}, function (err, result) {
+      console.log("USER: " + result);
       if (err) {
         console.log(err);
       } else {
-        res.render("index", {
-          posts: postRows,
-          comments: commentRows
+        Post.find({}, function (err, postRows) {
+          // console.log(rows)
+          Comment.find({}, function (err, commentRows) {
+            if (err) {
+              console.log(err);
+            } else {
+              res.render("index", {
+                posts: postRows,
+                comments: commentRows,
+                user: result,
+              });
+            }
+         });
         });
       }
-   });
-  });
+     });
+  } else {
+     res.render("login", {
+     fail: "false",
+     });
+  }
+ 
 });
 
 app.get("/register", (req, res) => {
@@ -67,19 +78,28 @@ app.get("/register", (req, res) => {
   });
 });
 
+app.get("/logout", (req, res) => {
+  console.log("LOGGING OUUTUTUTUUT");
+  sessionValid = "false";
+  res.redirect("/");
+});
+
 app.post("/createAccount", (req, res) => {
-  const user = new User({
-    username: req.body.username, 
-    password: req.body.password,
-  });
- // console.log( req.body.anonToggle);
- user.save( function(err){
+
+   const user = new User({
+      username: req.body.username, 
+      password: req.body.password,
+   });
+  console.log("REGI NAME = " +  req.body.username);
+  console.log("REGI PASS = " +  req.body.password);
+  user.save( function(err){
     if(err){
-      console.log(err);
+       console.log(err);
     } else {
-      res.redirect("/");
-    }
-  });
+       res.redirect("/");
+     }
+  }); 
+
 });
 
 app.post("/verifyLogin", (req, res) => {
@@ -89,222 +109,263 @@ app.post("/verifyLogin", (req, res) => {
     if(err){
       console.log(err);
     } else {
-      if(result != null){
-         Post.find({}, function (err, postRows) {
-         // console.log(rows)
-         Comment.find({}, function (err, commentRows) {
-          if (err) {
-            console.log(err);
-          } else {
-            res.render("index", {
-              posts: postRows,
-              comments: commentRows,
-              user: result,
-            });
-          }
-         });
+       if(result != null){
+        sessionValid = "true";
+        userHomeId = result.id;
+        userAccount = result;
+        Post.find({}, function (err, postRows) {
+          Comment.find({}, function (err, commentRows) {
+            if (err) {
+              console.log(err);
+            } else {
+              res.redirect("/");
+            }
+          });
         });
       } else {
-        res.render("login", {
-          fail: "true",
-        });
+          res.render("login", {
+            fail: "true",
+          });
+        }
       }
-    }
-  });
+    });
 });
 
-
 app.get("/add/:userId", (req, res) => {
-  console.log("ID PASSED: " + req.params.userId);
-  User.findOne({_id: req.params.userId}, function (err, result) {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log(result);
-      res.render("createPost", {
-        user: result,
+  if(sessionValid == "true"){
+    console.log("ID PASSED: " + req.params.userId);
+    User.findOne({_id: req.params.userId}, function (err, result) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(result);
+        res.render("createPost", {
+          user: result,
+        });
+      }
+     });
+  } else {
+    res.render("login", {
+      fail: "false",
       });
-    }
-   });
+  }
 });
 
 app.post("/save", (req, res) => {
-
-  console.log("ID REQUESTED: " + req.body.userId);
-  console.log("USERNAME REQUESTED: " + req.body.username);
-    const post = new Post({
-      userId: req.body.userId,
-      username: req.body.username, 
-      post: req.body.postText,
-      anon: req.body.anonToggle,
-      tag: req.body.tag,
-    });
-
-    post.save( function(err){
-      if(err){
-        console.log("INSIDE RESULT1" + result);
-        console.log(err);
-      } else {
-        User.findOne({_id: req.body.userId}, function (err, result) {
-          if (err) {
-            console.log("INSIDE RESULT2" + result.id);
-            console.log(err);
-          } else {
-            Post.find({}, function (err, postRows) {
-              // console.log(rows)
-              Comment.find({}, function (err, commentRows) {
-                if (err) {
-                  console.log(err);
-                } else {
-                  console.log("INSIDE RESULT99" + result);
-                  res.render("index", {
-                    posts: postRows,
-                    comments: commentRows,
-                    user: result,
-                  });
-                }
-             });
-            });
-          }
-         });
-      }
-    });
+  if(sessionValid == "true"){
+    console.log("ID REQUESTED: " + req.body.userId);
+    console.log("USERNAME REQUESTED: " + req.body.username);
+      const post = new Post({
+        userId: req.body.userId,
+        username: req.body.username, 
+        post: req.body.postText,
+        anon: req.body.anonToggle,
+        tag: req.body.tag,
+      });
+  
+      post.save( function(err){
+        if(err){
+          console.log("INSIDE RESULT1" + result);
+          console.log(err);
+        } else {
+          User.findOne({_id: req.body.userId}, function (err, result) {
+            if (err) {
+              console.log("INSIDE RESULT2" + result.id);
+              console.log(err);
+            } else {
+              Post.find({}, function (err, postRows) {
+                // console.log(rows)
+                Comment.find({}, function (err, commentRows) {
+                  if (err) {
+                    console.log(err);
+                  } else {
+                    console.log("INSIDE RESULT99" + result);
+                    res.redirect("/");
+                  }
+               });
+              });
+            }
+           });
+        }
+      });
+  } else {
+    res.render("login", {
+      fail: "false",
+      });
+  }
 });
 
 app.get('/edit/:userId', (req, res) => {
-  const userId = req.params.userId; 
-
-  console.log("USER ID 1: " + userId);
-  Post.find( {_id: userId}, function(err, result){
-    if(err){
-      console.log(err);
-    } else {
-      console.log("RESULT" + result[0]);
-      res.render("updatePost", {
-        posts: result[0],
+  if(sessionValid == "true"){
+    const userId = req.params.userId; 
+    console.log("USER ID 1: " + userId);
+    Post.find( {_id: userId}, function(err, result){
+      if(err){
+        console.log(err);
+      } else {
+        console.log("RESULT" + result[0]);
+        res.render("updatePost", {
+          posts: result[0],
+        });
+      }
+    });
+  } else {
+    res.render("login", {
+      fail: "false",
       });
-    }
-  });
+  }
+
 });
 
-app.post('/comment/:userId', (req, res) => {
-  const userId = req.params.userId; 
+app.post('/comment/:mainPostId', (req, res) => {
+  if(sessionValid == "true"){
+    const mainPostId = req.params.mainPostId; 
 
-  const comment = new Comment({
-
-    mainPostId: userId,
-    username: "DLSUaccount",
-    comment: req.body.cmnt,
-    isUser: "true",
-    anon: req.body.anonToggle,
-  });
-
-  console.log("USER ID 1: " + userId);
-
-      console.log("RESULT PO: " + req.params.userId);
-
-      const query = {_id: userId}
-      const anonVal = req.body.anonToggle;
-      let commenterVal = "user";
-
-      console.log("ANON VAAAAAAAAAL: " + anonVal);
-
-      if(anonVal == "true"){
-        commenterVal = "userAnon";
-      } 
-
-      comment.save( function(err){
-        if(err){
+    User.findOne({_id: userHomeId}, function (err, result) {
+        if (err) {
           console.log(err);
-        } else {
-          res.redirect("/");
-        }
+        } 
+    });
+
+    const comment = new Comment({
+      mainPostId: mainPostId,
+      username: userAccount.username,
+      comment: req.body.cmnt,
+      anon: req.body.anonToggle,
+    });
+   
+    const query = {_id: mainPostId}
+    const anonVal = req.body.anonToggle;
+  
+    comment.save( function(err){
+      if(err){
+         console.log(err);
+      } else {
+         res.redirect("/");
+      }
+    });
+  
+  } else {
+    res.render("login", {
+      fail: "false",
       });
+  }
 
 });
 
 app.post("/update", (req, res) => {
-  const userId = req.body.id;
-  const query = {_id: userId};
-  const postVal = req.body.postText;
-  const isUserVal = "true";
-  const anonVal = req.body.anonToggle;
-  const tagVal = req.body.tag;
+  if(sessionValid == "true"){
+    const userId = req.body.id;
+    const query = {_id: userId};
+    const postVal = req.body.postText;
+    const anonVal = req.body.anonToggle;
+    const tagVal = req.body.tag;
+  
+    console.log("USER ID 2: " + userId);
+   
+    Post.updateOne( query, {post: postVal, anon: anonVal, tag: tagVal}, function(err, result){
+      if(err){
+        console.log(err);
+      } else {
+        console.log(postVal);
+        res.redirect("/");
+      }
+    });
+  } else {
+    res.render("login", {
+      fail: "false",
+      });
+  }
 
-  console.log("USER ID 2: " + userId);
- 
-  Post.updateOne( query, {post: postVal, isUser: isUserVal, anon: anonVal, tag: tagVal}, function(err, result){
-    if(err){
-      console.log(err);
-    } else {
-      console.log(postVal);
-      res.redirect("/");
-    }
-  });
 });
 
 app.get('/delete/:userId', (req, res) => {
-  const userId = req.params.userId;
+  if(sessionValid == "true"){
+    const userId = req.params.userId;
 
-  console.log("USER ID 1 DELETE: " + userId);
-  Post.findByIdAndRemove( userId, function(err, result){
-    if(err){
-      console.log(err);
-    } else {
-      console.log("DELETING " + userId);
-      res.redirect("/");
-    }
-  });
+    console.log("USER ID 1 DELETE: " + userId);
+    Post.findByIdAndRemove( userId, function(err, result){
+      if(err){
+        console.log(err);
+      } else {
+        console.log("DELETING " + userId);
+        res.redirect("/");
+      }
+    });
+  } else {
+    res.render("login", {
+      fail: "false",
+      });
+  }
+
 });
 
 app.get('/deleteComment/:commentId', (req, res) => {
-  const commentToDelete = req.params.commentId;
+  if(sessionValid == "true"){
+    const commentToDelete = req.params.commentId;
 
-  console.log("USER ID 1 DELETE: " + commentToDelete);
-  Comment.findByIdAndRemove( commentToDelete, function(err, result){
-    if(err){
-      console.log(err);
-    } else {
-      console.log("DELETING " + commentToDelete);
-      res.redirect("/");
-    }
-  });
+    console.log("USER ID 1 DELETE: " + commentToDelete);
+    Comment.findByIdAndRemove( commentToDelete, function(err, result){
+      if(err){
+        console.log(err);
+      } else {
+        console.log("DELETING " + commentToDelete);
+        res.redirect("/");
+      }
+    });
+  } else {
+    res.render("login", {
+      fail: "false",
+      });
+  }
+  
 });
 
 app.get('/editComment/:commentId', (req, res) => {
-  const commentToUpdate = req.params.commentId; 
+  if(sessionValid == "true"){
+    const commentToUpdate = req.params.commentId; 
 
-  console.log("USER ID 1: " + req.params.commentId);
-  Comment.find( {_id: commentToUpdate}, function(err, result){
-    if(err){
-      console.log(err);
-    } else {
-      console.log("RESULT:" + result[0].id);
-      res.render("updateComment", {
-        comment: result[0],
+    console.log("USER ID 1: " + req.params.commentId);
+    Comment.find( {_id: commentToUpdate}, function(err, result){
+      if(err){
+        console.log(err);
+      } else {
+        console.log("RESULT:" + result[0].id);
+        res.render("updateComment", {
+          comment: result[0],
+        });
+      }
+    });
+  } else {
+    res.render("login", {
+      fail: "false",
       });
-    }
-  });
+  }
 });
 
 app.post("/updateComment", (req, res) => {
-  const userId = req.body.id;
-  const query = {_id: userId};
-  const commentVal = req.body.postText;
-  const isUserVal = "true";
-  const anonVal = req.body.anonToggle;
-
-  console.log("USER ID 2: " + userId);
- 
-  Comment.updateOne( query, {comment: commentVal, isUser: isUserVal, anon: anonVal}, function(err, result){
-    if(err){
-      console.log(err);
-    } else {
-      res.redirect("/");
-    }
-  });
+  if(sessionValid == "true"){
+    const userId = req.body.id;
+    const query = {_id: userId};
+    const commentVal = req.body.postText;
+    const anonVal = req.body.anonToggle;
+  
+    console.log("USER ID 2: " + userId);
+   
+    Comment.updateOne( query, {comment: commentVal, anon: anonVal}, function(err, result){
+      if(err){
+        console.log(err);
+      } else {
+        res.redirect("/");
+      }
+    });
+  } else {
+    res.render("login", {
+      fail: "false",
+      });
+  }
+  
 });
-
 
 app.listen(3000, function () {
   console.log("server started on port 3000");

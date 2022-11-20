@@ -36,7 +36,7 @@
           <td onclick="window.location.href='createPost.html'">Create Post</td>
         </tr>
         <tr>
-          <td><a href="/">Log out</a></td>
+          <td><a href="/logout">Log out</a></td>
         </tr>
       </table>
     </div>
@@ -47,7 +47,7 @@
 
     <% for (let i = posts.length - 1; i >= 0; i--){ %>
       <div class="post-container">
-        <% if (posts[i].isUser == "true") { %>
+        <% if (posts[i].userId == user._id) { %>
         <a href="edit/<%= posts[i]._id %>"> <img src="/public/assets/images/pencil.png"/> </a>
         <a href="delete/<%= posts[i]._id %>"> <img src="/public/assets/images/trash.png" /> </a>
         <%} %>
@@ -64,7 +64,6 @@
         <% for (let j = 0; j < comments.length; j++){ %>
           <div class="comment-container">
           <% if (comments[j].mainPostId == posts[i]._id) { %>
-            <% if (comments[j].isUser == "true") { %>
               <% if (comments[j].anon == "true") { %>
                   <a href="editComment/<%= comments[j]._id %>"> <img src="/public/assets/images/pencil.png"/> </a>
                   <a href="deleteComment/<%= comments[j]._id %>"> <img src="/public/assets/images/trash.png" /> </a>
@@ -74,7 +73,6 @@
                   <a href="deleteComment/<%= comments[j]._id %>"> <img src="/public/assets/images/trash.png" /> </a>
                   <p class="username-comment comment-text"><%= comments[j].username %></p>
                 <% } %> 
-              <% } %> 
              <p class="comment-text"><%= comments[j].comment %></p>
              <hr />
           <% } %> 
