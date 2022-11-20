@@ -1,8 +1,8 @@
 <html>
   <head>
     <title>AnonX - Register</title>
-    <link rel="stylesheet" type="text/css" media="all" href="style.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="stylesheet" type="text/css" media="all" href="/public/assets/style.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="/public/assets/images/favicon.ico" />
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
       rel="stylesheet"
@@ -13,7 +13,7 @@
     <div class="container">
       <h1 class="header">Create Your Account</h1>
       <div class="login-content">
-        <form action="index.html">
+        <form action="/createAccount" method="post">
           <div class="input-div one">
             <div class="i">
               <i class="fas fa-user"></i>
@@ -23,6 +23,7 @@
                 type="text"
                 class="input"
                 placeholder="Username"
+                name="username"
                 required
               />
             </div>
@@ -36,19 +37,7 @@
                 type="password"
                 class="input"
                 placeholder="Password"
-                required
-              />
-            </div>
-          </div>
-          <div class="input-div password">
-            <div class="i">
-              <i class="fas fa-lock"></i>
-            </div>
-            <div class="div">
-              <input
-                type="password"
-                class="input"
-                placeholder="Re-type Password"
+                name="password"
                 required
               />
             </div>

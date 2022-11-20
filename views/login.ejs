@@ -3,7 +3,8 @@
   <head>
     <title>AnonX - log in</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" type="text/css" media="all" href="style.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="/public/assets/style.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="/public/assets/images/favicon.ico" />
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
       rel="stylesheet"
@@ -12,16 +13,20 @@
   <body>
     <div>
       <img
-        src="images/logo2.png"
+        src="/public/assets/images/logo2.png"
         width="13%"
         style="margin-left: 5%; margin-top: 3%; position: absolute"
       />
     </div>
     <div class="container">
-      <h1 class="header">Post Anonymously</h1>
+      <% if (fail == "false") { %>
+        <h1 class="header">Post Anonymously</h1>
+      <%} else {%>
+          <h1 class="header">Username / Password incorect</h1>
+       <%} %>
       <div class="login-content">
-        <form action="Login.html">
-          <img src="images/anon-avatar.png" alt="avatar" />
+        <form action="verifyLogin" method="post">
+          <img src="/public/assets/images/anon-avatar.png" alt="avatar" />
           <div class="input-div one">
             <div class="i">
               <i class="fas fa-user"></i>
@@ -31,6 +36,7 @@
                 type="text"
                 class="input"
                 placeholder="Username"
+                name="username"
                 required
               />
             </div>
@@ -44,6 +50,7 @@
                 type="password"
                 class="input"
                 placeholder="Password"
+                name="password"
                 required
               />
             </div>
@@ -51,20 +58,19 @@
 
           <a href="#">Forgot Password?</a>
           <input
-            type="button"
-            onclick="location.href = 'index.html'"
+            type="submit"
             id="login"
             class="btn"
             value="Login"
           />
           <hr />
-          <input
+          <a href="/register"><input
             type="button"
-            onclick="location.href = 'register.html'"
             id="login"
             class="btn-reg"
             value="Register"
-          />
+          /></a>
+          
         </form>
       </div>
     </div>

@@ -12,6 +12,11 @@ app.use("/public", express.static("public"));
 
 const userSchema = {
   username: String,
+  password: String,
+};
+
+const postSchema = {
+  username: String,
   post: String,
   tag: String,
   isUser: String,
@@ -19,7 +24,6 @@ const userSchema = {
   commenter: Array,
   comment: Array,
 };
-
 
 const userCommentSchema = {
   mainPostId: String,
@@ -29,7 +33,8 @@ const userCommentSchema = {
   anon: String,
 };
 
-const Post = mongoose.model("post", userSchema);
+const User = mongoose.model("user", userSchema);
+const Post = mongoose.model("post", postSchema);
 const Comment = mongoose.model("comment", userCommentSchema);
 
 app.get("/", (req, res) => {
@@ -49,21 +54,62 @@ app.get("/", (req, res) => {
   });
 });
 
-/*
-app.get("/create", (req, res) => {
-  Post.find({}, function (err, rows) {
-    // console.log(rows)
+app.get("/login", (req, res) => {
+  res.render("login", {
+    fail: "false",
+  });
+});
 
-    if (err) {
+app.get("/register", (req, res) => {
+  res.render("register", {
+  });
+});
+
+app.post("/createAccount", (req, res) => {
+  const user = new User({
+    username: req.body.username, 
+    password: req.body.password,
+  });
+ // console.log( req.body.anonToggle);
+ user.save( function(err){
+    if(err){
       console.log(err);
     } else {
-      res.render("index", {
-        posts: rows,
-      });
+      res.redirect("/login");
     }
   });
 });
-*/
+
+app.post("/verifyLogin", (req, res) => {
+  console.log("USERNAME: " + req.body.username);
+  console.log("PASSWORD: " + req.body.password);
+  User.findOne( {username: req.body.username, password: req.body.password}, function(err, result){
+    if(err){
+      console.log(err);
+    } else {
+      if(result != null){
+         Post.find({}, function (err, postRows) {
+         // console.log(rows)
+         Comment.find({}, function (err, commentRows) {
+          if (err) {
+            console.log(err);
+          } else {
+            res.render("index", {
+              posts: postRows,
+              comments: commentRows
+            });
+          }
+         });
+        });
+      } else {
+        res.render("login", {
+          fail: "true",
+        });
+      }
+    }
+  });
+});
+
 
 app.get("/add", (req, res) => {
   res.render("createPost", {
