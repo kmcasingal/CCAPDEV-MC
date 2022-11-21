@@ -10,3 +10,7 @@ function menu() {
 function scrollUp() {
   document.body.scrollTop = 0;
 }
+
+$('.message a').click(function(){
+  $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+});

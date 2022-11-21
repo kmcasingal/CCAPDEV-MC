@@ -75,6 +75,7 @@ app.get("/", (req, res) => {
 
 app.get("/register", (req, res) => {
   res.render("register", {
+    fail: "false",
   });
 });
 
@@ -92,13 +93,28 @@ app.post("/createAccount", (req, res) => {
    });
   console.log("REGI NAME = " +  req.body.username);
   console.log("REGI PASS = " +  req.body.password);
-  user.save( function(err){
-    if(err){
-       console.log(err);
+
+  User.findOne({username: req.body.username}, function (err, result) {
+    console.log("USER: " + result);
+    if (err) {
+      console.log(err);
     } else {
-       res.redirect("/");
-     }
-  }); 
+      if(result == null){
+        user.save( function(err){
+          if(err){
+            console.log(err);
+          } else {
+            res.redirect("/");
+          }
+        });         
+      } else {
+        res.render("register", {
+          fail: "true",
+          });
+      }
+    }
+   });
+
 
 });
 
@@ -129,6 +145,29 @@ app.post("/verifyLogin", (req, res) => {
         }
       }
     });
+});
+
+app.post("/search", (req, res) => {
+  User.findOne({_id: userHomeId}, function (err, result) {
+    if (err) {
+      console.log(err);
+    } else {
+      Post.find({tag: req.body.searchTag}, function (err, postRows) {
+        console.log("labas: " + postRows);
+        Comment.find({}, function (err, commentRows) {
+          if (err) {
+            console.log(err);
+          } else {
+            res.render("index", {
+              posts: postRows,
+              comments: commentRows,
+              user: result,
+            });
+          }
+       });
+      });
+    }
+   });
 });
 
 app.get("/add/:userId", (req, res) => {
@@ -365,6 +404,11 @@ app.post("/updateComment", (req, res) => {
       });
   }
   
+});
+
+app.get("/profile", (req, res) => {
+  res.render("profile", {
+  });
 });
 
 app.listen(3000, function () {

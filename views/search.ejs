@@ -17,10 +17,10 @@
     <a name="top"></a>
     <div class="header">
       <div class="header-logo">
-        <a href="/"><img src="/public/assets/images/logo.png" /></a>
+        <a href="index.html"><img src="/public/assets/images/logo.png" /></a>
       </div>
       <div class="header-search">
-        <form action="/search" method="post">
+        <form action="/search">
           <input type="text" placeholder="Search" name="searchTag"/>
         </form>
       </div>
@@ -31,10 +31,10 @@
     <div class="header-menu">
       <table>
         <tr>
-          <td><a href="/profile">Profile</a></td>
+          <td onclick="window.location.href='profile.html'">Profile</td>
         </tr>
         <tr>
-          <td><a href="/add/<%= user.id %>">Create post</a></td>
+          <td onclick="window.location.href='createPost.html'">Create Post</td>
         </tr>
         <tr>
           <td><a href="/logout">Log out</a></td>

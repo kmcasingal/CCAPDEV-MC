@@ -11,7 +11,11 @@
 
   <body>
     <div class="container">
-      <h1 class="header">Create Your Account</h1>
+      <% if (fail == "false") { %>
+        <h1 class="header">Create Your Account</h1>
+      <% } else {%> 
+        <h1 class="header">Username already exists</h1>
+      <% } %> 
       <div class="login-content">
         <form action="/createAccount" method="post">
           <div class="input-div one">
