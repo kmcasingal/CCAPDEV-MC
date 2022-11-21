@@ -1,79 +1,60 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>AnonX - log in</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" type="text/css" media="all" href="/public/assets/style.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="/public/assets/images/favicon.ico" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <div>
-      <img
-        src="/public/assets/images/logo2.png"
-        width="13%"
-        style="margin-left: 5%; margin-top: 3%; position: absolute"
-      />
-    </div>
-    <div class="container">
-      <% if (fail == "false") { %>
-        <h1 class="header">Post Anonymously</h1>
-      <%} else {%>
-          <h1 class="header">Username / Password incorect</h1>
-       <%} %>
-      <div class="login-content">
-        <form action="verifyLogin" method="post">
-          <img src="/public/assets/images/anon-avatar.png" alt="avatar" />
-          <div class="input-div one">
-            <div class="i">
-              <i class="fas fa-user"></i>
+    <head>
+        <title> AnonX - log in </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" media="all" href="/public/assets/style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/a81368914x.js"></script>
+    </head>
+    <body>
+        <div>
+            <!-- Fix Logo -->
+            <img src="/public/assets/images/logo2.png" width="13%" alt="logo" style="margin-left: 5%; margin-top: 3%; position: absolute;">
+        </div>
+        <!-- Whole body -->
+        <div class="container">
+            <div class="container-flex">
+              <div class="flex-left">
+                <% if (fail == "true") { %>
+                    <h1 class="header">Username / Password incorect</h1>
+                <%} else if(failReg == "true"){%>
+                    <h1 class="header">User already exists</h1>
+                <%} else if(fail == "false"){%>
+                    <h1 class="header">Post Anonymously</h1>
+                <%} %>
+              </div>
             </div>
-            <div class="div">
-              <input
-                type="text"
-                class="input"
-                placeholder="Username"
-                name="username"
-                required
-              />
-            </div>
-          </div>
-          <div class="input-div password">
-            <div class="i">
-              <i class="fas fa-lock"></i>
-            </div>
-            <div class="div">
-              <input
-                type="password"
-                class="input"
-                placeholder="Password"
-                name="password"
-                required
-              />
-            </div>
-          </div>
+            <div class="flex-right">
+            <div class="login-page">
+                <div class="form">
+                    <!-- Register -->
+                    <form class="register-form" action="/createAccount" method="post">
+                        <input type="text" placeholder="Username" name="regUsername" required/>
+                        <input type="password" placeholder="Password" name="regPassword" required/>
+                        <input type="submit"  class="button" id="create" value="Create Account">
+                        <p class="message">Already registered? <a href="#">Sign In</a></p>
+                    </form>
 
-          <a href="#">Forgot Password?</a>
-          <input
-            type="submit"
-            id="login"
-            class="btn"
-            value="Login"
-          />
-          <hr />
-          <a href="/register"><input
-            type="button"
-            id="login"
-            class="btn-reg"
-            value="Register"
-          /></a>
-          
-        </form>
-      </div>
-    </div>
-    <script src="https://kit.fontawesome.com/a81368914x.js"></script>
-  </body>
+                    <!-- Login -->
+                    <form class="login-form" action="/verifyLogin" method="post">
+                        <!-- Username -->
+                        <div class="form-control">
+                            <input type="text" id="username" name="username" placeholder="Username" required/>
+                        </div>
+                        <!-- Password -->
+                        <div class="form-control">
+                            <input type="password" id="password" name="password" placeholder="Password" required/>
+                        </div>
+                        <!-- Button -->
+                        <input type="submit"  class="button"  id="login" value="Login">
+                        <p class="message">Not registered? <a href="#">Create an account</a></p>
+                    </form>
+                </div>
+              </div>
+          </div>
+        </div>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+        <script  src="../public/js/script.js"></script>
+    </body>
 </html>

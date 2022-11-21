@@ -13,10 +13,12 @@ app.use("/public", express.static("public"));
 const userSchema = {
   username: String,
   password: String,
+  bio: String,
 };
 
 const postSchema = {
   userId: String,
+  title: String,
   username: String,
   post: String,
   tag: String,
@@ -67,7 +69,8 @@ app.get("/", (req, res) => {
      });
   } else {
      res.render("login", {
-     fail: "false",
+      failReg: "false",
+      fail: "false",
      });
   }
  
@@ -88,13 +91,13 @@ app.get("/logout", (req, res) => {
 app.post("/createAccount", (req, res) => {
 
    const user = new User({
-      username: req.body.username, 
-      password: req.body.password,
+      username: req.body.regUsername, 
+      password: req.body.regPassword,
    });
-  console.log("REGI NAME = " +  req.body.username);
-  console.log("REGI PASS = " +  req.body.password);
+  console.log("REGI NAME = " +  req.body.regUsername);
+  console.log("REGI PASS = " +  req.body.regPassword);
 
-  User.findOne({username: req.body.username}, function (err, result) {
+  User.findOne({username: req.body.regUsername}, function (err, result) {
     console.log("USER: " + result);
     if (err) {
       console.log(err);
@@ -108,14 +111,14 @@ app.post("/createAccount", (req, res) => {
           }
         });         
       } else {
-        res.render("register", {
-          fail: "true",
+        console.log("DITO");
+        res.render("login", {
+          fail: "false",
+          failReg: "true",
           });
       }
     }
    });
-
-
 });
 
 app.post("/verifyLogin", (req, res) => {
@@ -140,6 +143,7 @@ app.post("/verifyLogin", (req, res) => {
         });
       } else {
           res.render("login", {
+            failReg: "false",
             fail: "true",
           });
         }
@@ -192,13 +196,20 @@ app.get("/add/:userId", (req, res) => {
 
 app.post("/save", (req, res) => {
   if(sessionValid == "true"){
-    console.log("ID REQUESTED: " + req.body.userId);
-    console.log("USERNAME REQUESTED: " + req.body.username);
+    console.log("ANON TOGGLE: " + req.body.anonToggle);
+    let anonToggle = ""
+    if(req.body.anonToggle == "on"){
+      anonToggle = "true"
+    } else {
+      anonToggle = "false"
+    }
+    
       const post = new Post({
         userId: req.body.userId,
+        title: req.body.title,
         username: req.body.username, 
         post: req.body.postText,
-        anon: req.body.anonToggle,
+        anon: anonToggle,
         tag: req.body.tag,
       });
   
@@ -297,12 +308,18 @@ app.post("/update", (req, res) => {
     const userId = req.body.id;
     const query = {_id: userId};
     const postVal = req.body.postText;
-    const anonVal = req.body.anonToggle;
     const tagVal = req.body.tag;
+
+    let anonToggle = ""
+    if(req.body.anonToggle == "on"){
+      anonToggle = "true"
+    } else {
+      anonToggle = "false"
+    }
   
     console.log("USER ID 2: " + userId);
    
-    Post.updateOne( query, {post: postVal, anon: anonVal, tag: tagVal}, function(err, result){
+    Post.updateOne( query, {post: postVal, anon: anonToggle, tag: tagVal}, function(err, result){
       if(err){
         console.log(err);
       } else {
@@ -387,11 +404,17 @@ app.post("/updateComment", (req, res) => {
     const userId = req.body.id;
     const query = {_id: userId};
     const commentVal = req.body.postText;
-    const anonVal = req.body.anonToggle;
+
+    let anonToggle = ""
+    if(req.body.anonToggle == "on"){
+      anonToggle = "true"
+    } else {
+      anonToggle = "false"
+    }
   
     console.log("USER ID 2: " + userId);
    
-    Comment.updateOne( query, {comment: commentVal, anon: anonVal}, function(err, result){
+    Comment.updateOne( query, {comment: commentVal, anon: anonToggle}, function(err, result){
       if(err){
         console.log(err);
       } else {
@@ -407,9 +430,56 @@ app.post("/updateComment", (req, res) => {
 });
 
 app.get("/profile", (req, res) => {
-  res.render("profile", {
-  });
+  User.findOne({_id: userHomeId}, function (err, result) {
+    console.log("USER: " + result);
+    if (err) {
+      console.log(err);
+    } else {        
+      res.render("profile", {
+        profile: result,
+      }); 
+    }
+   });
 });
+
+app.get("/editProfile", (req, res) => {
+  User.findOne({_id: userHomeId}, function (err, result) {
+    console.log("USER: " + result);
+    if (err) {
+      console.log(err);
+    } else {        
+      res.render("updateInfo", {
+        profile: result,
+      }); 
+    }
+   });
+});
+
+app.post("/updateProfile", (req, res) => {
+  if(sessionValid == "true"){
+
+    User.findOne({_id: userHomeId}, function (err, result) {
+      console.log("USER: " + result);
+      if (err) {
+        console.log(err);
+      } else {        
+        User.updateOne( {_id: userHomeId}, {username: req.body.username, password: req.body.password, bio: req.body.bio}, function(err, result){
+          if(err){
+            console.log(err);
+          } else {
+            res.re("/profile");
+          }
+        });
+      }
+     });
+  } else {
+    res.render("login", {
+      fail: "false",
+      });
+  }
+});
+
+
 
 app.listen(3000, function () {
   console.log("server started on port 3000");

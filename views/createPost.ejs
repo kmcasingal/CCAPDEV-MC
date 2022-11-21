@@ -1,52 +1,55 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>AnonX - Post</title>
-    <link rel="stylesheet" href="/public/assets/homeStyle.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="/public/assets/images/favicon.ico" />
-  </head>
-  <body>
-    <div class="header">
-      <div class="header-logo">
-        <a href="index.html"><img src="/public/assets/images/logo.png" /></a>
-      </div>
-      <div class="header-search">
-        <input type="text" placeholder="Search" />
-        <a href="search.html"><img src="/public/assets/images/search.png" /></a>
-      </div>
-      <div class="header-profile">
-        <img src="/public/assets/images/profilePic.jpg" onclick="menu()" />
-      </div>
-    </div>
-    <div class="header-menu">
-      <table>
-        <tr>
-          <td onclick="window.location.href='profile.html'">Profile</td>
-        </tr>
-        <tr>
-          <td onclick="window.location.href='createPost.html'">Create Post</td>
-        </tr>
-        <tr>
-          <td onclick="window.location.href='login.html'">Log out</td>
-        </tr>
-      </table>
-    </div>
-    <div class="create-post">
-      <form action="/save" method="post">
-        <input type="hidden" value="<%= user._id %>" id="userId" name="userId">
-        <input type="hidden" value="<%= user.username %>" id="username" name="username">
-        <input type="text" name="postText" id="postText" placeholder="Create post" />
-        <input type="text" name="tag" id="addTag" placeholder="Insert a tag" />
-        <p>Anonymous:</p>
-        <input type="radio" name="anonToggle" id="on" value="true" checked/>
-        <label for="on" class="anonLabel">On</label>
-        <input type="radio" name="anonToggle" id="off" value="false" />
-        <label for="off" class="anonLabel">Off</label>
-        <button type="submit">Post</button>
-      </form>
-    </div>
-    <button class="button-home">
-      <a href="/">Back to Home</a>
-    </button>
-    <script src="../public/js/script.js"></script>
-  </body>
+    <head>
+        <title> AnonX - create post</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" media="all" href="/public/assets/main-style.css">
+        <link rel="shortcut icon" type="image/x-icon" href="/public/assets/images/favicon.ico" />
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/a81368914x.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <!-- Top Navigation Bar -->
+            <div class="topnav">
+                <div class="header-logo">
+                    <a href="/">AnonX</a>
+                </div>
+                <div class="header-search">
+                    <input type="text" placeholder="Search topics or tags">
+                </div>
+                <div class="header-profile">
+                    <button class="dropbtn" onclick="menu()">Profile</button>
+                        <div class="dropdown-content">
+                            <a href="/">Home</a>
+                            <a href="#">Categories</a>
+                            <a href="/profile">Profile</a>
+                        </div>
+                </div>
+                <div class="header-logout">
+                    <a href="login.html">Log out</a>
+                </div>
+            </div>
+
+        
+        <!-- Create Post -->
+        <div>
+            <p> Create a post </p>
+            <form action="/save" method="post">
+                <input type="hidden" value="<%= user._id %>" id="userId" name="userId">
+                <input type="hidden" value="<%= user.username %>" id="username" name="username">
+                <input type="text" id="title" name="title" placeholder="Title" maxlength="1000"> <br>
+                <a>Max 1000 characters</a> <br>
+                <input type="text" id="post" placeholder="Text (optional)" name="postText" maxlength="10000"> <br>
+                <a> Max 10000 characters </a> <br>
+                <input type="text" id="tags" name="tag" placeholder="#tags" name="tag" maxlength="20"> <br>
+                <a> Max 20 characters</a> <br>
+                
+                <!-- Add toggle swtich -->
+                <label>Anonymous: <input name="anonToggle" type="checkbox" value="on"></label>
+                <br>
+                <input type="submit" value="Post">
+            </form>
+        </div>
+    </body>
 </html>

@@ -1,58 +1,57 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>AnonX - Post</title>
-    <link rel="stylesheet" href="/public/assets/homeStyle.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="/public/assets/images/favicon.ico" />
-  </head>
-  <body>
-    <div class="header">
-      <div class="header-logo">
-        <a href="index.html"><img src="/public/assets/images/logo.png" /></a>
-      </div>
-      <div class="header-search">
-        <input type="text" placeholder="Search" />
-        <a href="search.html"><img src="/public/assets/images/search.png" /></a>
-      </div>
-      <div class="header-profile">
-        <img src="/public/assets/images/profilePic.jpg" onclick="menu()" />
-      </div>
-    </div>
-    <div class="header-menu">
-      <table>
-        <tr>
-          <td onclick="window.location.href='profile.html'">Profile</td>
-        </tr>
-        <tr>
-          <td onclick="window.location.href='createPost.html'">Create Post</td>
-        </tr>
-        <tr>
-          <td onclick="window.location.href='login.html'">Log out</td>
-        </tr>
-      </table>
-    </div>
-    <div class="create-post">
-      <form action="/update" method="post">
-        <input type="hidden" value="<%= posts.id %>" name="id">
-        <input type="text" name="postText" id="postText" value="<%= posts.post %>" />
-        <input type="text" name="tag" id="addTag" placeholder="Insert a tag" />
-        <p>Anonymous:</p>
-        <% if (posts.anon == "true") { %>
-            <input type="radio" name="anonToggle" id="on" value="true" checked/>
-            <label for="on" class="anonLabel">On</label>
-            <input type="radio" name="anonToggle" id="off" value="false" />
-            <label for="off" class="anonLabel">Off</label>
-        <%} else {%>
-            <input type="radio" name="anonToggle" id="on" value="true"/>
-            <label for="on" class="anonLabel">On</label>
-            <input type="radio" name="anonToggle" id="off" value="false" checked/>
-            <label for="off" class="anonLabel">Off</label>
-          <%} %>
-        <button type="submit">Update</button>
-      </form>
-    </div>
-    <button class="button-home">
-      <a href="/">Back to Home</a>
-    </button>
-    <script src="script.js"></script>
-  </body>
+    <head>
+        <title> AnonX - edit post</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" media="all" href="/public/assets/main-style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/a81368914x.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <!-- Top Navigation Bar -->
+            <div class="topnav">
+                <div class="header-logo">
+                    <a href="index.html">AnonX</a>
+                </div>
+                <div class="header-search">
+                    <input type="text" placeholder="Search topics, tags, profile">
+                </div>
+                <div class="header-profile">
+                    <button class="dropbtn" onclick="menu()">Profile</button>
+                        <div class="dropdown-content">
+                            <a href="index.html">Home</a>
+                            <a href="categories.html">Categories</a>
+                            <a href="profile.html">Profile</a>
+                        </div>
+                </div>
+                <div class="header-logout">
+                    <a href="login.html">Log out</a>
+                </div>
+            </div>
+
+        
+        <!-- Edit post -->
+        <div>
+            <p> Edit your post </p>
+            <form action="/update" method="post">
+                <input type="hidden" value="<%= posts.id %>" name="id">
+                <input type="text" id="title" name="title"  value="<%= posts.title %>" placeholder="Title" maxlength="1000"> <br>
+                <a>Max 1000 characters</a> <br>
+                <input type="text" id="post"  name="postText" value="<%= posts.post %>" placeholder="Text (optional)" maxlength="10000"> <br>
+                <a> Max 10000 characters </a> <br>
+                <input type="text" id="tags" name="tag" value="<%= posts.tag %>"placeholder="#tags" maxlength="20"> <br>
+                <a> Max 20 characters</a> <br>
+                
+                <!-- Add toggle swtich -->
+                <% if (posts.anon == "true") { %>
+                    <label>Anonymous: <input name="anonToggle" type="checkbox" value="on" checked></label>
+                <%} else {%>
+                    <label>Anonymous: <input name="anonToggle" type="checkbox" value="on" ></label>
+                <%} %>
+                <br>
+                <input type="submit" value="Post">
+            </form>
+        </div>
+    </body>
 </html>
