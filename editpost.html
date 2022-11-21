@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> AnonX - edit post</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" media="all" href="./main-style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/a81368914x.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <!-- Top Navigation Bar -->
+            <div class="topnav">
+                <div class="header-logo">
+                    <a href="index.html">AnonX</a>
+                </div>
+                <div class="header-search">
+                    <input type="text" placeholder="Search topics, tags, profile">
+                </div>
+                <div class="header-profile">
+                    <button class="dropbtn" onclick="menu()">Profile</button>
+                        <div class="dropdown-content">
+                            <a href="index.html">Home</a>
+                            <a href="categories.html">Categories</a>
+                            <a href="profile.html">Profile</a>
+                        </div>
+                </div>
+                <div class="header-logout">
+                    <a href="login.html">Log out</a>
+                </div>
+            </div>
+
+        
+        <!-- Edit post -->
+        <div>
+            <p> Edit your post </p>
+            <form>
+                <input type="text" id="title" name="title" placeholder="Title"> <br>
+                <a>Max 1000 characters</a> <br>
+                <input type="text" id="post" name="post" placeholder="Text (optional)"> <br>
+                <a> Max 10000 characters </a> <br>
+                <input type="text" id="tags" name="tags" placeholder="#tags"> <br>
+                <a>Do not enter #, and press enter to add new tag</a> <br>
+                <a> Max 20 characters and 0/5 tags</a> <br>
+                
+                <!-- Add toggle swtich -->
+                
+                <br>
+                <input type="submit" value="Post">
+            </form>
+        </div>
+    </body>
+</html>
