@@ -11,22 +11,23 @@
         <div class="container">
             <!-- Top Navigation Bar -->
             <div class="topnav">
-                <div class="header-logo">
+                <div class="logo">
                     <a href="index.html">AnonX</a>
                 </div>
-                <div class="header-search">
-                    <input type="text" placeholder="Search topics, tags, profile">
+                <div class="search">
+                    <input type="text" placeholder="Search topics, posts, categories">
                 </div>
-                <div class="header-profile">
-                    <button class="dropbtn" onclick="menu()">Profile</button>
-                        <div class="dropdown-content">
-                            <a href="index.html">Home</a>
-                            <a href="categories.html">Categories</a>
-                            <a href="profile.html">Profile</a>
-                        </div>
-                </div>
-                <div class="header-logout">
-                    <a href="login.html">Log out</a>
+                <div class="topnav-profile-logout">
+                    <div class="profile">
+                        <button class="dropbtn" onclick="menu()">Home</button>
+                            <div class="dropdown-content">
+                                <a href="index.html">Home</a>
+                                <a href="profile.html">Profile</a>
+                            </div>
+                    </div>
+                    <div class="logout">
+                        <a href="login.html">Log out</a>
+                    </div>
                 </div>
             </div>
 
@@ -50,5 +51,6 @@
                 <input type="submit" value="Save">
             </form>
         </div>
+        <script src="script.js"></script>
     </body>
 </html>
