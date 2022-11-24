@@ -457,7 +457,6 @@ app.get("/editProfile", (req, res) => {
 
 app.post("/updateProfile", (req, res) => {
   if(sessionValid == "true"){
-
     User.findOne({_id: userHomeId}, function (err, result) {
       console.log("USER: " + result);
       if (err) {
@@ -478,8 +477,6 @@ app.post("/updateProfile", (req, res) => {
       });
   }
 });
-
-
 
 app.listen(3000, function () {
   console.log("server started on port 3000");
