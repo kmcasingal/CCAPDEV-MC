@@ -14,3 +14,20 @@ function scrollUp() {
 $('.message a').click(function(){
   $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
 });
+
+//  <!-- See More Script -->
+function myFunction() {
+    var dots = document.getElementById("dots");
+    var moreText = document.getElementById("more");
+    var btnText = document.getElementById("seemorebtn");
+
+    if (dots.style.display === "none") {
+    dots.style.display = "inline";
+    btnText.innerHTML = "See more"; 
+    moreText.style.display = "none";
+    } else {
+    dots.style.display = "none";
+    btnText.innerHTML = "See less"; 
+    moreText.style.display = "inline";
+    }
+}
