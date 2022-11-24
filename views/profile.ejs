@@ -70,9 +70,9 @@
                                 <h2 class="header">Posts</h2>
                             </div>
         
+                            <% for (let i = posts.length - 1; i >= 0; i--){ %>
                             <div class="container-profile-posts">
                                 <!-- Block posts -->
-                                <% for (let i = posts.length - 1; i >= 0; i--){ %>
                                 <div class="block-post">
                                     <h3 class="post-title"> <p></p> <%= posts[i].title %></h3>
                                         <h5 class="post-author">
