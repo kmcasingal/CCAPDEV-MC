@@ -279,14 +279,14 @@ font-size: 13px;
 .post-edit {
   position: relative;
   padding-right: 25px;
-  top: -35px;
+  top: -25px;
   right: -90%;
   display: inline-block;
 }
 
 .post-delete {
   position: relative;
-  top: -35px;
+  top: -25px;
   right: -90%;
   display: inline-block;
 }
