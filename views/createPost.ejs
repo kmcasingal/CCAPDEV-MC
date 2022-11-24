@@ -37,9 +37,9 @@
             <form action="/save" method="post">
                 <input type="hidden" value="<%= user._id %>" id="userId" name="userId">
                 <input type="hidden" value="<%= user.username %>" id="username" name="username">
-                <input type="text" id="title" name="title" placeholder="Title" maxlength="60" required> <br>
+                <input type="text" id="title" name="title" placeholder="Title" maxlength="40" required> <br>
                 <a>Title: Max 60 characters</a> <br>
-                <input type="text" id="post" placeholder="Text (optional)" name="postText" maxlength="140"> <br>
+                <input type="text" id="post" placeholder="Text (optional)" name="postText" maxlength="120"> <br>
                 <a>Post: Max 140 characters </a> <br>
                 <input type="text" id="tags" name="tag" placeholder="#tags" name="tag" maxlength="20" required> <br>
                 <a>Tag: Max 20 characters</a> <br>
