@@ -1,6 +1,7 @@
+<!DOCTYPE html>
 <html>
     <head>
-        <title> AnonX - edit information</title>
+        <title> AnonX - edit post</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" media="all" href="/public/assets/main-style.css">
         <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
@@ -29,27 +30,24 @@
                     </div>
                 </div>
             </div>
-
         
-        <!-- Edit Information -->
+        <!-- Edit post -->
         <div>
-            <p> Edit Information </p>
-            <form action="/updateProfile" method="post">
-                <label for="username"> Edit Username</label> <br>
-                <input type="text" id="username" name="username" value="<%= profile.username %>" placeholder="Username"> <br>
-                <label for="password"> Edit Password</label> <br>
-                <input type="password" id="password" name="password" value="<%= profile.password %>"placeholder="Password"> <br>
-                <label for="bio"> Edit Bio</label> <br>
-                <input type="text" id="bio" name="bio" placeholder="Biography (optional)" value="<%= profile.bio %>" maxlength="10000"> <br>
-                <a> Max 10000 characters</a> <br>
+            <p> Edit your post </p>
+            <form>
+                <input type="text" id="title" name="title" placeholder="Title"> <br>
+                <a>Max 1000 characters</a> <br>
+                <input type="text" id="post" name="post" placeholder="Text (optional)"> <br>
+                <a> Max 10000 characters </a> <br>
+                <input type="text" id="tags" name="tags" placeholder="#tags"> <br>
+                <a>Do not enter #, and press enter to add new tag</a> <br>
+                <a> Max 20 characters and 0/5 tags</a> <br>
                 
-                <!-- Edit profile picture -->
+                <!-- Add toggle swtich -->
                 
-                <button type="delete" value="Delete Account"> Delete Account </button>
                 <br>
-                <input type="submit" value="Save">
+                <input type="submit" value="Post">
             </form>
         </div>
-        <script src="script.js"></script>
     </body>
 </html>

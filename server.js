@@ -151,13 +151,13 @@ app.post("/verifyLogin", (req, res) => {
     });
 });
 
-app.post("/search", (req, res) => {
+app.get("/search", (req, res) => {
   User.findOne({_id: userHomeId}, function (err, result) {
     if (err) {
       console.log(err);
     } else {
-      Post.find({tag: req.body.searchTag}, function (err, postRows) {
-        console.log("labas: " + postRows);
+      Post.find({tag: req.query.searchTag}, function (err, postRows) {
+        console.log("labas TAG2: " + req.query.searchTag);
         Comment.find({}, function (err, commentRows) {
           if (err) {
             console.log(err);
@@ -431,14 +431,20 @@ app.post("/updateComment", (req, res) => {
 
 app.get("/profile", (req, res) => {
   User.findOne({_id: userHomeId}, function (err, result) {
-    console.log("USER: " + result);
-    if (err) {
-      console.log(err);
-    } else {        
-      res.render("profile", {
-        profile: result,
-      }); 
-    }
+    Post.find({userId: userHomeId}, function (err, postRows) {
+      console.log("------------------: " + postRows);
+      Comment.find({}, function (err, commentRows) {
+        if (err) {
+          console.log(err);
+        } else {
+          res.render("profile", {
+            posts: postRows,
+            comments: commentRows,
+            profile: result,
+          });
+        }
+     });
+    });
    });
 });
 
