@@ -192,17 +192,20 @@ border-radius: 10px;
 }
 
 .profile-right{
-/* position: fixed;
-float: right; */
-/* padding: 40px;
-padding-left: 300px; */
-width: 1000px;
+  /* position: fixed;
+  float: right; */
+  padding-left: 150px;
 }
 
 .profile-top {
-display: flex;
-align-items: center;
-gap: 50px;
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  width: 80%;
+}
+
+.profile-bottom{
+  width: 80%;
 }
 
 .profile-name-edit {
