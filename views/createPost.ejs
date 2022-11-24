@@ -37,12 +37,12 @@
             <form action="/save" method="post">
                 <input type="hidden" value="<%= user._id %>" id="userId" name="userId">
                 <input type="hidden" value="<%= user.username %>" id="username" name="username">
-                <input type="text" id="title" name="title" placeholder="Title" maxlength="1000" required> <br>
-                <a>Max 1000 characters</a> <br>
-                <input type="text" id="post" placeholder="Text (optional)" name="postText" maxlength="10000"> <br>
-                <a> Max 10000 characters </a> <br>
+                <input type="text" id="title" name="title" placeholder="Title" maxlength="60" required> <br>
+                <a>Title: Max 60 characters</a> <br>
+                <input type="text" id="post" placeholder="Text (optional)" name="postText" maxlength="140"> <br>
+                <a>Post: Max 140 characters </a> <br>
                 <input type="text" id="tags" name="tag" placeholder="#tags" name="tag" maxlength="20" required> <br>
-                <a> Max 20 characters</a> <br>
+                <a>Tag: Max 20 characters</a> <br>
                 
                 <!-- Add toggle swtich -->
                 <label>Anonymous: <input name="anonToggle" type="checkbox" value="on"></label>

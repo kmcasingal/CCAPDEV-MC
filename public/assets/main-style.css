@@ -291,6 +291,26 @@ font-size: 13px;
   display: inline-block;
 }
 
+.comment-edit {
+  position: relative;
+  padding-right: 25px;
+  top: -5px;
+  right: -90%;
+  display: inline-block;
+}
+
+.comment-text{
+  position: relative;
+  right: -8%;
+}
+
+.comment-delete {
+  position: relative;
+  top: -5px;
+  right: -90%;
+  display: inline-block;
+}
+
 .post-content {
 font-size: 15px;
 padding: 10px 0px 10px 0px;

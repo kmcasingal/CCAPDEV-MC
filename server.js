@@ -277,11 +277,18 @@ app.post('/comment/:mainPostId', (req, res) => {
         } 
     });
 
+    let anonToggle = ""
+    if(req.body.anonToggle == "on"){
+      anonToggle = "true"
+    } else {
+      anonToggle = "false"
+    }
+
     const comment = new Comment({
       mainPostId: mainPostId,
       username: userAccount.username,
       comment: req.body.cmnt,
-      anon: req.body.anonToggle,
+      anon: anonToggle,
     });
    
     const query = {_id: mainPostId}
