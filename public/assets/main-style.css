@@ -1,6 +1,8 @@
 body {
   background-color: #303030;
   color: white;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 *{
@@ -22,6 +24,7 @@ display: flex;
 justify-content: space-between;
 align-items: center;
 padding: 0 50px;
+width: 100%;
 }
 
 
@@ -194,8 +197,8 @@ border-radius: 10px;
   /* position: fixed;
   float: right; */
   position: relative;
-  top: -100px;
-  padding-left: 250px;
+  top: -75px;
+  left: 250px;
 }
 
 .profile-top {
@@ -272,7 +275,21 @@ font-size: 13px;
   top: 5%;
   position: relative;
 }
-  
+
+.post-edit {
+  position: relative;
+  padding-right: 25px;
+  top: -35px;
+  right: -90%;
+  display: inline-block;
+}
+
+.post-delete {
+  position: relative;
+  top: -35px;
+  right: -90%;
+  display: inline-block;
+}
 
 .post-content {
 font-size: 15px;
