@@ -94,6 +94,7 @@
                                         </div>
                                         <div class="post-tag">
                                             <p>Tag: <%= posts[i].tag %></p>
+                                            <br>
                                         </div>
                                         <hr />
                                         <% for (let j = 0; j < comments.length; j++){ %>
@@ -103,11 +104,11 @@
                                                 <% if (comments[j].anon == "true") { %>
                                                     <a class="comment-edit" href="editComment/<%= comments[j]._id %>"> Edit </a>
                                                     <a class="comment-delete" href="deleteComment/<%= comments[j]._id %>"> Delete </a>
-                                                    <p class="username-comment username comment-text">Anonymous</p>
+                                                    <p class="userUsernameComment comment-text">Anonymous</p>
                                                   <% } else if (comments[j].anon == "false"){%>
                                                     <a class="comment-edit" href="editComment/<%= comments[j]._id %>"> Edit </a>
                                                     <a class="comment-delete" href="deleteComment/<%= comments[j]._id %>"> Delete </a>
-                                                    <p class="username-comment username comment-text"><%= comments[j].username %></p>
+                                                    <p class="userUsernameComment comment-text"><%= comments[j].username %></p>
                                                   <% } %> 
                                                 <% } else {%> 
                                                   <% if (comments[j].anon == "true") { %>
@@ -117,6 +118,7 @@
                                                   <% } %> 
                                                 <% } %> 
                                                 <p class="comment-text"><%= comments[j].comment %></p>
+                                                <br>
                                                 <hr />
                                             <% } %> 
                                             </div>
@@ -124,8 +126,8 @@
                                               
                                               <form action="/comment/<%= posts[i]._id %>" method="post">
                                                 <div class="comment-container">
-                                                    <label style="position: relative; left: 20px">Anonymous: <input name="anonToggle" type="checkbox"  value="on" ></label>
-                                                  <input type="text"  id="cmnt" name="cmnt" style="position:relative; left:25; width: 80%;"  placeholder="Comment here" />
+                                                    <label style="position: relative; left: 20px;">Anonymous: <input name="anonToggle" type="checkbox"  value="on" ></label>
+                                                    <input type="text"  id="cmnt" name="cmnt" style="position:relative; left:25; width: 80%;"  placeholder="Comment here" />
                                                 </div>
                                               </form>
                                             </div>
@@ -136,7 +138,5 @@
                             </div>
                         </div>
             </div>
-            </div>
-        </div>
     </body>
 </html>

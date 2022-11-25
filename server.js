@@ -481,7 +481,7 @@ app.post("/updateProfile", (req, res) => {
           if(err){
             console.log(err);
           } else {
-            res.re("/profile");
+            res.redirect("/");
           }
         });
       }

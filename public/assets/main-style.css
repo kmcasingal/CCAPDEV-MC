@@ -20,6 +20,7 @@ color: white;
 
 hr {
   position: relative;
+  border-color: #303030;
 }
 
 .topnav{
@@ -225,6 +226,8 @@ margin-bottom: 20px;
 
 .profile-edit {
 font-size: 12px;
+position: relative;
+padding-left: 25px;
 }
 
 .profile-picture img {
@@ -368,6 +371,19 @@ padding: 10px 0px 10px;
   font-weight: bold;
 }
 
+.username-comment {
+  color: #ca9c46;
+  font-weight: bold;
+}
+
+.userUsernameComment {
+  color: #ca9c46;
+  display: inline-block;
+  position: relative;
+  right: 5px;
+  font-weight: bold;
+}
+
 .tag-container {
   position: relative;
   margin-left: 5%;
@@ -384,4 +400,16 @@ padding: 10px 0px 10px;
   margin-bottom: 10px;
   background-color: #606060;
   display: inline-block;
+}
+
+.comment-container input[type="text"] {
+  position: relative;
+  display: inline-block;
+  height: 50px;
+  width: 90%;
+  left: 5%;
+  border-radius: 10px;
+  background-color: #303030;
+  color: #f6f6f6;
+  text-indent: 10px;
 }
