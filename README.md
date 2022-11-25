@@ -4,3 +4,6 @@
 ## mongodb+srv://user:123@cluster0.dg9qzin.mongodb.net/anonx
 
 ##### This will allow you to view the database changes being made as you go on with the website.
+##### Take note that -
+##### username: user
+##### password: 123
