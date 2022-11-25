@@ -44,15 +44,15 @@ let userHomeId = "";
 let userAccount = "";
 
 app.get("/", (req, res) => {
-  console.log("USERVALEEEEEEEEEEED: " + sessionValid);
+  //console.log("USERVALEEEEEEEEEEED: " + sessionValid);
   if(sessionValid == "true"){
     User.findOne({_id: userHomeId}, function (err, result) {
-      console.log("USER: " + result);
+      //console.log("USER: " + result);
       if (err) {
         console.log(err);
       } else {
         Post.find({}, function (err, postRows) {
-          // console.log(rows)
+          //console.log(rows)
           Comment.find({}, function (err, commentRows) {
             if (err) {
               console.log(err);
@@ -83,7 +83,7 @@ app.get("/register", (req, res) => {
 });
 
 app.get("/logout", (req, res) => {
-  console.log("LOGGING OUUTUTUTUUT");
+  // console.log("LOGGING OUUTUTUTUUT");
   sessionValid = "false";
   res.redirect("/");
 });
@@ -94,11 +94,11 @@ app.post("/createAccount", (req, res) => {
       username: req.body.regUsername, 
       password: req.body.regPassword,
    });
-  console.log("REGI NAME = " +  req.body.regUsername);
-  console.log("REGI PASS = " +  req.body.regPassword);
+  //console.log("REGI NAME = " +  req.body.regUsername);
+  //console.log("REGI PASS = " +  req.body.regPassword);
 
   User.findOne({username: req.body.regUsername}, function (err, result) {
-    console.log("USER: " + result);
+    //console.log("USER: " + result);
     if (err) {
       console.log(err);
     } else {
@@ -111,7 +111,7 @@ app.post("/createAccount", (req, res) => {
           }
         });         
       } else {
-        console.log("DITO");
+        //console.log("DITO");
         res.render("login", {
           fail: "false",
           failReg: "true",
@@ -122,8 +122,8 @@ app.post("/createAccount", (req, res) => {
 });
 
 app.post("/verifyLogin", (req, res) => {
-  console.log("USERNAME: " + req.body.username);
-  console.log("PASSWORD: " + req.body.password);
+  //console.log("USERNAME: " + req.body.username);
+  //console.log("PASSWORD: " + req.body.password);
   User.findOne( {username: req.body.username, password: req.body.password}, function(err, result){
     if(err){
       console.log(err);
@@ -157,7 +157,7 @@ app.get("/search", (req, res) => {
       console.log(err);
     } else {
       Post.find({tag: req.query.searchTag}, function (err, postRows) {
-        console.log("labas TAG2: " + req.query.searchTag);
+        //console.log("labas TAG2: " + req.query.searchTag);
         Comment.find({}, function (err, commentRows) {
           if (err) {
             console.log(err);
@@ -176,7 +176,7 @@ app.get("/search", (req, res) => {
 
 app.get("/add/:userId", (req, res) => {
   if(sessionValid == "true"){
-    console.log("ID PASSED: " + req.params.userId);
+    //console.log("ID PASSED: " + req.params.userId);
     User.findOne({_id: req.params.userId}, function (err, result) {
       if (err) {
         console.log(err);
@@ -196,7 +196,7 @@ app.get("/add/:userId", (req, res) => {
 
 app.post("/save", (req, res) => {
   if(sessionValid == "true"){
-    console.log("ANON TOGGLE: " + req.body.anonToggle);
+    //console.log("ANON TOGGLE: " + req.body.anonToggle);
     let anonToggle = ""
     if(req.body.anonToggle == "on"){
       anonToggle = "true"
@@ -215,12 +215,12 @@ app.post("/save", (req, res) => {
   
       post.save( function(err){
         if(err){
-          console.log("INSIDE RESULT1" + result);
+          //console.log("INSIDE RESULT1" + result);
           console.log(err);
         } else {
           User.findOne({_id: req.body.userId}, function (err, result) {
             if (err) {
-              console.log("INSIDE RESULT2" + result.id);
+              //console.log("INSIDE RESULT2" + result.id);
               console.log(err);
             } else {
               Post.find({}, function (err, postRows) {
@@ -229,7 +229,7 @@ app.post("/save", (req, res) => {
                   if (err) {
                     console.log(err);
                   } else {
-                    console.log("INSIDE RESULT99" + result);
+                    //console.log("INSIDE RESULT99" + result);
                     res.redirect("/");
                   }
                });
@@ -248,12 +248,12 @@ app.post("/save", (req, res) => {
 app.get('/edit/:userId', (req, res) => {
   if(sessionValid == "true"){
     const userId = req.params.userId; 
-    console.log("USER ID 1: " + userId);
+    //console.log("USER ID 1: " + userId);
     Post.find( {_id: userId}, function(err, result){
       if(err){
         console.log(err);
       } else {
-        console.log("RESULT" + result[0]);
+        //console.log("RESULT" + result[0]);
         res.render("updatePost", {
           posts: result[0],
         });
@@ -325,13 +325,13 @@ app.post("/update", (req, res) => {
       anonToggle = "false"
     }
   
-    console.log("USER ID 2: " + userId);
+    //console.log("USER ID 2: " + userId);
    
     Post.updateOne( query, {title: titleVal, post: postVal, anon: anonToggle, tag: tagVal}, function(err, result){
       if(err){
         console.log(err);
       } else {
-        console.log(postVal);
+        //console.log(postVal);
         res.redirect("/");
       }
     });
@@ -347,13 +347,13 @@ app.get('/delete/:postId', (req, res) => {
   if(sessionValid == "true"){
     const postId = req.params.postId;
 
-    console.log("USER ID 1 DELETE: " + postId);
+    //console.log("USER ID 1 DELETE: " + postId);
     Post.findByIdAndRemove( postId, function(err, result){
       Comment.deleteMany({mainPostId: postId}, function(err, result){
         if(err){
           console.log(err);
         } else {
-          console.log("DELETING " + postId);
+          //console.log("DELETING " + postId);
           res.redirect("/");
         }
       });
@@ -370,12 +370,12 @@ app.get('/deleteComment/:commentId', (req, res) => {
   if(sessionValid == "true"){
     const commentToDelete = req.params.commentId;
 
-    console.log("USER ID 1 DELETE: " + commentToDelete);
+    //console.log("USER ID 1 DELETE: " + commentToDelete);
     Comment.findByIdAndRemove( commentToDelete, function(err, result){
       if(err){
         console.log(err);
       } else {
-        console.log("DELETING " + commentToDelete);
+        //console.log("DELETING " + commentToDelete);
         res.redirect("/");
       }
     });
@@ -391,12 +391,12 @@ app.get('/editComment/:commentId', (req, res) => {
   if(sessionValid == "true"){
     const commentToUpdate = req.params.commentId; 
 
-    console.log("USER ID 1: " + req.params.commentId);
+    //console.log("USER ID 1: " + req.params.commentId);
     Comment.find( {_id: commentToUpdate}, function(err, result){
       if(err){
         console.log(err);
       } else {
-        console.log("RESULT:" + result[0].id);
+        //console.log("RESULT:" + result[0].id);
         res.render("updateComment", {
           comment: result[0],
         });
@@ -422,7 +422,7 @@ app.post("/updateComment", (req, res) => {
       anonToggle = "false"
     }
   
-    console.log("USER ID 2: " + userId);
+    //console.log("USER ID 2: " + userId);
    
     Comment.updateOne( query, {comment: commentVal, anon: anonToggle}, function(err, result){
       if(err){
@@ -442,7 +442,7 @@ app.post("/updateComment", (req, res) => {
 app.get("/profile", (req, res) => {
   User.findOne({_id: userHomeId}, function (err, result) {
     Post.find({userId: userHomeId}, function (err, postRows) {
-      console.log("------------------: " + postRows);
+      //console.log("------------------: " + postRows);
       Comment.find({}, function (err, commentRows) {
         if (err) {
           console.log(err);
@@ -460,7 +460,7 @@ app.get("/profile", (req, res) => {
 
 app.get("/editProfile", (req, res) => {
   User.findOne({_id: userHomeId}, function (err, result) {
-    console.log("USER: " + result);
+    //console.log("USER: " + result);
     if (err) {
       console.log(err);
     } else {        
@@ -474,7 +474,7 @@ app.get("/editProfile", (req, res) => {
 app.post("/updateProfile", (req, res) => {
   if(sessionValid == "true"){
     User.findOne({_id: userHomeId}, function (err, result) {
-      console.log("USER: " + result);
+      //console.log("USER: " + result);
       if (err) {
         console.log(err);
       } else {        

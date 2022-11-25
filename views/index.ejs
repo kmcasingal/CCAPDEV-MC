@@ -48,7 +48,7 @@
           <% if (posts[i].anon == "true") { %>
             by: Anonymous
           <%} else {%>
-            by: <%= posts[i].username %>
+            by: <%= user.username %>
           <%} %>
         </p>
         <p><%= posts[i].post %></p>
