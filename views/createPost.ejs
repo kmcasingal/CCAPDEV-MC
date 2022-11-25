@@ -18,15 +18,11 @@
                     <input type="text" placeholder="Search topics or tags">
                 </div>
                 <div class="header-profile">
-                    <button class="dropbtn" onclick="menu()">Profile</button>
-                        <div class="dropdown-content">
-                            <a href="/">Home</a>
-                            <a href="#">Categories</a>
-                            <a href="/profile">Profile</a>
-                        </div>
+                    <a href="/">Home</a>
+                    <a href="/profile">Profile</a>
                 </div>
                 <div class="header-logout">
-                    <a href="login.html">Log out</a>
+                    <a href="/logout">Log out</a>
                 </div>
             </div>
 
@@ -38,9 +34,9 @@
                 <input type="hidden" value="<%= user._id %>" id="userId" name="userId">
                 <input type="hidden" value="<%= user.username %>" id="username" name="username">
                 <input type="text" id="title" name="title" placeholder="Title" maxlength="40" required> <br>
-                <a>Title: Max 60 characters</a> <br>
+                <a>Title: Max 40 characters</a> <br>
                 <input type="text" id="post" placeholder="Text (optional)" name="postText" maxlength="120"> <br>
-                <a>Post: Max 140 characters </a> <br>
+                <a>Post: Max 120 characters </a> <br>
                 <input type="text" id="tags" name="tag" placeholder="#tags" name="tag" maxlength="20" required> <br>
                 <a>Tag: Max 20 characters</a> <br>
                 

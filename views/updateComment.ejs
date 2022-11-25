@@ -11,21 +11,17 @@
             <!-- Top Navigation Bar -->
             <div class="topnav">
                 <div class="header-logo">
-                    <a href="index.html">AnonX</a>
+                    <a href="/">AnonX</a>
                 </div>
                 <div class="header-search">
                     <input type="text" placeholder="Search topics, tags, profile">
                 </div>
-                <div class="header-profile">
-                    <button class="dropbtn" onclick="menu()">Profile</button>
-                        <div class="dropdown-content">
-                            <a href="index.html">Home</a>
-                            <a href="categories.html">Categories</a>
-                            <a href="profile.html">Profile</a>
-                        </div>
+                <div class="profile"> 
+                    <a href="/">Home</a>
+                    <a href="/profile">Profile</a>
                 </div>
                 <div class="header-logout">
-                    <a href="login.html">Log out</a>
+                    <a href="/logout">Log out</a>
                 </div>
             </div>
 
@@ -35,8 +31,8 @@
             <p> Edit your comment </p>
             <form action="/updateComment" method="post">
                 <input type="hidden" value="<%= comment.id %>" name="id">
-                <input type="text" id="post"  name="postText" value="<%= comment.comment %>" placeholder="Text (optional)" maxlength="10000"> <br>
-                <a> Max 10000 characters </a> <br>
+                <input type="text" id="post"  name="postText" value="<%= comment.comment %>" placeholder="Text (optional)" maxlength="120"> <br>
+                <a> Max 120 characters </a> <br>
 
                 <!-- Add toggle swtich -->
                 <% if (comment.anon == "true") { %>

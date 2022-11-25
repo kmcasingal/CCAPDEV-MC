@@ -227,19 +227,10 @@ margin-bottom: 20px;
 font-size: 12px;
 }
 
-.profile-picture {
-/* position: fixed; */
-}
-
 .profile-picture img {
 border-radius: 50%;
 width: 150px;
 height: 150px;
-}
-
-.profile-username{
-/* margin-left: 150px;
-padding-top: 10px; */
 }
 
 .profile-bio{
