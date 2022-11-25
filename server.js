@@ -342,18 +342,20 @@ app.post("/update", (req, res) => {
 
 });
 
-app.get('/delete/:userId', (req, res) => {
+app.get('/delete/:postId', (req, res) => {
   if(sessionValid == "true"){
-    const userId = req.params.userId;
+    const postId = req.params.postId;
 
-    console.log("USER ID 1 DELETE: " + userId);
-    Post.findByIdAndRemove( userId, function(err, result){
-      if(err){
-        console.log(err);
-      } else {
-        console.log("DELETING " + userId);
-        res.redirect("/");
-      }
+    console.log("USER ID 1 DELETE: " + postId);
+    Post.findByIdAndRemove( postId, function(err, result){
+      Comment.deleteMany({mainPostId: postId}, function(err, result){
+        if(err){
+          console.log(err);
+        } else {
+          console.log("DELETING " + postId);
+          res.redirect("/");
+        }
+      });
     });
   } else {
     res.render("login", {
