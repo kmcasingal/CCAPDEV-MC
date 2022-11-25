@@ -29,6 +29,7 @@ const postSchema = {
 const userCommentSchema = {
   userId: String,
   mainPostId: String,
+  userId: String,
   username: String,
   comment: String,
   isUser: String,
@@ -287,6 +288,7 @@ app.post('/comment/:mainPostId', (req, res) => {
     const comment = new Comment({
       mainPostId: mainPostId,
       username: userAccount.username,
+      userId: userHomeId,
       comment: req.body.cmnt,
       anon: anonToggle,
     });

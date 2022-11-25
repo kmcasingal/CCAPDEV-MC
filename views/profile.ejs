@@ -76,12 +76,14 @@
                                 <div class="block-post">
                                     <h3> <%= posts[i].title %></h3>
                                         <h5 class="post-author">
-                                        <p class="username"> post by:
+                                        <p class="username">
                                             <% if (posts[i].anon == "true") { %>
-                                                Anonymous
-                                            <%} else {%>
-                                                <%= posts[i].username %>
-                                            <%} %>
+                                                by: Anonymous
+                                              <%} else if(posts[i].userId == profile._id) { %>
+                                                by: <%= profile.username %>
+                                              <%} else {%>
+                                                by: <%= posts[i].username %>
+                                              <%} %>
                                         </p></h5>
                                         <div class="post-edit">
                                             <a href="edit/<%= posts[i]._id %>">Edit</a>
@@ -100,7 +102,7 @@
                                         <% for (let j = 0; j < comments.length; j++){ %>
                                             <div class="comment-container">
                                             <% if (comments[j].mainPostId == posts[i]._id) { %>
-                                              <% if (comments[j].username == profile.username) { %>
+                                              <% if (comments[j].userId == profile._id) { %>
                                                 <% if (comments[j].anon == "true") { %>
                                                     <a class="comment-edit" href="editComment/<%= comments[j]._id %>"> Edit </a>
                                                     <a class="comment-delete" href="deleteComment/<%= comments[j]._id %>"> Delete </a>
@@ -108,7 +110,7 @@
                                                   <% } else if (comments[j].anon == "false"){%>
                                                     <a class="comment-edit" href="editComment/<%= comments[j]._id %>"> Edit </a>
                                                     <a class="comment-delete" href="deleteComment/<%= comments[j]._id %>"> Delete </a>
-                                                    <p class="userUsernameComment comment-text"><%= comments[j].username %></p>
+                                                    <p class="userUsernameComment comment-text"><%= profile.username %></p>
                                                   <% } %> 
                                                 <% } else {%> 
                                                   <% if (comments[j].anon == "true") { %>

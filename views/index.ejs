@@ -47,8 +47,10 @@
         <p class="username">
           <% if (posts[i].anon == "true") { %>
             by: Anonymous
-          <%} else {%>
+          <%} else if(posts[i].userId == user._id) { %>
             by: <%= user.username %>
+          <%} else {%>
+            by: <%= posts[i].username %>
           <%} %>
         </p>
         <p><%= posts[i].post %></p>
@@ -57,7 +59,7 @@
         <% for (let j = 0; j < comments.length; j++){ %>
           <div class="comment-container">
           <% if (comments[j].mainPostId == posts[i]._id) { %>
-            <% if (comments[j].username == user.username) { %>
+            <% if (comments[j].userId == user._id) { %>
               <% if (comments[j].anon == "true") { %>
                   <a href="editComment/<%= comments[j]._id %>"> <img src="/public/assets/images/pencil.png"/> </a>
                   <a href="deleteComment/<%= comments[j]._id %>"> <img src="/public/assets/images/trash.png" /> </a>
@@ -65,7 +67,7 @@
                 <% } else if (comments[j].anon == "false"){%>
                   <a href="editComment/<%= comments[j]._id %>"> <img src="/public/assets/images/pencil.png"/> </a>
                   <a href="deleteComment/<%= comments[j]._id %>"> <img src="/public/assets/images/trash.png" /> </a>
-                  <p class="username-comment comment-text"><%= comments[j].username %></p>
+                  <p class="username-comment comment-text"><%= user.username %></p>
                 <% } %> 
               <% } else {%> 
                 <% if (comments[j].anon == "true") { %>
