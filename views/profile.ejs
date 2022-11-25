@@ -76,7 +76,7 @@
                                 <div class="block-post">
                                     <h3 class="post-title"> <p></p> <%= posts[i].title %></h3>
                                         <h5 class="post-author">
-                                        <p>by: 
+                                        <p class="username"> post by:
                                             <% if (posts[i].anon == "true") { %>
                                                 Anonymous
                                             <%} else {%>
@@ -104,11 +104,11 @@
                                                 <% if (comments[j].anon == "true") { %>
                                                     <a class="comment-edit" href="editComment/<%= comments[j]._id %>"> Edit </a>
                                                     <a class="comment-delete" href="deleteComment/<%= comments[j]._id %>"> Delete </a>
-                                                    <p class="username-comment comment-text">Anonymous</p>
+                                                    <p class="username-comment username comment-text">Anonymous</p>
                                                   <% } else if (comments[j].anon == "false"){%>
                                                     <a class="comment-edit" href="editComment/<%= comments[j]._id %>"> Edit </a>
                                                     <a class="comment-delete" href="deleteComment/<%= comments[j]._id %>"> Delete </a>
-                                                    <p class="username-comment comment-text"><%= comments[j].username %></p>
+                                                    <p class="username-comment username comment-text"><%= comments[j].username %></p>
                                                   <% } %> 
                                                 <% } else {%> 
                                                   <% if (comments[j].anon == "true") { %>
