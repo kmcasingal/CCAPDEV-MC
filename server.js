@@ -314,6 +314,7 @@ app.post("/update", (req, res) => {
   if(sessionValid == "true"){
     const userId = req.body.id;
     const query = {_id: userId};
+    const titleVal = req.body.title;
     const postVal = req.body.postText;
     const tagVal = req.body.tag;
 
@@ -326,7 +327,7 @@ app.post("/update", (req, res) => {
   
     console.log("USER ID 2: " + userId);
    
-    Post.updateOne( query, {post: postVal, anon: anonToggle, tag: tagVal}, function(err, result){
+    Post.updateOne( query, {title: titleVal, post: postVal, anon: anonToggle, tag: tagVal}, function(err, result){
       if(err){
         console.log(err);
       } else {

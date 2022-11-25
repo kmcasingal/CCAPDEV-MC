@@ -258,6 +258,11 @@ hr {
   transition: 0.3s;
 }
 
+.title{
+  position: relative;
+  margin-left: 65px;
+}
+
 .post-container {
   min-height: 20%;
   width: 80%;
@@ -275,7 +280,7 @@ hr {
 
 .post-container p {
   position: relative;
-  margin-top: 25px;
+  margin-top: 20px;
   margin-left: 5%;
   margin-right: 5%;
 }
@@ -331,6 +336,13 @@ hr {
   margin-bottom: 10px;
   background-color: #606060;
   display: inline-block;
+}
+
+.comment-container input[type="checkbox"]{
+  position: relative;
+  top: 6px;
+  height: 20;
+  width: 20;
 }
 
 .comment-box {

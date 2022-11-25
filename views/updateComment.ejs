@@ -30,20 +30,32 @@
         
         <!-- Edit post -->
         <div>
-            <p> Edit your comment </p>
+            <br><br><br>
             <form action="/updateComment" method="post">
                 <input type="hidden" value="<%= comment.id %>" name="id">
-                <input type="text" id="post"  name="postText" value="<%= comment.comment %>" placeholder="Text (optional)" maxlength="120"> <br>
-                <a> Max 120 characters </a> <br>
 
-                <!-- Add toggle swtich -->
-                <% if (comment.anon == "true") { %>
-                    <label>Anonymous: <input name="anonToggle" type="checkbox" value="on" checked></label>
-                <%} else {%>
-                    <label>Anonymous: <input name="anonToggle" type="checkbox" value="on" ></label>
-                <%} %>
-                <br>
-                <input type="submit" value="Post">
+                <table border="1">
+                    <tr>
+                        <td colspan="2"><h2> Create a post </h2></td>
+                    </tr>
+                    <tr>
+                        <td><label>Post:</label></td>
+                        <td><input type="text" id="post"  name="postText" value="<%= comment.comment %>" placeholder="Text (optional)" maxlength="120"></td>
+                    </tr>
+                    <tr>
+                        <td><label>Anonymous:</label></td>
+                        <td>
+                            <% if (comment.anon == "true") { %>
+                                <input name="anonToggle" type="checkbox" value="on" checked>
+                            <%} else {%>
+                                <input name="anonToggle" type="checkbox" value="on">
+                            <%} %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><input type="submit" value="Post"></td>
+                    </tr>
+                </table>
             </form>
         </div>
     </body>
