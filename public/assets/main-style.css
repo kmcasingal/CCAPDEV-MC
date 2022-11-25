@@ -315,7 +315,7 @@ font-size: 13px;
 .container-profile-posts {
   max-width: 90%;
   min-height: 20%;
-  margin-top: 50px;
+  margin-top: 20px;
   top: 5%;
   position: relative;
 }
@@ -442,6 +442,7 @@ padding: 10px 0px 10px;
 .comment-container {
   position: relative;
   width: 100%;
+  margin-top: 15px;
   margin-bottom: 10px;
   background-color: #606060;
   display: inline-block;
@@ -457,4 +458,5 @@ padding: 10px 0px 10px;
   background-color: #303030;
   color: #f6f6f6;
   text-indent: 10px;
+  margin-bottom: -10px;
 }
