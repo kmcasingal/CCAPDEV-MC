@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 
 const app = express();
 
-mongoose.connect("mongodb://localhost:27017/anonx");
+mongoose.connect("mongodb+srv://user:123@cluster0.dg9qzin.mongodb.net/tes");
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
