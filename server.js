@@ -480,7 +480,7 @@ app.post("/updateProfile", (req, res) => {
       if (err) {
         console.log(err);
       } else {        
-        User.updateOne( {_id: userHomeId}, {username: req.body.username, password: req.body.password, bio: req.body.bio}, function(err, result){
+        User.updateOne( {_id: userHomeId}, {password: req.body.password, bio: req.body.bio}, function(err, result){
           if(err){
             console.log(err);
           } else {
