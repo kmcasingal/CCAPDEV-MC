@@ -17,4 +17,4 @@
 ##### username: user
 ##### password: 123
 #
-#### You can also check other existing profiles by using `db.users.find()`
+#### You can also check other existing profiles by using `db.users.find()` in the mongosh application by using the anonx db
