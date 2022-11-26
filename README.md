@@ -1,15 +1,14 @@
 # CCAPDEV-MC
+#### Download these packages:
+#### ejs, express, mongodb, mongoose, nodemon
 
-#### After downloading the files, head to the terminal and run:
-### nodemon server.js
+#### After downloading the files, head to the terminal and run `nodemon server.js`
 #
 
-#### Proceed to your web browser and type in:
-### localhost:3000
+#### Proceed to your web browser and type in `localhost:3000`
 #
 
-##### In order to connect the database to your mongosh application insert the following as your connection string: 
-### mongodb+srv://user:123@cluster0.dg9qzin.mongodb.net/anonx
+##### In order to connect the database to your mongosh application insert the following as your connection string `mongodb+srv://user:123@cluster0.dg9qzin.mongodb.net/anonx`
 #
 
 ##### This will allow you to view the database changes being made as you go on with the website.
@@ -17,5 +16,4 @@
 ##### username: user
 ##### password: 123
 #
-#### You can also check other existing profiles by using:
-### db.users.find()
+#### You can also check other existing profiles by using `db.users.find()`
