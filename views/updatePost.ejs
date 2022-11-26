@@ -29,43 +29,52 @@
                 </div>
             </div>
 
-        
         <!-- Edit post -->
-        <div>
-            <br><br><br>
+        <div class="containter-post">
+            <div class="edit-header">
+                <p> Edit your post </p>
+            </div>
             <form action="/update" method="post">
                 <input type="hidden" value="<%= posts.id %>" name="id">
-                <table border="1">
-                    <tr>
-                        <td colspan="2"><h2> Edit your post </h2></td>
-                    </tr>
-                    <tr>
-                        <td><label>Title:</label></td>
-                        <td><input type="text" id="title" name="title"  value="<%= posts.title %>" placeholder="Title" maxlength="40" size="100%" required></td>
-                    </tr>
-                    <tr>
-                        <td><label>Post:</label></td>
-                        <td><input type="text" id="post"  name="postText" value="<%= posts.post %>" placeholder="Text (optional)" maxlength="120" size="100%"></td>
-                    </tr>
-                    <tr>
-                        <td><label>Tag:</label></td>
-                        <td><input type="text" id="tags" name="tag" value="<%= posts.tag %>"placeholder="#tags" maxlength="20" size="100%" required></td>
-                    </tr>
-                    <tr>
-                        <td><label>Anonymous:</label></td>
-                        <td>
-                            <% if (posts.anon == "true") { %>
-                                <input name="anonToggle" type="checkbox" value="on" checked>
-                            <%} else {%>
-                                <input name="anonToggle" type="checkbox" value="on">
-                            <%} %>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"><input type="submit" value="Post"></td>
-                    </tr>
-                </table>
-
+                <div class="edit-input">
+                    <div class="edit-title">
+                        <input type="text" id="title" name="title" value="<%= posts.title %>" placeholder="Title" maxlength="40" size="100%" required> <br>
+                        <div class="title-description">
+                            <a>Max 1000 characters</a> <br>
+                        </div>
+                    </div>
+                    <div class="edit-text">
+                        <input type="text" id="post" name="post" value="<%= posts.post %>" placeholder="Text (optional)" maxlength="120" size="100%"> <br>
+                        <div class="text-description">
+                            <a> Max 10000 characters </a> <br> 
+                        </div>
+                    </div>
+                    <div class="edit-tag">
+                        <input type="text" id="tags" name="tags" value="<%= posts.tag %>" placeholder="#tags" maxlength="20" size="100%" required> <br>
+                        <div class="tag-description">
+                            <a>Do not enter #, and press enter to add new tag</a> <br>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Add toggle swtich -->
+                <tr>
+                    <td><label class="container-anon"> Anonymous:
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                       </label></td>
+                    <td>
+                        <% if (posts.anon == "true") { %>
+                            <input name="anonToggle" type="checkbox" value="on" checked>
+                        <%} else {%>
+                            <input name="anonToggle" type="checkbox" value="on">
+                        <%} %>
+                    </td>
+                </tr>
+                <br>
+                <div class="default-button">
+                    <td colspan="2"><input type="submit" value="Post"></td>
+                </div>
             </form>
         </div>
     </body>
