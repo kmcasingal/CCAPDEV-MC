@@ -1,6 +1,7 @@
 # CCAPDEV-MC
 ## IMPORTANT: 
 ### install needed packages by typing `npm install all` in the terminal
+#
 
 #### After installing the packages, start the server by typing `nodemon server.js` in the terminal
 #
