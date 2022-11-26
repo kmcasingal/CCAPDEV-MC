@@ -182,7 +182,7 @@ app.get("/add/:userId", (req, res) => {
       if (err) {
         console.log(err);
       } else {
-        console.log(result);
+        //console.log(result);
         res.render("createPost", {
           user: result,
         });
