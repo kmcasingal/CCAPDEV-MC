@@ -30,35 +30,38 @@
 
         
         <!-- Create Post -->
-        <div>
-            <br><br><br>
+        <div class="container-post">
+            <div class="edit-header">
+                <p> Create a post </p>
+            </div>
             <form action="/save" method="post">
                 <input type="hidden" value="<%= user._id %>" id="userId" name="userId">
-                <input type="hidden" value="<%= user.username %>" id="username" name="username">
-                <table border="1">
-                    <tr>
-                        <td colspan="2"><h2> Create a post </h2></td>
-                    </tr>
-                    <tr>
-                        <td><label>Title:</label></td>
-                        <td><input type="text" id="title" name="title" placeholder="Maximum of 40 characters" maxlength="40" size="100%" required></td>
-                    </tr>
-                    <tr>
-                        <td><label>Post:</label></td>
-                        <td><input type="text" id="post" placeholder="Maximum of 120 characters" name="postText" maxlength="120" size="100%"></td>
-                    </tr>
-                    <tr>
-                        <td><label>Tag:</label></td>
-                        <td><input type="text" id="tags" name="tag" placeholder="Maximum of 20 characters" maxlength="20" size="100%" required></td>
-                    </tr>
-                    <tr>
-                        <td><label>Anonymous:</label></td>
-                        <td><input name="anonToggle" type="checkbox" value="on" ></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"><input type="submit" value="Post"></td>
-                    </tr>
-                </table>
+                <div>
+                    <input type="hidden" value="<%= user.username %>" id="username" name="username">
+                </div>
+                <div class="edit-title">
+                    <input type="text" id="title" name="title" placeholder="Title" maxlength="1000"> <br>
+                    <div class="title-description">
+                        <a>Max 1000 characters</a> <br>
+                    </div>
+                </div>
+                <div class="edit-text">
+                    <input type="text" id="post" placeholder="Text (optional)" name="postText" maxlength="10000"> <br>
+                    <div class="text-description">
+                        <a> Max 10000 characters </a> <br>
+                    </div>
+                </div>
+                <div class="edit-tag">
+                    <input type="text" id="tags" name="tag" placeholder="#tags" name="tag" maxlength="20"> <br>
+                    <div class="tag-description">
+                        <a> Max 20 characters</a> <br>
+                    </div>
+                </div>
+                
+                <!-- Add toggle swtich -->
+                <label>Anonymous: <input name="anonToggle" type="checkbox" value="on"></label>
+                <br>
+                <input type="submit" value="Post">
             </form>
         </div>
     </body>
