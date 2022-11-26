@@ -1,9 +1,8 @@
 # CCAPDEV-MC
-#### Download these packages:
-#### ejs, express, mongodb, mongoose, nodemon
+## IMPORTANT: install needed packages by typing 'npm install all' in the terminal
 #
 
-#### After downloading the files, head to the terminal and run `nodemon server.js`
+#### After installing the packages, start the server by typing `nodemon server.js` in the terminal
 #
 
 #### Proceed to your web browser and type in `localhost:3000`
