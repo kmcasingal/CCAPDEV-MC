@@ -77,12 +77,6 @@ app.get("/", (req, res) => {
  
 });
 
-app.get("/register", (req, res) => {
-  res.render("register", {
-    fail: "false",
-  });
-});
-
 app.get("/logout", (req, res) => {
   // console.log("LOGGING OUUTUTUTUUT");
   sessionValid = "false";
@@ -153,6 +147,7 @@ app.post("/verifyLogin", (req, res) => {
 });
 
 app.get("/search", (req, res) => {
+  if(sessionValid == "true"){
   User.findOne({_id: userHomeId}, function (err, result) {
     if (err) {
       console.log(err);
@@ -173,6 +168,9 @@ app.get("/search", (req, res) => {
       });
     }
    });
+  } else {
+    res.redirect("/");
+  }
 });
 
 app.get("/add/:userId", (req, res) => {
@@ -442,6 +440,7 @@ app.post("/updateComment", (req, res) => {
 });
 
 app.get("/profile", (req, res) => {
+  if(sessionValid == "true"){
   User.findOne({_id: userHomeId}, function (err, result) {
     Post.find({userId: userHomeId}, function (err, postRows) {
       //console.log("------------------: " + postRows);
@@ -458,9 +457,13 @@ app.get("/profile", (req, res) => {
      });
     });
    });
+  } else {
+    res.redirect("/");
+  }
 });
 
 app.get("/editProfile", (req, res) => {
+  if(sessionValid == "true"){
   User.findOne({_id: userHomeId}, function (err, result) {
     //console.log("USER: " + result);
     if (err) {
@@ -471,6 +474,9 @@ app.get("/editProfile", (req, res) => {
       }); 
     }
    });
+  } else {
+    res.redirect("/");
+  }
 });
 
 app.post("/updateProfile", (req, res) => {
