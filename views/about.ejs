@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <title>AnonX - About</title>
+    <link rel="stylesheet"  type="text/css" href="/public/assets/homeStyle.css"/>
+    <link rel="shortcut icon" type="image/x-icon" href="/public/assets/images/favicon.ico"/>
+  </head>
+  <body>
+    <a name="top"></a>
+    <div class="header">
+      <div class="header-logo">
+        <a href="/"><img src="/public/assets/images/logo.png" /></a>
+      </div>
+      <div class="header-search">
+        <form action="/search" method="get">
+          <input type="text" placeholder="Search for a tag" name="searchTag"/>
+        </form>
+      </div>
+      <div class="header-profile">
+        <img src="/public/assets/images/user.png" onclick="menu()" />
+      </div>
+    </div>
+    <div class="header-menu">
+      <table>
+        <tr>
+          <td><a href="/profile">Profile</a></td>
+        </tr>
+        <tr>
+          <td><a href="/add/<%= user.id %>">Create post</a></td>
+        </tr>
+        <tr>
+          <td><a href="/about">About</a></td>
+        </tr>
+        <tr>
+          <td><a href="/logout">Log out</a></td>
+        </tr>
+      </table>
+    </div>
+      <h1 style="position: relative; top: 150px">THIS IS THE ABOUT PAGE</h1>
+      <script src="../public/js/script.js"></script>
+  </body>
+</html>
