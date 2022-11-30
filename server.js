@@ -117,7 +117,7 @@ app.post("/createAccount", (req, res) => {
     { username: req.body.regUsername },
     req.body.regPassword,
     function (err, user) {
-      console.log("username: " + req.body.regUsername);
+      // console.log("username: " + req.body.regUsername);
       if (err) {
         console.log("error: " + err);
         res.render("login", {

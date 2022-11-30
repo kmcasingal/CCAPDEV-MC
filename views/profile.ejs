@@ -101,9 +101,10 @@
                                         </div>
                                         <hr />
                                         <% for (let j = 0; j < comments.length; j++){ %>
+                                            
                                             <% if (comments[j].mainPostId == posts[i]._id) { %>
-                                              <% if (comments[j].userId == profile._id) { %>
                                                 <div class="comment-container">
+                                              <% if (comments[j].userId == profile._id) { %>
                                                 <% if (comments[j].anon == "true") { %>
                                                     <a class="comment-edit" href="editComment/<%= comments[j]._id %>"> Edit </a>
                                                     <a class="comment-delete" href="deleteComment/<%= comments[j]._id %>"> Delete </a>
@@ -123,8 +124,9 @@
                                                 <p class="comment-text"><%= comments[j].comment %></p>
                                                 <br>
                                                 <hr />
-                                                </div>
+                                            </div>
                                             <% } %> 
+                                            
                                         <% } %> 
                                               
                                               <form action="/comment/<%= posts[i]._id %>" method="post">
@@ -135,7 +137,7 @@
                                               </form>
                                             </div>
                                     </div>
-                            <% } %>
+                                <% } %>
                             </div>
                                 <!-- End of Block Post -->
                             </div>
