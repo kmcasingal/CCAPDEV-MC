@@ -1,6 +1,10 @@
+require('dotenv').config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const session = require("express-session");
+const passport = require("passport");
+const passportLocalMongoose = require("passport-local-mongoose");
 
 const app = express();
 
@@ -10,11 +14,39 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/public", express.static("public"));
 
-const userSchema = {
+app.use(
+  session({
+      secret: process.env.SECRET,
+      resave: false,
+      saveUninitialized: false,
+  })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+const userSchema = new mongoose.Schema({
   username: String,
   password: String,
   bio: String,
-};
+});
+
+userSchema.plugin(passportLocalMongoose);
+
+const User = new mongoose.model("User", userSchema);
+
+passport.use(User.createStrategy());
+
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function (err, user) {
+    done(err, user);
+  });
+});
+
 
 const postSchema = {
   userId: String,
@@ -36,18 +68,13 @@ const userCommentSchema = {
   anon: String,
 };
 
-const User = mongoose.model("user", userSchema);
 const Post = mongoose.model("post", postSchema);
 const Comment = mongoose.model("comment", userCommentSchema);
 
-let sessionValid = "false";
-let userHomeId = "";
-let userAccount = "";
-
 app.get("/", (req, res) => {
-  //console.log("USERVALEEEEEEEEEEED: " + sessionValid);
-  if(sessionValid == "true"){
-    User.findOne({_id: userHomeId}, function (err, result) {
+
+  if (req.isAuthenticated()) {
+    User.findOne({_id: req.user.id}, function (err, result) {
       //console.log("USER: " + result);
       if (err) {
         console.log(err);
@@ -78,77 +105,62 @@ app.get("/", (req, res) => {
 });
 
 app.get("/logout", (req, res) => {
-  // console.log("LOGGING OUUTUTUTUUT");
-  sessionValid = "false";
-  res.redirect("/");
+  req.logout(function(err){
+    if (err){ }
+    res.redirect("/");
+  });
 });
 
 app.post("/createAccount", (req, res) => {
 
-   const user = new User({
-      username: req.body.regUsername, 
-      password: req.body.regPassword,
-   });
-  //console.log("REGI NAME = " +  req.body.regUsername);
-  //console.log("REGI PASS = " +  req.body.regPassword);
-
-  User.findOne({username: req.body.regUsername}, function (err, result) {
-    //console.log("USER: " + result);
-    if (err) {
-      console.log(err);
-    } else {
-      if(result == null){
-        user.save( function(err){
-          if(err){
-            console.log(err);
-          } else {
-            res.redirect("/");
-          }
-        });         
-      } else {
-        //console.log("DITO");
+  User.register(
+    { username: req.body.regUsername },
+    req.body.regPassword,
+    function (err, user) {
+      console.log("username: " + req.body.regUsername);
+      if (err) {
+        console.log("error: " + err);
         res.render("login", {
-          fail: "false",
           failReg: "true",
-          });
+          fail: "false",
+         });
+      } else {
+        res.render("login", {
+          failReg: "false",
+          fail: "false",
+         });
       }
     }
-   });
+  );
 });
 
 app.post("/verifyLogin", (req, res) => {
-  //console.log("USERNAME: " + req.body.username);
-  //console.log("PASSWORD: " + req.body.password);
-  User.findOne( {username: req.body.username, password: req.body.password}, function(err, result){
-    if(err){
+  
+  const user = new User({
+    username: req.body.regUsername,
+    password: req.body.regPassword,
+  });
+
+  req.login(user, function (err) {
+    if (err) {
+      console.log("didnt go in");
       console.log(err);
+      res.render("login", {
+        failReg: "false",
+        fail: "true",
+      });
     } else {
-       if(result != null){
-        sessionValid = "true";
-        userHomeId = result.id;
-        userAccount = result;
-        Post.find({}, function (err, postRows) {
-          Comment.find({}, function (err, commentRows) {
-            if (err) {
-              console.log(err);
-            } else {
-              res.redirect("/");
-            }
-          });
-        });
-      } else {
-          res.render("login", {
-            failReg: "false",
-            fail: "true",
-          });
-        }
-      }
-    });
+      passport.authenticate("local")(req, res, function () {
+        res.redirect("/");
+      });
+    }
+  });
+
 });
 
 app.get("/search", (req, res) => {
-  if(sessionValid == "true"){
-  User.findOne({_id: userHomeId}, function (err, result) {
+  if (req.isAuthenticated()) {
+  User.findOne({_id: req.user.id}, function (err, result) {
     if (err) {
       console.log(err);
     } else {
@@ -174,7 +186,7 @@ app.get("/search", (req, res) => {
 });
 
 app.get("/add/:userId", (req, res) => {
-  if(sessionValid == "true"){
+  if (req.isAuthenticated()) {
     //console.log("ID PASSED: " + req.params.userId);
     User.findOne({_id: req.params.userId}, function (err, result) {
       if (err) {
@@ -194,7 +206,7 @@ app.get("/add/:userId", (req, res) => {
 });
 
 app.post("/save", (req, res) => {
-  if(sessionValid == "true"){
+  if (req.isAuthenticated()) {
     //console.log("ANON TOGGLE: " + req.body.anonToggle);
     let anonToggle = ""
     if(req.body.anonToggle == "on"){
@@ -240,12 +252,12 @@ app.post("/save", (req, res) => {
   } else {
     res.render("login", {
       fail: "false",
-      });
+    });
   }
 });
 
 app.get('/edit/:userId', (req, res) => {
-  if(sessionValid == "true"){
+  if (req.isAuthenticated()) {
     const userId = req.params.userId; 
     //console.log("USER ID 1: " + userId);
     Post.find( {_id: userId}, function(err, result){
@@ -267,10 +279,10 @@ app.get('/edit/:userId', (req, res) => {
 });
 
 app.post('/comment/:mainPostId', (req, res) => {
-  if(sessionValid == "true"){
+  if (req.isAuthenticated()) {
     const mainPostId = req.params.mainPostId; 
 
-    User.findOne({_id: userHomeId}, function (err, result) {
+    User.findOne({_id: req.user.id}, function (err, result) {
         if (err) {
           console.log(err);
         } 
@@ -285,8 +297,8 @@ app.post('/comment/:mainPostId', (req, res) => {
 
     const comment = new Comment({
       mainPostId: mainPostId,
-      username: userAccount.username,
-      userId: userHomeId,
+      username: req.user.username,
+      userId: req.user.id,
       comment: req.body.cmnt,
       anon: anonToggle,
     });
@@ -311,7 +323,7 @@ app.post('/comment/:mainPostId', (req, res) => {
 });
 
 app.post("/update", (req, res) => {
-  if(sessionValid == "true"){
+  if (req.isAuthenticated()) {
     const userId = req.body.id;
     const query = {_id: userId};
     const titleVal = req.body.title;
@@ -338,13 +350,13 @@ app.post("/update", (req, res) => {
   } else {
     res.render("login", {
       fail: "false",
-      });
+    });
   }
 
 });
 
 app.get('/delete/:postId', (req, res) => {
-  if(sessionValid == "true"){
+  if (req.isAuthenticated()) {
     const postId = req.params.postId;
 
     //console.log("USER ID 1 DELETE: " + postId);
@@ -361,13 +373,13 @@ app.get('/delete/:postId', (req, res) => {
   } else {
     res.render("login", {
       fail: "false",
-      });
+    });
   }
 
 });
 
 app.get('/deleteComment/:commentId', (req, res) => {
-  if(sessionValid == "true"){
+  if (req.isAuthenticated()) {
     const commentToDelete = req.params.commentId;
 
     //console.log("USER ID 1 DELETE: " + commentToDelete);
@@ -382,13 +394,13 @@ app.get('/deleteComment/:commentId', (req, res) => {
   } else {
     res.render("login", {
       fail: "false",
-      });
+    });
   }
   
 });
 
 app.get('/editComment/:commentId', (req, res) => {
-  if(sessionValid == "true"){
+  if (req.isAuthenticated()) {
     const commentToUpdate = req.params.commentId; 
 
     //console.log("USER ID 1: " + req.params.commentId);
@@ -405,12 +417,12 @@ app.get('/editComment/:commentId', (req, res) => {
   } else {
     res.render("login", {
       fail: "false",
-      });
+    });
   }
 });
 
 app.post("/updateComment", (req, res) => {
-  if(sessionValid == "true"){
+  if (req.isAuthenticated()) {
     const userId = req.body.id;
     const query = {_id: userId};
     const commentVal = req.body.postText;
@@ -434,15 +446,15 @@ app.post("/updateComment", (req, res) => {
   } else {
     res.render("login", {
       fail: "false",
-      });
+    });
   }
   
 });
 
 app.get("/profile", (req, res) => {
-  if(sessionValid == "true"){
-  User.findOne({_id: userHomeId}, function (err, result) {
-    Post.find({userId: userHomeId}, function (err, postRows) {
+  if (req.isAuthenticated()) {
+  User.findOne({_id: req.user.id}, function (err, result) {
+    Post.find({userId: req.user.id}, function (err, postRows) {
       //console.log("------------------: " + postRows);
       Comment.find({}, function (err, commentRows) {
         if (err) {
@@ -463,8 +475,8 @@ app.get("/profile", (req, res) => {
 });
 
 app.get("/editProfile", (req, res) => {
-  if(sessionValid == "true"){
-  User.findOne({_id: userHomeId}, function (err, result) {
+  if (req.isAuthenticated()) {
+  User.findOne({_id: req.user.id}, function (err, result) {
     //console.log("USER: " + result);
     if (err) {
       console.log(err);
@@ -480,13 +492,13 @@ app.get("/editProfile", (req, res) => {
 });
 
 app.post("/updateProfile", (req, res) => {
-  if(sessionValid == "true"){
-    User.findOne({_id: userHomeId}, function (err, result) {
+  if (req.isAuthenticated()) {
+    User.findOne({_id: req.user.id}, function (err, result) {
       //console.log("USER: " + result);
       if (err) {
         console.log(err);
       } else {        
-        User.updateOne( {_id: userHomeId}, {password: req.body.password, bio: req.body.bio}, function(err, result){
+        User.updateOne( {_id: req.user.id}, {password: req.body.password, bio: req.body.bio}, function(err, result){
           if(err){
             console.log(err);
           } else {
@@ -498,13 +510,13 @@ app.post("/updateProfile", (req, res) => {
   } else {
     res.render("login", {
       fail: "false",
-      });
+    });
   }
 });
 
 app.get("/about", (req, res) => {
-  if(sessionValid == "true"){
-    User.findOne({_id: userHomeId}, function (err, result) {
+  if (req.isAuthenticated()) {
+    User.findOne({_id: req.user.id}, function (err, result) {
       //console.log("USER: " + result);
       if (err) {
         console.log(err);
