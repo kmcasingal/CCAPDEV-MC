@@ -443,8 +443,8 @@ padding: 10px 0px 10px;
 .comment-container {
   position: relative;
   width: 100%;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 25px;
+  padding-bottom: 25px;
   background-color: #606060;
   display: inline-block;
 }
@@ -454,7 +454,7 @@ padding: 10px 0px 10px;
   width: 100%;
   background-color: #606060;
   display: inline-block;
-  padding-top: 30px;
+  padding-top: 20px;
 }
 
 .comment-input input[type="text"] {
