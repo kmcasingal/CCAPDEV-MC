@@ -125,10 +125,7 @@ app.post("/createAccount", (req, res) => {
           fail: "false",
          });
       } else {
-        res.render("login", {
-          failReg: "false",
-          fail: "false",
-         });
+        res.redirect("/");
       }
     }
   );
@@ -150,7 +147,7 @@ app.post("/verifyLogin", (req, res) => {
         fail: "true",
       });
     } else {
-      passport.authenticate("local")(req, res, function () {
+      passport.authenticate("local",  { failureRedirect: '/' })(req, res, function () {
         res.redirect("/");
       });
     }
@@ -207,7 +204,7 @@ app.get("/add/:userId", (req, res) => {
 
 app.post("/save", (req, res) => {
   if (req.isAuthenticated()) {
-    //console.log("ANON TOGGLE: " + req.body.anonToggle);
+
     let anonToggle = ""
     if(req.body.anonToggle == "on"){
       anonToggle = "true"
@@ -224,7 +221,7 @@ app.post("/save", (req, res) => {
         tag: req.body.tag,
       });
   
-      post.save( function(err){
+      post.save(function(err){
         if(err){
           //console.log("INSIDE RESULT1" + result);
           console.log(err);
@@ -476,12 +473,14 @@ app.get("/profile", (req, res) => {
 
 app.get("/editProfile", (req, res) => {
   if (req.isAuthenticated()) {
+
   User.findOne({_id: req.user.id}, function (err, result) {
     //console.log("USER: " + result);
     if (err) {
       console.log(err);
     } else {        
       res.render("updateInfo", {
+        message: "Edit account information",
         profile: result,
       }); 
     }
@@ -493,20 +492,39 @@ app.get("/editProfile", (req, res) => {
 
 app.post("/updateProfile", (req, res) => {
   if (req.isAuthenticated()) {
-    User.findOne({_id: req.user.id}, function (err, result) {
-      //console.log("USER: " + result);
+
+    User.findByUsername(req.body.username, (err, user) => {
       if (err) {
         console.log(err);
-      } else {        
-        User.updateOne( {_id: req.user.id}, {password: req.body.password, bio: req.body.bio}, function(err, result){
-          if(err){
-            console.log(err);
-          } else {
-            res.redirect("/");
-          }
-        });
+      } else {
+          req.user.changePassword(req.body.oldPassword, 
+          req.body.newPassword, function (err) {
+              if (err) {
+                  console.log("error 1" + err);
+                   res.render("updateInfo", {
+                      message: "Old password incorrect, try again.",
+                      profile: req.user,
+                   }); 
+              } else {
+                  User.findOne({_id: req.user.id}, function (err, result) {
+                    //console.log("USER: " + result);
+                    if (err) {
+                      console.log("error 2" + err);
+                    } else {        
+                      User.updateOne( {_id: req.user.id}, {bio: req.body.bio}, function(err, result){
+                        if(err){
+                          console.log("error 3" + err);
+                        } else {
+                          res.redirect("/");
+                        }
+                      });
+                    }
+                  });
+              }
+          });
       }
-     });
+  });
+  
   } else {
     res.render("login", {
       fail: "false",

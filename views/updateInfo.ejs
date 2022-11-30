@@ -39,11 +39,15 @@
             <form action="/updateProfile" method="post">
                 <table border="1">
                     <tr>
-                        <td colspan="2"><h2> Edit account information </h2></td>
+                        <td colspan="2"><h2> <%= message %> </h2></td>
                     </tr>
                     <tr>
-                        <td><label>Password:</label></td>
-                        <td><input type="password" id="password" name="password" value="<%= profile.password %>" maxlength="24" size="100%" required></td>
+                        <td><label>Old Password:</label></td>
+                        <td><input type="password" id="password" name="oldPassword" maxlength="24" size="100%" required></td>
+                    </tr>
+                    <tr>
+                        <td><label>New Password:</label></td>
+                        <td><input type="password" id="password" name="newPassword" maxlength="24" size="100%" required></td>
                     </tr>
                     <tr>
                         <td><label>Bio:</label></td>
