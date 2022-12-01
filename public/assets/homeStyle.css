@@ -416,3 +416,7 @@ a {
   display: flex;
   justify-content: space-between;
 }
+
+.About-desc-below{
+  margin-top: 20px auto;
+}
