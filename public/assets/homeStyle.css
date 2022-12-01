@@ -406,9 +406,9 @@ a {
 
 /* About */
 .container-about{
-  padding-top: 50px;
+
+  padding-top: 100px;
   display: inline-block;
-  margin: 0 auto;
-  background: #FFFFFF;
+  margin: 100px;
   justify-content: center;
 }
