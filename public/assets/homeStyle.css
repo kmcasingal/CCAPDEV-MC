@@ -412,6 +412,10 @@ a {
   justify-content: center;
 }
 
+.About-title{
+
+}
+
 .About-desc{
   display: flex;
   justify-content: space-between;
