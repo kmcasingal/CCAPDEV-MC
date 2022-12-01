@@ -411,3 +411,8 @@ a {
   margin: 0 auto;
   justify-content: center;
 }
+
+.About-desc{
+  display: flex;
+  justify-content: space-between;
+}
