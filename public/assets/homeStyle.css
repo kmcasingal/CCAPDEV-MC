@@ -426,6 +426,8 @@ a {
 }
 
 .About-types{
-  margin-top: 10px;
+  margin: 20px;
+  padding: 0 auto;
   background-color: #606060;
+
 }
