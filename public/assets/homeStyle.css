@@ -403,3 +403,12 @@ a {
   text-decoration: none;
   color: white;
 }
+
+/* About */
+.container-about{
+  padding-top: 50px;
+  display: inline-block;
+  margin: 0 auto;
+  background: #FFFFFF;
+  justify-content: center;
+}
