@@ -1,34 +1,44 @@
 <html>
   <head>
-    <title>AnonX - About</title>
+    <title>AnonX - about</title>
     <link rel="stylesheet"  type="text/css" href="/public/assets/homeStyle.css"/>
     <link rel="shortcut icon" type="image/x-icon" href="/public/assets/images/favicon.ico"/>
   </head>
-  <body>
-    <!-- Top Navigation Bar -->
-    <div class="topnav">
-      <div class="logo">
-          <a href="/">AnonX</a>
-      </div>
-      <div class="search">
-          <form action="/search" method="get">
-              <input type="text" placeholder="Search for a tag" name="searchTag"/>
-            </form>
-      </div>
-      <div class="topnav-profile-logout">
-          <div class="profile"> 
-              <a href="/">Home</a>
-              <a href="/profile">Profile</a>
-              <a href="/about" class="active">About</a>
-          </div>
-          <div class="logout">
-              <a href="/logout">Log out</a>
-          </div>
-      </div>
-  </div>
 
+  <body>
+    <a name="top"></a>
+    <div class="header">
+      <div class="header-logo">
+        <a href="/"><img src="/public/assets/images/logo.png" /></a>
+      </div>
+      <div class="header-search">
+        <form action="/search" method="get">
+          <input type="text" placeholder="Search for a tag" name="searchTag"/>
+        </form>
+      </div>
+      <div class="header-profile">
+        <img src="/public/assets/images/user.png" onclick="menu()" />
+      </div>
     </div>
-      <h1 style="position: relative; top: 150px">About AnonX</h1>
+    <div class="header-menu">
+      <table>
+        <tr>
+          <td><a href="/profile">Profile</a></td>
+        </tr>
+        <tr>
+          <td><a href="/add/<%= user.id %>">Create post</a></td>
+        </tr>
+        <tr>
+          <td><a href="/about">About</a></td>
+        </tr>
+        <tr>
+          <td><a href="/logout">Log out</a></td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- About below part -->
+      <h1 style="position: flex; top: 150px">About Anon</h1>
       <div>
         <p>
           AnonX is a web application where you can create a post and comment on other users’ posts. It allows the users to keep track of everything they’ve 
