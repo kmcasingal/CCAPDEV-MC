@@ -8,7 +8,7 @@ const passport = require("passport");
 
 const app = express();
 
-const homeRoutes = require("./routes/homeRoutes")
+const routes = require("./routes/routes")
 const User = require("./models/users")
 
 mongoose.connect("mongodb+srv://user:123@cluster0.dg9qzin.mongodb.net/anonx");
@@ -40,7 +40,7 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
-app.use(homeRoutes);
+app.use(routes);
 
 app.listen(3000, function () {
   console.log("server started on port 3000");

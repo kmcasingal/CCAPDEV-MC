@@ -1,45 +1,14 @@
 const express = require('express');
-const session = require("express-session");
 const passport = require("passport");
-const passportLocalMongoose = require("passport-local-mongoose");
-const User = require("../models/users")
-const Post = require("../models/posts")
-const Comment = require("../models/comments")
+const User = require("../models/users");
+const Post = require("../models/posts");
+const Comment = require("../models/comments");
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
+const controller = require("../controllers/controller");
 
-  if (req.isAuthenticated()) {
-    User.findOne({_id: req.user.id}, function (err, result) {
-      //console.log("USER: " + result);
-      if (err) {
-        console.log(err);
-      } else {
-        Post.find({}, function (err, postRows) {
-          //console.log(rows)
-          Comment.find({}, function (err, commentRows) {
-            if (err) {
-              console.log(err);
-            } else {
-              res.render("index", {
-                posts: postRows,
-                comments: commentRows,
-                user: result,
-              });
-            }
-         });
-        });
-      }
-     });
-  } else {
-     res.render("login", {
-      failReg: "false",
-      fail: "false",
-     });
-  }
- 
-});
+router.get("/", controller.indexPage);
 
 router.get("/logout", (req, res) => {
   req.logout(function(err){
@@ -47,7 +16,6 @@ router.get("/logout", (req, res) => {
     res.redirect("/");
   });
 });
-
 
 router.post("/createAccount", (req, res) => {
 
