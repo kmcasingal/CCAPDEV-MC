@@ -19,6 +19,7 @@ $('.message a').click(function(){
 });
 
 //  <!-- See More Script -->
+/*
 function myFunction() {
     var dots = document.getElementById("dots");
     var moreText = document.getElementById("more");
@@ -34,3 +35,4 @@ function myFunction() {
     moreText.style.display = "inline";
     }
 }
+*/

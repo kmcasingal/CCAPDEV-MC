@@ -430,15 +430,12 @@ padding: 10px 0px 10px;
   font-weight: bold;
 }
 
-.tag-container {
-  position: relative;
-  margin-left: 5%;
-  margin-right: 5%;
-  margin-bottom: 30px;
+.tag-container-profile {
   font-style: italic;
   font-size: smaller;
   color: rgb(200, 199, 199);
 }
+
 
 .comment-container {
   position: relative;
