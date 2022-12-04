@@ -1,11 +1,5 @@
 const express = require('express');
-const passport = require("passport");
-const User = require("../models/users");
-const Post = require("../models/posts");
-const Comment = require("../models/comments");
-
 const router = express.Router();
-
 const controller = require("../controllers/controller");
 
 router.get("/", controller.indexPage);
