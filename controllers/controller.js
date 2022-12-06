@@ -140,6 +140,8 @@ const save = (req, res) => {
         post: req.body.postText,
         anon: anonToggle,
         tag: req.body.tag,
+        edited: "false",
+        date: new Date(),
       });
   
       post.save(function(err){
@@ -236,6 +238,7 @@ const updatePost = (req, res) => {
     const titleVal = req.body.title;
     const postVal = req.body.postText;
     const tagVal = req.body.tag;
+    const editedVal = "true";
 
     let anonToggle = ""
     if(req.body.anonToggle == "on"){
@@ -244,7 +247,7 @@ const updatePost = (req, res) => {
       anonToggle = "false"
     }
    
-    Post.updateOne( query, {title: titleVal, post: postVal, anon: anonToggle, tag: tagVal}, function(err, result){
+    Post.updateOne( query, {title: titleVal, post: postVal, anon: anonToggle, tag: tagVal, edited: editedVal}, function(err, result){
       if(err){
         console.log(err);
       } else {
@@ -326,6 +329,7 @@ const updateComment = (req, res) => {
     const userId = req.body.id;
     const query = {_id: userId};
     const commentVal = req.body.postText;
+    const editedVal = "true"
 
     let anonToggle = ""
     if(req.body.anonToggle == "on"){
@@ -334,7 +338,7 @@ const updateComment = (req, res) => {
       anonToggle = "false"
     }
    
-    Comment.updateOne( query, {comment: commentVal, anon: anonToggle}, function(err, result){
+    Comment.updateOne( query, {comment: commentVal, anon: anonToggle, edited: editedVal}, function(err, result){
       if(err){
         console.log(err);
       } else {

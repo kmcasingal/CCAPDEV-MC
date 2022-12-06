@@ -415,6 +415,8 @@ padding: 10px 0px 10px;
 .username {
   color: #fccc71;
   font-weight: bold;
+  position: relative;
+  padding-top: 30px;
 }
 
 .username-comment {
@@ -436,6 +438,31 @@ padding: 10px 0px 10px;
   color: rgb(200, 199, 199);
 }
 
+.postDate{
+  position: relative;
+  padding-top: 25px;
+  top: -60px;
+  margin-bottom: -35px;
+  font-size: 75%;
+  font-style: italic;
+}
+
+.editedPost{
+  position: relative;
+  top: -15px;
+  margin-bottom: -15px;
+  font-size: small;
+  font-style: italic;
+}
+
+.editedComment{
+  position: relative;
+  top: -10px;
+  margin-bottom: 0px;
+  font-size: small;
+  font-style: italic;
+  right: -8%;
+}
 
 .comment-container {
   position: relative;

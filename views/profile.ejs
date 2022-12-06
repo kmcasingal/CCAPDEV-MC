@@ -2,7 +2,7 @@
     <head>
         <title> AnonX - profile</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" media="all" href="/public/assets/main-style.css">
+        <link rel="stylesheet" type="text/css" media="all" href="/public/assets/css/main-style.css">
         <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
         <script src="https://kit.fontawesome.com/a81368914x.js"></script>
         <link rel="shortcut icon" type="image/x-icon" href="/public/assets/images/favicon.ico"/>
@@ -76,7 +76,6 @@
                                 <!-- Block posts -->
                                 <div class="block-post">
                                     <h3> <%= posts[i].title %></h3>
-                                        <h5 class="post-author">
                                         <p class="username">
                                             <% if (posts[i].anon == "true") { %>
                                                 by: Anonymous
@@ -85,13 +84,15 @@
                                               <%} else {%>
                                                 by: <%= posts[i].username %>
                                               <%} %>
-                                        </p></h5>
+                                        </p>
+                                        <% if (posts[i].date) { %> <p class="postDate"> <%= posts[i].date.toLocaleString().substr(0,22).split("T")[0] %> </p> <%} %>
                                         <div class="post-edit">
                                             <a href="edit/<%= posts[i]._id %>">Edit</a>
                                         </div>
                                         <div class="post-delete">
                                             <a href="delete/<%= posts[i]._id %>">Delete</a>
                                         </div>
+                                        <% if (posts[i].edited == "true") { %>  <p class="editedPost">(edited)</p> <%} %>
                                         <div class="post-content">
                                             <p><%= posts[i].post %></span></p>
                                         </div>
@@ -121,6 +122,7 @@
                                                     <p class="username-comment comment-text"><%= comments[j].username %></p>
                                                   <% } %> 
                                                 <% } %> 
+                                                <% if (comments[j].edited == "true") { %>  <p class="editedComment">(edited)</p> <%} %>
                                                 <p class="comment-text"><%= comments[j].comment %></p>
                                                 <br>
                                                 <hr />
