@@ -77,15 +77,15 @@
           <h2>Packages used</h2>
           <p>
             <ul>
-              <li>dotenv</li>
-              <li>express</li>
-              <li>express-fileupload</li>
-              <li>express-session</li>
-              <li>express-validator</li>
-              <li>body-parser</li>
-              <li>mongoose</li>
-              <li>passport</li>
-              <li>passport-local-mongoose</li>
+              <li><code>dotenv</code></li>
+              <li><code>body-parser</code> is a package that's responsible for parsing the incoming requests. For our web application, we used the body-parser on urlencoded bodies that contains multiple value types. </li>
+              <li><code>express</code> is a node.js web application framework that provides broad features that we used to in our HTTP web application. It provides methods that allows us to specify what function is called for HTTP verbs and URL pattern routes such as GET, POST, SET, etc. It also provided methods that allowed us to specify the view engine we used, EJS, as well as where the files were located and which template to use to render a response.</li>
+              	<ul>
+	              <li><code>express-session</code> allowed us to create and manage sessions in the browser for different users.</li>
+              	</ul>
+              <li>The <code>passport</code> library is a popular authentication middleware for Node.js applications. This library easily integrated authentication in our web application. It allowed us to authenticate and verifies the user's username and password</li>
+              <li>The <code>mongodb</code> package allowed us to use the MongoDB platform easily as it automatically maps the data to and from the database. It allowed us to send and retrieve data according to the user's credentials and information.</li>
+              <li>The <code>mongoose</code> library translates the code and its representation from MongoDB to the Node.js server. This library allowed us to use MongoDB in our web application. </li>
             </ul>
           </p>
         </div>
