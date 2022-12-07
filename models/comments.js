@@ -9,6 +9,7 @@ const userCommentSchema = {
     isUser: String,
     anon: String,
     edited: String,
+    date: Date,
   };
 
 const Comment = mongoose.model("comment", userCommentSchema);

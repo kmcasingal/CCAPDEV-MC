@@ -413,6 +413,26 @@ a {
   font-style: italic;
 }
 
+.commentDateUser{
+  position: relative;
+  padding-top: 10px;
+  top: 10px;
+  left: 75px;
+  margin-bottom: -35px;
+  font-size: 75%;
+  font-style: italic;
+}
+
+.commentDateOther{
+  position: relative;
+  padding-top: 5px;
+  top: -15px;
+  left: 75px;
+  margin-bottom: -35px;
+  font-size: 75%;
+  font-style: italic;
+}
+
 .editedPost{
   position: relative;
   top: -20px;

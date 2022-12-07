@@ -464,10 +464,29 @@ padding: 10px 0px 10px;
   right: -8%;
 }
 
+.commentDateUser{
+  position: relative;
+  top: -35px;
+  left: 103px;
+  margin-bottom: -35px;
+  font-size: 75%;
+  font-style: italic;
+}
+
+.commentDateOther{
+  position: relative;
+  padding-top: 5px;
+  top: -35px;
+  left: 103px;
+  margin-bottom: -35px;
+  font-size: 75%;
+  font-style: italic;
+}
+
 .comment-container {
   position: relative;
   width: 100%;
-  padding-top: 25px;
+  padding-top: 45px;
   padding-bottom: 25px;
   background-color: #606060;
   display: inline-block;

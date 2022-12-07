@@ -214,6 +214,7 @@ const comment = (req, res) => {
       userId: req.user.id,
       comment: req.body.cmnt,
       anon: anonToggle,
+      date: new Date(),
     });
   
     comment.save( function(err){

@@ -18,6 +18,7 @@ $('.message a').click(function(){
   $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
 });
 
+// Confirmation when turning off anonymous posting
 function confirmation() {
   var anonToggle = document.getElementById("anonBox");
   
@@ -26,6 +27,4 @@ function confirmation() {
   } 
 }
 
-// var date = new Date().toLocaleString(); // 11/16/2015, 11:18:48 PM
-// const date = event.toISOString().substr(0,16).split("T")[0] + " " + event.toISOString().substr(0,16).split("T")[1];
 
