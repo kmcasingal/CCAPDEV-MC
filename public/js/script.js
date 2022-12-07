@@ -18,21 +18,14 @@ $('.message a').click(function(){
   $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
 });
 
-//  <!-- See More Script -->
-/*
-function myFunction() {
-    var dots = document.getElementById("dots");
-    var moreText = document.getElementById("more");
-    var btnText = document.getElementById("seemorebtn");
-
-    if (dots.style.display === "none") {
-    dots.style.display = "inline";
-    btnText.innerHTML = "See more"; 
-    moreText.style.display = "none";
-    } else {
-    dots.style.display = "none";
-    btnText.innerHTML = "See less"; 
-    moreText.style.display = "inline";
-    }
+function confirmation() {
+  var anonToggle = document.getElementById("anonBox");
+  
+  if(anonToggle.checked == false){
+    alert("WARNING: Anonymous post has been turned off.");
+  } 
 }
-*/
+
+// var date = new Date().toLocaleString(); // 11/16/2015, 11:18:48 PM
+// const date = event.toISOString().substr(0,16).split("T")[0] + " " + event.toISOString().substr(0,16).split("T")[1];
+

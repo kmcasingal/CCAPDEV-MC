@@ -404,6 +404,33 @@ a {
   color: white;
 }
 
+.postDate{
+  position: relative;
+  padding-top: 10px;
+  top: -20px;
+  margin-bottom: -35px;
+  font-size: 75%;
+  font-style: italic;
+}
+
+.editedPost{
+  position: relative;
+  top: -20px;
+  margin-bottom: -35px;
+  font-size: small;
+  font-style: italic;
+}
+
+.editedComment{
+  position: relative;
+  top: -20px;
+  margin-bottom: -35px;
+  font-size: small;
+  font-style: italic;
+  left: 5%;
+}
+
+
 /* About */
 .container-about{
   padding: 80px;
@@ -429,5 +456,5 @@ a {
   margin: 0px;
   padding: 20px;
   background-color: #606060;
-
 }
+

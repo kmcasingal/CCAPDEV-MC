@@ -8,6 +8,8 @@ const postSchema = {
     tag: String,
     isUser: String,
     anon: String,
+    edited: String,
+    date: Date,
 };
   
 const Post = mongoose.model("post", postSchema);
