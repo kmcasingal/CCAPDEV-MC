@@ -36,6 +36,9 @@
             <br><br><br>
             <form action="/update" method="post">
                 <input type="hidden" value="<%= posts.id %>" name="id">
+                
+                
+                
                 <table border="1">
                     <tr>
                         <td colspan="2"><h2> Edit your post </h2></td>
@@ -63,7 +66,8 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2"><input type="submit" value="Post"></td>
+                        <input type="submit" value="Save" id="submitButton" class="submitButton">
+                        <input type="button" value="Cancel" class="submitButton" onclick="window.location='/profile'"/>
                     </tr>
                 </table>
             </form>

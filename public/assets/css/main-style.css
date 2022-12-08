@@ -3,7 +3,6 @@ body {
   color: white;
   overflow-y: scroll;
   overflow-x: hidden;
-  text-shadow: 0px 0px 3px rgb(0, 0, 0);
 }
 
 *{
@@ -68,7 +67,7 @@ td input[type=submit]{
 }
 
 label{
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .titleText {
@@ -148,14 +147,8 @@ label{
   background-color: #606060;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 0 50px;
-}
-
-.topnav-profile-logout {
-  display: flex;
-  align-items: center;
-  text-align: end;
+  align-content: center;
+  padding: 10 60px 10px 50px;
 }
 
 .topnav a {
@@ -200,13 +193,13 @@ label{
 }
 
 .submitButton {
-  width: 50%;
+  width: 150px;
   background-color: #303030;
   font-size: large;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
-  margin-left: 24.5%;
+  margin-left: 21.5%;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -226,9 +219,16 @@ label{
   cursor: pointer;
 }
 
+#dropimg{
+  width: 10%;
+  height: 10%;
+}
+
 .dropdown {
   position: relative;
   display: inline-block;
+  align-items: center;
+  text-align: end;
 }
 
 .dropdown-content {

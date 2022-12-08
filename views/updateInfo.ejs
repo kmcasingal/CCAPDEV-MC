@@ -34,29 +34,24 @@
 
         
         <!-- Edit Information -->
-        <div>
-            <br><br><br>
+        <div class="mainDiv" style="margin-top: 50px;> 
             <form action="/updateProfile" method="post">
-                <table border="1">
-                    <tr>
-                        <td colspan="2"><h2> <%= message %> </h2></td>
-                    </tr>
-                    <tr>
-                        <td><label>Old Password:</label></td>
-                        <td><input type="password" id="password" name="oldPassword" maxlength="24" size="100%" required></td>
-                    </tr>
-                    <tr>
-                        <td><label>New Password:</label></td>
-                        <td><input type="password" id="password" name="newPassword" maxlength="24" size="100%" required></td>
-                    </tr>
-                    <tr>
-                        <td><label>Bio:</label></td>
-                        <td><input type="text" id="bio" name="bio" value="<%= profile.bio %>" size="100%" maxlength="120"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"><input type="submit" value="Save"></td>
-                    </tr>
-                </table>
+                <div class="update">
+                    <h1> <%= message %> </h1><br><br>
+                    
+                <label for="oldpassword"> Edit Password</label> <br>
+                    <input type="password" id="password" name="oldPassword" class="titleText" maxlength="24" size="100%" placeholder="Old Password" required> <br>
+                
+                <label for="newpassword">New Password:</label><br>
+                    <input type="password" id="password" name="newPassword" class="titleText" maxlength="24" size="100%" placeholder="New Password" required> <br>
+
+                <label for="bio"> Edit Bio</label> <br>
+                    <input type="text" id="bio" name="bio" value="<%= profile.bio %>" class="postText" size="100%" maxlength="120" placeholder="Biography (optional)"> <br>
+                    <a style="font-size: 12px;flex: end;"> Max length 120 characters</a> <br>
+            
+                    <input type="submit" value="Save" id="submitButton" class="submitButton">
+                    <input type="button" value="Cancel" class="submitButton" onclick="window.location='/profile'"/>
+                </div>
             </form>
         </div>
         <script src="script.js"></script>
