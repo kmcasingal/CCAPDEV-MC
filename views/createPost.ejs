@@ -31,35 +31,26 @@
 
         
         <!-- Create Post -->
-        <div>
             <br><br><br>
+            <div class="mainDiv">
             <form action="/save" method="post">
                 <input type="hidden" value="<%= user._id %>" id="userId" name="userId">
                 <input type="hidden" value="<%= user.username %>" id="username" name="username">
-                <table border="1">
-                    <tr>
-                        <td colspan="2"><h2> Create a post </h2></td>
-                    </tr>
-                    <tr>
-                        <td><label>Title:</label></td>
-                        <td><input type="text" id="title" name="title" placeholder="Maximum of 40 characters" maxlength="40" size="100%" required></td>
-                    </tr>
-                    <tr>
-                        <td><label>Post:</label></td>
-                        <td><input type="text" id="post" placeholder="Maximum of 120 characters" name="postText" maxlength="120" size="100%"></td>
-                    </tr>
-                    <tr>
-                        <td><label>Tag:</label></td>
-                        <td><input type="text" id="tags" name="tag" placeholder="Maximum of 20 characters" maxlength="20" size="100%" required></td>
-                    </tr>
-                    <tr>
-                        <td><label>Anonymous:</label></td>
-                        <td><input name="anonToggle" id="anonBox" type="checkbox" value="on" onclick="confirmation()" checked></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"><input type="submit" value="Post" id="submitPost"></td>
-                    </tr>
-                </table>
+                <h2> Create a post </h2><br><br>
+
+                <label>Title:</label><br>
+                <input type="text" id="title" name="title" class="titleText" placeholder="Maximum of 40 characters" maxlength="40" required><br><br>   
+                   
+                <label>Post:</label><br>
+                <textarea type="text" id="post" class="postText" placeholder="Maximum of 120 characters" name="postText" maxlength="120"></textarea><br><br>
+                     
+                <label>Tag:</label><br>
+                <input type="text" id="tags" name="tag" class="tagText" placeholder="Maximum of 20 characters" maxlength="20" required><br><br>
+    
+                <label>Anonymous:</label>
+                <input name="anonToggle" id="anonBox" type="checkbox" value="on" onclick="confirmation()" checked><br><br>
+                                        
+                <input type="submit" value="Post" id="submitPost" class="submitButton">
             </form>
         </div>
         <script src="../public/js/script.js"></script>
