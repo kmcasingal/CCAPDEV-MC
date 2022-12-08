@@ -36,7 +36,7 @@
             <form action="/save" method="post">
                 <input type="hidden" value="<%= user._id %>" id="userId" name="userId">
                 <input type="hidden" value="<%= user.username %>" id="username" name="username">
-                <h2> Create a post </h2><br><br>
+                <h1> Create a post </h1><br><br>
 
                 <label>Title:</label><br>
                 <input type="text" id="title" name="title" class="titleText" placeholder="Maximum of 40 characters" maxlength="40" required><br><br>   
@@ -48,9 +48,10 @@
                 <input type="text" id="tags" name="tag" class="tagText" placeholder="Maximum of 20 characters" maxlength="20" required><br><br>
     
                 <label>Anonymous:</label>
-                <input name="anonToggle" id="anonBox" type="checkbox" value="on" onclick="confirmation()" checked><br><br>
+                <input name="anonToggle" id="anonBox" type="checkbox" value="on" onclick="confirmation()" checked><span id="warning">WARNING: ANONYMOUS MODE TURNED OFF</span>
+                <br><br>
                                         
-                <input type="submit" value="Post" id="submitPost" class="submitButton">
+                <input type="submit" value="Post" id="submitButton" class="submitButton">
             </form>
         </div>
         <script src="../public/js/script.js"></script>

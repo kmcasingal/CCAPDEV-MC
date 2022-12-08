@@ -33,8 +33,10 @@ function confirmation() {
   var anonToggle = document.getElementById("anonBox");
   
   if(anonToggle.checked == false){
-    alert("WARNING: Anonymous post has been turned off.");
-  } 
+   document.getElementById("warning").style.display = "inline-block";
+  } else {
+    document.getElementById("warning").style.display = "none";
+  }
 }
 
 
