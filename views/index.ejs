@@ -1,7 +1,7 @@
 <html>
   <head>
     <title>AnonX - Home</title>
-    <link rel="stylesheet"  type="text/css" href="/public/assets/css/main-style.css"/>
+    <link rel="stylesheet"  type="text/css" href="/public/assets/css/homeStyle.css"/>
     <link rel="shortcut icon" type="image/x-icon" href="/public/assets/images/favicon.ico"/>
   </head>
   <body>
@@ -28,11 +28,67 @@
           </div>
       </div>
 
-      <div class="post-container">
-        <p>testtttttttttttttttttttttttttttttttt</p>
-      </div>
-      
-      
+      <button class="scrollbutton" onclick="scrollUp()">Back to Top</button>
+      <% for (let i = posts.length - 1; i >= 0; i--){ %>
+        <div class="post-container">
+          <% if (posts[i].userId == user._id) { %>
+            <a href="edit/<%= posts[i]._id %>"> <img src="/public/assets/images/pencil.png"/> </a>
+            <a href="delete/<%= posts[i]._id %>"> <img src="/public/assets/images/trash.png" /> </a>
+            <%} %>
+            <h2 class="title"> <%= posts[i].title %></h2>
+            <p class="postDate"> <%= posts[i].date.toLocaleString().substr(0,22).split("T")[0] %> </p>
+            <p class="username">
+              <% if (posts[i].anon == "true") { %>
+                by: Anonymous
+              <%} else if(posts[i].userId == user._id) { %>
+                by: <%= user.username %>
+              <%} else {%>
+                by: <%= posts[i].username %>
+              <%} %>
+            </p>
+            <% if (posts[i].edited == "true") { %>  <p class="editedPost">(edited)</p> <%} %>
+            <p><%= posts[i].post %></p>
+            <div class="tag-container-home"> Tag: <%= posts[i].tag %> </div>
+            <hr />
+            <% for (let j = 0; j < comments.length; j++){ %>
+              <div class="comment-container">
+              <% if (comments[j].mainPostId == posts[i]._id) { %>
+                <% if (comments[j].userId == user._id) { %>
+                  <% if (comments[j].anon == "true") { %>
+                      <p class="commentDateUser"> <%= comments[j].date.toLocaleString().substr(0,22).split("T")[0] %> </p>
+                      <a href="editComment/<%= comments[j]._id %>"> <img src="/public/assets/images/pencil.png"/> </a>
+                      <a href="deleteComment/<%= comments[j]._id %>"> <img src="/public/assets/images/trash.png" /> </a>
+                      <p class="username-comment comment-text">Anonymous</p>
+                    <% } else if (comments[j].anon == "false"){%>
+                      <p class="commentDateUser"> <%= comments[j].date.toLocaleString().substr(0,22).split("T")[0] %> </p>
+                      <a href="editComment/<%= comments[j]._id %>"> <img src="/public/assets/images/pencil.png"/> </a>
+                      <a href="deleteComment/<%= comments[j]._id %>"> <img src="/public/assets/images/trash.png" /> </a>
+                      <p class="username-comment comment-text"><%= user.username %></p>
+                    <% } %> 
+                  <% } else {%> 
+                    <% if (comments[j].anon == "true") { %>
+                      <p class="commentDateOther"> <%= comments[j].date.toLocaleString().substr(0,22).split("T")[0] %> </p>
+                      <p class="username-comment comment-text">Anonymous</p>
+                    <% } else if (comments[j].anon == "false"){%>
+                      <p class="commentDateOther"> <%= comments[j].date.toLocaleString().substr(0,22).split("T")[0] %> </p>
+                      <p class="username-comment comment-text"><%= comments[j].username %></p>
+                    <% } %> 
+                  <% } %> 
+                  <% if (comments[j].edited == "true") { %>  <p class="editedComment">(edited)</p> <%} %>
+                  <p class="comment-text"><%= comments[j].comment %></p>
+                  <hr />
+              <% } %> 
+              </div>
+            <% } %> 
+                <form action="/comment/<%= posts[i]._id %>" method="post">
+                  <div class="comment-container">
+                    <label style="position: relative; left: 20px;">Anonymous: <input name="anonToggle" type="checkbox"  value="on" checked></label>
+                    <input type="text"  id="cmnt" name="cmnt" style="position:relative; left:50px; width: 80%;"  placeholder="Comment here" />
+                  </div>
+                </form>
+              </div>
+              
+          <% } %> 
       <script src="../public/js/script.js"></script>
   </body>
 </html>
