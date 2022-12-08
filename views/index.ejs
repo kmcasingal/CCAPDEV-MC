@@ -5,29 +5,34 @@
     <link rel="shortcut icon" type="image/x-icon" href="/public/assets/images/favicon.ico"/>
   </head>
   <body>
-    <a name="top"></a>
-    <div class="header">
-          <!-- Top Navigation Bar -->
-            <div class="topnav">
-                <div class="logo">
-                    <a href="index.html">AnonX</a>
-                </div>
-                <div class="search">
-                    <input type="text" placeholder="Search topics, posts, categories">
-                </div>
-                <div class="topnav-profile-logout">
-                    
-                  <div class="dropdown" style="float:right;">
-                    <img src="/public/assets/images/user.png" onclick="menu()" class="dropbtn">
-                    <div id="dropcontent" class="dropdown-content">
-                      <a href="/profile">Profile</a>
-                      <a href="/about">About</a>
-                      <a href="/add/<%= user.id %>">Create post</a>
-                      <a href="/logout">Log out</a>
-                    </div>
-                  </div>
-                </div>
+    <div class="container">
+      <!-- Top Navigation Bar -->
+      <div class="topnav">
+          <div class="logo">
+              <a href="index.html">AnonX</a>
+          </div>
+          <div class="search">
+              <input type="text" placeholder="Search topics, posts, categories">
+          </div>
+          <div class="topnav-profile-logout">
+              
+            <div class="dropdown" style="float:right;">
+              <img src="/public/assets/images/user.png" onclick="menu()" class="dropbtn">
+              <div id="dropcontent" class="dropdown-content">
+                <a href="/profile">Profile</a>
+                <a href="/about">About</a>
+                <a href="/add/<%= user.id %>">Create post</a>
+                <a href="/logout">Log out</a>
+              </div>
             </div>
+          </div>
+      </div>
+
+      <div class="post-container">
+        <p>testtttttttttttttttttttttttttttttttt</p>
+      </div>
+      
+      
       <script src="../public/js/script.js"></script>
   </body>
 </html>
