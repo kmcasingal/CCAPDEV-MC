@@ -7,7 +7,7 @@ body {
   color: #f6f6f6;
   margin-bottom: 3%;
   position: relative;
-  text-shadow: 0px 0px 3px rgb(0, 0, 0);
+  /* text-shadow: 0px 0px 3px rgb(0, 0, 0); */
 }
 
 hr {
@@ -42,7 +42,7 @@ hr {
 .header-logo {
   left: 25px;
   bottom: 2px;
-  position: absolute;
+  position: relative;
   display: inline-block;
 }
 
@@ -264,7 +264,7 @@ hr {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 50px;
+  padding: 0 100px 0px 100px;
 }
 
 
@@ -283,14 +283,16 @@ hr {
 }
 
 .search {
-  width: 532px;
-  padding: 10px;
-  margin-left: 50px;
+  text-align: center;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
 }
 
 .topnav input[type=text] {
   float: center;
-  width: 532px;
+  width: 80%;
   padding-top: 3px;
   padding-left: 10px;
   padding-bottom: 3px;
@@ -299,7 +301,7 @@ hr {
   font-size: 15px;
   font-family: "Open Sans";
   background-color: #DBDBDB;
-}
+} 
 
 @media screen and (max-width: 600px) {
   .topnav a, .topnav input[type=text] {

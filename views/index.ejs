@@ -8,28 +8,26 @@
     <div class="container">
       <!-- Top Navigation Bar -->
       <div class="topnav">
-          <div class="logo">
-              <a href="index.html">AnonX</a>
+          <div class="header-logo">
+              <a href="/"><img src="/public/assets/images/logo.png" /></a>
           </div>
           <div class="search">
               <input type="text" placeholder="Search topics, posts, categories">
           </div>
-          <div class="topnav-profile-logout">
-              
-            <div class="dropdown" style="float:right;">
-              <img src="/public/assets/images/user.png" style="height:12%;width:12%" onclick="menu()" class="dropbtn">
-              <div id="dropcontent" class="dropdown-content">
-                <a href="/profile">Profile</a>
-                <a href="/about">About</a>
-                <a href="/add/<%= user.id %>">Create post</a>
-                <a href="/logout">Log out</a>
-              </div>
+          <div class="dropdown" style="float:right;">
+            <img src="/public/assets/images/user.png" style="height:10%;width:10%" onclick="menu()" class="dropbtn">
+            <div id="dropcontent" class="dropdown-content">
+              <a href="/profile">Profile</a>
+              <a href="/about">About</a>
+              <a href="/add/<%= user.id %>">Create post</a>
+              <a href="/logout">Log out</a>
             </div>
           </div>
       </div>
 
       <button class="scrollbutton" onclick="scrollUp()">Back to Top</button>
       <% for (let i = posts.length - 1; i >= 0; i--){ %>
+
         <div class="post-container">
           <% if (posts[i].userId == user._id) { %>
             <a href="edit/<%= posts[i]._id %>"> <img src="/public/assets/images/pencil.png"/> </a>
