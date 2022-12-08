@@ -10,7 +10,7 @@ const app = express();
 const routes = require("./routes/routes")
 const User = require("./models/users")
 
-mongoose.connect("mongodb+srv://user:123@cluster0.dg9qzin.mongodb.net/anonx");
+mongoose.connect(process.env.mongodb);
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
