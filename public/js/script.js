@@ -1,10 +1,20 @@
 // Drop down Menu/Profile
+//hover and toggle of dropdown content
 function menu() {
-  var x = document.getElementsByClassName("header-menu")[0];
-  if (x.style.display == "none" || x.style.display == "") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
+  document.getElementById("dropcontent").classList.toggle("show");
+}
+
+//closes dropdown when un-hover
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
   }
 }
 

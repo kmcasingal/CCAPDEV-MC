@@ -7,37 +7,29 @@
   <body>
     <a name="top"></a>
     <div class="header">
-      <div class="header-logo">
-        <a href="/"><img src="/public/assets/images/logo.png" /></a>
-      </div>
-      <div class="header-search">
-        <form action="/search" method="get">
-          <input type="text" placeholder="Search for a tag" name="searchTag"/>
-        </form>
-      </div>
-      <div class="header-profile">
-        <img src="/public/assets/images/user.png" onclick="menu()" />
-      </div>
-    </div>
-    <div class="header-menu">
-      <table>
-        <tr>
-          <td><a href="/profile">Profile</a></td>
-        </tr>
-        <tr>
-          <td><a href="/add/<%= user.id %>">Create post</a></td>
-        </tr>
-        <tr>
-          <td><a href="/about">About</a></td>
-        </tr>
-        <tr>
-          <td><a href="/logout">Log out</a></td>
-        </tr>
-      </table>
-    </div>
-    <button class="button-PostPage">
-      <a href="/add/<%= user.id %>">Create a post</a>
-    </button>
+          <!-- Top Navigation Bar -->
+            <div class="topnav">
+                <div class="logo">
+                    <a href="index.html">AnonX</a>
+                </div>
+                <div class="search">
+                    <input type="text" placeholder="Search topics, posts, categories">
+                </div>
+                <div class="topnav-profile-logout">
+                    
+                  <div class="dropdown" style="float:right;">
+                    <img src="/public/assets/images/user.png" onclick="menu()" class="dropbtn">
+                    <div id="dropcontent" class="dropdown-content">
+                      <a href="/profile">Profile</a>
+                      <a href="/about">About</a>
+                      <a href="/add/<%= user.id %>">Create post</a>
+                      <a href="/logout">Log out</a>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+
     <button class="scrollbutton" onclick="scrollUp()">Back to Top</button>
 
     <% for (let i = posts.length - 1; i >= 0; i--){ %>
