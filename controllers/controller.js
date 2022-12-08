@@ -72,11 +72,16 @@ const verifyLogin = (req, res) => {
         fail: "true",
       });
     } else {
-      passport.authenticate("local",  { failureRedirect: '/' })(req, res, function () {
-        res.redirect("/");
-      });
+      passport.authenticate("local",  { failureRedirect: '/loginError' })(req, res, function () {});
     }
   });
+}
+
+const loginError = (req, res) => {
+  res.render("login", {
+    failReg: "false",
+    fail: "true",
+   });
 }
 
 const search = (req, res) => {
@@ -457,6 +462,7 @@ module.exports = {
     logout,
     createAccount,
     verifyLogin,
+    loginError,
     search,
     addPost,
     save,

@@ -10,6 +10,8 @@ router.post("/createAccount", controller.createAccount);
 
 router.post("/verifyLogin", controller.verifyLogin);
 
+router.get("/loginError", controller.loginError);
+
 router.get("/search", controller.search);
 
 router.get("/add/:userId", controller.addPost);
