@@ -72,7 +72,9 @@ const verifyLogin = (req, res) => {
         fail: "true",
       });
     } else {
-      passport.authenticate("local",  { failureRedirect: '/loginError' })(req, res, function () {});
+      passport.authenticate("local",  { failureRedirect: '/loginError' })(req, res, function () {
+        res.redirect("/");
+      });
     }
   });
 }
