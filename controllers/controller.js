@@ -182,15 +182,23 @@ const save = (req, res) => {
 const editPost = (req, res) => {
   if (req.isAuthenticated()) {
     const userId = req.params.userId; 
-    Post.find( {_id: userId}, function(err, result){
-      if(err){
+
+    User.findOne({_id: req.user.id}, function (err, userFound) {
+      if (err) {
         console.log(err);
-      } else {
-        res.render("updatePost", {
-          posts: result[0],
-        });
+      } else {               
+        Post.find( {_id: userId}, function(err, result){
+          if(err){
+            console.log(err);
+          } else {
+            res.render("updatePost", {
+              posts: result[0],
+              user: userFound,
+            });
+          }
+        });  
       }
-    });
+     });
   } else {
     res.render("login", {
       fail: "false",
