@@ -34,7 +34,7 @@
 
         
         <!-- Edit Information -->
-        <div class="mainDiv" style="margin-top: 50px;> 
+        <div class="mainDiv" style="margin-top: 50px;"> 
             <form action="/updateProfile" method="post">
                 <div class="update">
                     <h1> <%= message %> </h1><br><br>
@@ -46,7 +46,7 @@
                     <input type="password" id="password" name="newPassword" class="titleText" maxlength="24" size="100%" placeholder="New Password" required> <br>
 
                 <label for="bio"> Edit Bio</label> <br>
-                    <input type="text" id="bio" name="bio" value="<%= profile.bio %>" class="postText" size="100%" maxlength="120" placeholder="Biography (optional)"> <br>
+                    <textarea type="text" id="bio" class="postText" name="bio" size="100%" value="<%= profile.bio %>" placeholder="Biography (optional)" maxlength="120"></textarea> <br>
                     <a style="font-size: 12px;flex: end;"> Max length 120 characters</a> <br>
             
                     <input type="submit" value="Save" id="submitButton" class="submitButton">
