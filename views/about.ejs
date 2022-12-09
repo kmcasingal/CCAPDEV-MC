@@ -6,36 +6,25 @@
   </head>
 
   <body>
-    <a name="top"></a>
-    <div class="header">
+    <div class="topnav">
       <div class="header-logo">
-        <a href="/"><img src="/public/assets/images/logo.png" /></a>
+          <a href="/"><img src="/public/assets/images/logo.png" /></a>
       </div>
-      <div class="header-search">
+      <div class="search">
         <form action="/search" method="get">
-          <input type="text" placeholder="Search for a tag" name="searchTag"/>
+          <input type="text" placeholder="Search tags, topics, categories" name="searchTag">
         </form>
       </div>
-      <div class="header-profile">
-        <img src="/public/assets/images/user.png" onclick="menu()" />
+      <div class="dropdown" style="float:right;">
+        <img src="/public/assets/images/user.png" style="height:100%; width:100%" onclick="menu()" class="dropbtn">
+        <div id="dropcontent" class="dropdown-content">
+          <a href="/profile">Profile</a>
+          <a href="/about">About</a>
+          <a href="/add/<%= profile.id %>">Create post</a>
+          <a href="/logout">Log out</a>
+        </div>
       </div>
-    </div>
-    <div class="header-menu">
-      <table>
-        <tr>
-          <td><a href="/profile">Profile</a></td>
-        </tr>
-        <tr>
-          <td><a href="/add/<%= user.id %>">Create post</a></td>
-        </tr>
-        <tr>
-          <td><a href="/about">About</a></td>
-        </tr>
-        <tr>
-          <td><a href="/logout">Log out</a></td>
-        </tr>
-      </table>
-    </div>
+  </div>
 
     <!-- About below part -->
     <div class="container-about">

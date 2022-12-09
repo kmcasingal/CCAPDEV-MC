@@ -10,25 +10,22 @@
         <div class="container">
             <!-- Top Navigation Bar -->
             <div class="topnav">
-                <div class="logo">
-                    <a href="/">AnonX</a>
+                <div class="header-logo">
+                    <a href="/"><img src="/public/assets/images/logo.png" /></a>
                 </div>
                 <div class="search">
-                    <form action="/search" method="get">
-                        <input type="text" placeholder="Search for a tag" name="searchTag"/>
-                      </form>
+                  <form action="/search" method="get">
+                    <input type="text" placeholder="Search tags, topics, categories" name="searchTag">
+                  </form>
                 </div>
-                <div class="topnav-profile-logout">
-                    <div class="profile">
-                        <div class="profile"> 
-                            <a href="/">Home</a>
-                            <a href="/profile">Profile</a>
-                            <a href="/about">About</a>
-                        </div>
-                    </div>
-                    <div class="logout">
-                        <a href="logout">Log out</a>
-                    </div>
+                <div class="dropdown" style="float:right;">
+                  <img src="/public/assets/images/user.png" style="height:100%; width:100%" onclick="menu()" class="dropbtn">
+                  <div id="dropcontent" class="dropdown-content">
+                    <a href="/profile">Profile</a>
+                    <a href="/about">About</a>
+                    <a href="/add/<%= profile.id %>">Create post</a>
+                    <a href="/logout">Log out</a>
+                  </div>
                 </div>
             </div>
 

@@ -12,7 +12,9 @@
               <a href="/"><img src="/public/assets/images/logo.png" /></a>
           </div>
           <div class="search">
-              <input type="text" placeholder="Search topics, posts, categories">
+            <form action="/search" method="get">
+              <input type="text" placeholder="Search tags, topics, categories" name="searchTag">
+            </form>
           </div>
           <div class="dropdown" style="float:right;">
             <img src="/public/assets/images/user.png" style="height:50%; width:55%" onclick="menu()" class="dropbtn">
@@ -81,12 +83,13 @@
                 <form action="/comment/<%= posts[i]._id %>" method="post">
                   <div class="comment-container">
                     <label style="position: relative; left: 20px;">Anonymous: <input name="anonToggle" type="checkbox"  value="on" checked></label>
-                    <input type="text"  id="cmnt" name="cmnt" style="position:relative; left:50px; width: 80%;"  placeholder="Comment here" />
+                    <input type="text"  id="cmnt" name="cmnt" style="position:relative; left:50px; width: 80%;" maxlength="120"  placeholder="Comment here" />
                   </div>
                 </form>
               </div>
               
           <% } %> 
+    </div>
       <script src="../public/js/script.js"></script>
   </body>
 </html>

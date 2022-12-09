@@ -7,6 +7,7 @@ body {
   color: #f6f6f6;
   margin-bottom: 3%;
   position: relative;
+  text-shadow: 0px 0px 3px #000000;
 }
 
 hr {
@@ -61,20 +62,22 @@ hr {
   transition: 0.4s;
 }
 
-.header-search {
+.search {
   top: 15px;
   left: 25%;
+  margin-left: auto;
+  margin-right: auto;
   position: absolute;
   display: inline-block;
 }
 
-.header-search input {
+.search input[type=text] {
   height: 40px;
-  width: 700px;
+  min-width: 250%;
   border-radius: 100px;
-  background-color: #303030;
-  color: #f6f6f6;
+  color: #000000;
   text-indent: 15px;
+  display:inline-block;
 }
 
 .header-search img {
@@ -263,7 +266,7 @@ hr {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 100px 0px 100px;
+  padding: 0px 100px 0px 100px;
 }
 
 
@@ -279,14 +282,6 @@ hr {
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
-}
-
-.search {
-  text-align: center;
-  display: block;
-  margin-right: auto;
-  margin-left: auto;
-  width: 100%;
 }
 
 .topnav input[type=text] {
@@ -320,7 +315,7 @@ hr {
 /* Drop down button */
 .dropbtn {
   position: relative;
-  left: 75px;
+  left: 70px;
   padding: 16px;
   font-size: 16px;
   border: none;
@@ -343,14 +338,14 @@ hr {
 }
 
 .dropdown-content a {
-  color: black;
+  color: rgb(255, 255, 255);
   padding: 12px 16px;
   text-decoration: none;
   display: block;
   text-align: right;
 }
 
-.dropdown-content a:hover {background-color: #f1f1f1;}
+.dropdown-content a:hover {background-color: #FCCC71;}
 
 .dropdown:hover .dropdown-content {
   display: block;

@@ -11,23 +11,22 @@
         <div class="container">
             <!-- Top Navigation Bar -->
             <div class="topnav">
-                <div class="logo">
-                    <a href="/">AnonX</a>
+                <div class="header-logo">
+                    <a href="/"><img src="/public/assets/images/logo.png" /></a>
                 </div>
                 <div class="search">
-                    <form action="/search" method="get">
-                        <input type="text" placeholder="Search for a tag" name="searchTag"/>
-                      </form>
+                  <form action="/search" method="get">
+                    <input type="text" placeholder="Search tags, topics, categories" name="searchTag">
+                  </form>
                 </div>
-                <div class="topnav-profile-logout">
-                    <!-- <div class="profile"> 
-                        <a href="/">Home</a>
-                        <a href="/profile">Profile</a>
-                        <a href="/about" class="active">About</a>
-                    </div> -->
-                    <div class="logout">
-                        <a href="/logout">Log out</a>
-                    </div>
+                <div class="dropdown" style="float:right;">
+                  <img src="/public/assets/images/user.png" style="height:100%; width:100%" onclick="menu()" class="dropbtn">
+                  <div id="dropcontent" class="dropdown-content">
+                    <a href="/profile">Profile</a>
+                    <a href="/about">About</a>
+                    <a href="/add/<%= profile.id %>">Create post</a>
+                    <a href="/logout">Log out</a>
+                  </div>
                 </div>
             </div>
 
@@ -136,8 +135,8 @@
                                               
                                               <form action="/comment/<%= posts[i]._id %>" method="post">
                                                 <div class="comment-input">
-                                                    <label style="position: relative; left: 20px;">Anonymous: <input name="anonToggle" type="checkbox"  value="on" ></label>
-                                                    <input type="text"  id="cmnt" name="cmnt" style="position:relative; left:25; width: 80%;"  placeholder="Comment here" />
+                                                    <label style="position: relative; left: 15px;">Anonymous: <input name="anonToggle" type="checkbox"  value="on" checked></label>
+                                                    <input type="text"  id="cmnt" name="cmnt" style="position:relative; left:30; width: 78%;" maxlength="120"  placeholder="Comment here" />
                                                 </div>
                                               </form>
                                             </div>
