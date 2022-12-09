@@ -30,33 +30,25 @@
 
         
         <!-- Edit post -->
-        <div>
-            <br><br><br>
+        <div class="mainDiv" style="margin-top: 50px;">
             <form action="/updateComment" method="post">
                 <input type="hidden" value="<%= comment.id %>" name="id">
 
-                <table border="1">
-                    <tr>
-                        <td colspan="2"><h2> Edit comment </h2></td>
-                    </tr>
-                    <tr>
-                        <td><label>Comment:</label></td>
-                        <td><input type="text" id="post"  name="postText" value="<%= comment.comment %>" placeholder="Text (optional)" maxlength="120" required></td>
-                    </tr>
-                    <tr>
-                        <td><label>Anonymous:</label></td>
-                        <td>
-                            <% if (comment.anon == "true") { %>
-                                <input name="anonToggle" type="checkbox" value="on" checked>
-                            <%} else {%>
-                                <input name="anonToggle" type="checkbox" value="on">
-                            <%} %>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"><input type="submit" value="Post"></td>
-                    </tr>
-                </table>
+                <h2> Edit comment </h2> <br>
+                <label>Comment:</label> <br>
+                <textarea type="text" id="post" class="postText" name="postText" size="100%" value="<%= comment.comment %>" placeholder="Comment" maxlength="120" required></textarea> <br>
+                   
+                    <label>Anonymous:</label>
+                
+                    <% if (comment.anon == "true") { %>
+                        <input name="anonToggle" type="checkbox" value="on" checked>
+                    <%} else {%>
+                        <input name="anonToggle" type="checkbox" value="on">
+                    <%} %>
+                        
+                    <br> <br>
+                    <input type="submit" value="Post" id="submitButton" class="submitButton">
+                    <input type="button" value="Cancel" class="submitButton" onclick="window.location='/profile'"/>
             </form>
         </div>
     </body>
