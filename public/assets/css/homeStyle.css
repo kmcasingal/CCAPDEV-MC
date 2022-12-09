@@ -39,10 +39,10 @@ hr {
 }
 
 .header-logo {
-  left: 25px;
-  bottom: 2px;
   position: relative;
   display: inline-block;
+  right: 90px;
+  top: 3px;
 }
 
 .header-logo img {
@@ -319,6 +319,8 @@ hr {
 
 /* Drop down button */
 .dropbtn {
+  position: relative;
+  left: 75px;
   padding: 16px;
   font-size: 16px;
   border: none;
@@ -333,8 +335,8 @@ hr {
 .dropdown-content {
   display: none;
   position: absolute;
-  right: 0;
-  background-color: #f9f9f9;
+  left: -23px;
+  background-color: #606060;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
