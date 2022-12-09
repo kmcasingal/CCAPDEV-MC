@@ -100,6 +100,7 @@ label{
   resize: none;
 }
 
+
 .tagText {
   width: 50%;
   padding: 12px 20px;
@@ -278,33 +279,37 @@ gap: 30px;
 }
 
 /* Side bar */
-
-.sidebar{
-  position: -webkit-sticky;
-  position: sticky;
-  width: auto;
-  height: auto;
-  background-color: #DBDBDB;
-  font-size: 0.65rem;
-  border-radius: 10px;
+.tabs{
+width: 150px;
+/* position: fixed; */
+/* z-index: 1;
+top: 100px;
+left: 30px; */
+background: #606060;
+/* overflow-x: hidden; */
+/* padding: 5px 5px 5px 0; */
+border-radius: 10px;
 }
 
-.nav{
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-  font-weight: bold;
+.create{
+width: 150px;
+/* position: relative; */
+/* z-index: 1; */
+/* top: 100px; */
+/* left: 30px; */
+background: #dbdbdb;
+color: #303030;
+/* overflow-x: hidden; */
+/* padding: 5px 5px 5px 0; */
+border-radius: 10px;
+margin-top: 10px;
 }
 
-.nav ul {
-  list-style: none;
-}
-  
-.sidebar a{
+.sidenav a{
 padding: 10px;
 text-decoration: none;
 font-size: 15px;
-color: #303030;
+color: #FFFFFF;
 display: block;
 font-family: "Open Sans";
 }
@@ -313,28 +318,36 @@ font-family: "Open Sans";
 color: #303030;
 }
 
-.nav a:hover{
+.tabs a:hover{
+/* color:#cccccc; */
 background-color: #787878;
 border-radius: 10px;
 }
 
+/* .create a:hover {
+background-color: #DBDBDB;
+border-radius: 10px;
+} */
+
 @media screen and (max-height: 450px) {
-.sidebav {padding-top: 15px;}
-.sidebav a {font-size: 18px;}
+.sidenav {padding-top: 15px;}
+.sidenav a {font-size: 18px;}
 }
 
 .profile-right{
+  /* position: fixed;
+  float: right; */
   position: relative;
-  width: 75%;
-  float: right;
-  height: 500px;
+  top: -75px;
+  left: 250px;
 }
-/* 
+
 .profile-top {
   display: flex;
   align-items: center;
   gap: 50px;
   width: 80%;
+  margin-top: 100px;
 }
 
 .profile-bottom{
@@ -361,10 +374,10 @@ height: 150px;
 
 .profile-bio{
 font-size: 15px;
-} */
+}
 
 /* Below profile header */
-/* 
+
 .profile-post{
 margin-top: 25px;
 margin-bottom: 25px;
@@ -385,7 +398,7 @@ margin-bottom: 20px;
 
 .post-buttons{
 font-size: 13px;
-} */
+}
 
 /* Posts */
 #more {display: none;}

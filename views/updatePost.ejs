@@ -32,44 +32,32 @@
 
         
         <!-- Edit post -->
-        <div>
-            
+        <div class="mainDiv" style="margin-top: 50px;">
             <form action="/update" method="post">
                 <input type="hidden" value="<%= posts.id %>" name="id">
+                  
+                    <h2> Edit your post </h2> <br><br>
+                   
+                        <label>Title:</label> <br>
+                        <input type="text" value="<%= posts.title %>" size="100%" id="title" name="title" class="titleText" placeholder="Maximum of 40 characters" maxlength="40" required> <br>
+                    
+                        <label>Post:</label> <br>
+                        <textarea type="text" id="post" class="postText" value="<%= posts.post %>" placeholder="Maximum of 120 characters (optional)" name="postText" maxlength="120"></textarea><br><br>
                 
-                
-                
-                <table border="1">
-                    <tr>
-                        <td colspan="2"><h2> Edit your post </h2></td>
-                    </tr>
-                    <tr>
-                        <td><label>Title:</label></td>
-                        <td><input type="text" id="title" name="title"  value="<%= posts.title %>" placeholder="Title" maxlength="40" size="100%" required></td>
-                    </tr>
-                    <tr>
-                        <td><label>Post:</label></td>
-                        <td><input type="text" id="post"  name="postText" value="<%= posts.post %>" placeholder="Text (optional)" maxlength="120" size="100%"></td>
-                    </tr>
-                    <tr>
-                        <td><label>Tag:</label></td>
-                        <td><input type="text" id="tags" name="tag" value="<%= posts.tag %>"placeholder="#tags" maxlength="20" size="100%" required></td>
-                    </tr>
-                    <tr>
-                        <td><label>Anonymous:</label></td>
-                        <td>
+                        <label>Tag:</label> <br>
+                        <input type="text" id="tags" name="tag" class="tagText" value="<%= posts.tag %>"placeholder="#tags" maxlength="20" size="100%" required> <br>
+                 
+                        <label>Anonymous:</label> <br>
                             <% if (posts.anon == "true") { %>
                                 <input name="anonToggle" type="checkbox" value="on" checked>
                             <%} else {%>
                                 <input name="anonToggle" type="checkbox" value="on">
                             <%} %>
-                        </td>
-                    </tr>
-                    <tr>
+                                
+                            <br><br>
                         <input type="submit" value="Save" id="submitButton" class="submitButton">
                         <input type="button" value="Cancel" class="submitButton" onclick="window.location='/profile'"/>
-                    </tr>
-                </table>
+                   
             </form>
         </div>
     </body>
