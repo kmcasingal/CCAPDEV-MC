@@ -41,7 +41,7 @@
                         <input type="text" value="<%= posts.title %>" size="100%" id="title" name="title" class="titleText" placeholder="Maximum of 40 characters" maxlength="40" required> <br>
                     
                         <label>Post:</label> <br>
-                        <textarea type="text" id="post" class="postText" value="<%= posts.post %>" placeholder="Maximum of 120 characters (optional)" name="postText" maxlength="120"></textarea><br><br>
+                        <textarea type="text" id="post" class="postText" placeholder="Maximum of 120 characters (optional)" name="postText" maxlength="120"><%= posts.post %></textarea><br><br>
                 
                         <label>Tag:</label> <br>
                         <input type="text" id="tags" name="tag" class="tagText" value="<%= posts.tag %>"placeholder="#tags" maxlength="20" size="100%" required> <br>

@@ -322,17 +322,25 @@ const editComment = (req, res) => {
   if (req.isAuthenticated()) {
     const commentToUpdate = req.params.commentId; 
 
-    //console.log("USER ID 1: " + req.params.commentId);
-    Comment.find( {_id: commentToUpdate}, function(err, result){
-      if(err){
+    
+    User.findOne({_id: req.user.id}, function (err, userFound) {
+      if (err) {
         console.log(err);
-      } else {
-        //console.log("RESULT:" + result[0].id);
-        res.render("updateComment", {
-          comment: result[0],
+      } else {               
+        Comment.find( {_id: commentToUpdate}, function(err, result){
+          if(err){
+            console.log(err);
+          } else {
+            //console.log("RESULT:" + result[0].id);
+            res.render("updateComment", {
+              comment: result[0],
+              user: userFound,
+            });
+          }
         });
       }
-    });
+     });
+
   } else {
     res.render("login", {
       fail: "false",
