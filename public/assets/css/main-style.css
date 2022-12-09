@@ -9,6 +9,22 @@ body {
   text-shadow: 0px 0px 3px #000000;
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: #DBDBDB; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
 *{
 padding: 0;
 margin: 0;
@@ -145,8 +161,7 @@ label{
 
 .topnav{
   background-color: #606060;
-  width: 98.5%;
-  left: .75%;
+  width: 100%;
   position:relative;
   display: flex;
   justify-content: space-between;
@@ -222,6 +237,7 @@ label{
   padding-left: 10px;
   padding-bottom: 3px;
   border: none;
+  
   align-self: center;  
   font-size: 15px;
   font-family: "Open Sans";
@@ -654,10 +670,35 @@ padding: 10px 0px 10px;
   margin-bottom: -10px;
 }
 
+/* About */
 .container-about{
-  padding-top: 50px;
+  padding: 30px 80px 0px 80px;
   display: inline-block;
   margin: 0 auto;
-  background: #FFFFFF;
   justify-content: center;
+}
+
+.About-title{
+  margin-top: 20px;
+}
+
+.About-desc{
+  display: flex;
+  margin-top: 10px;
+  justify-content: space-between;
+}
+
+.About-desc-below{
+  margin-top: 20px auto;
+  margin-top: 10px;
+}
+
+.About-types{
+  margin-top: 10px;
+  padding: 20px;
+  background-color: #606060;
+}
+
+.packages{
+  margin-top: 25px;
 }
