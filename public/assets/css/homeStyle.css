@@ -71,16 +71,18 @@ hr {
 }
 
 .header-logo img:hover {
-  height: 65px;
-  width: 65px;
+  height: 50px;
+  width: 50px;
   cursor: pointer;
   filter: drop-shadow(-5px 10px 10px black);
   transition: 0.4s;
 }
 
+/* search bar */
+
 .search {
   top: 15px;
-  left: 25%;
+  left: 35%;
   margin-left: auto;
   margin-right: auto;
   position: absolute;
@@ -90,7 +92,6 @@ hr {
 .search input[type=text] {
   height: 40px;
   min-width: 250%;
-  border-radius: 100px;
   color: #000000;
   text-indent: 15px;
   display:inline-block;
@@ -107,6 +108,8 @@ hr {
 .header-search img:hover {
   opacity: 0.5;
 }
+
+/* end of search bar */
 
 .header-profile {
   cursor: pointer;
@@ -567,30 +570,4 @@ a {
 }
 
 
-/* About */
-.container-about{
-  padding: 80px;
-  display: inline-block;
-  margin: 0 auto;
-  justify-content: center;
-}
-
-.About-title{
-  margin-top: 20px;
-}
-
-.About-desc{
-  display: flex;
-  justify-content: space-between;
-}
-
-.About-desc-below{
-  margin-top: 20px auto;
-}
-
-.About-types{
-  margin: 0px;
-  padding: 20px;
-  background-color: #606060;
-}
 
