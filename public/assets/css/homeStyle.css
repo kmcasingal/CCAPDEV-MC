@@ -82,7 +82,7 @@ hr {
 
 .search {
   top: 15px;
-  left: 35%;
+  left: 25%;
   margin-left: auto;
   margin-right: auto;
   position: absolute;
@@ -92,6 +92,7 @@ hr {
 .search input[type=text] {
   height: 40px;
   min-width: 250%;
+  border-radius: 100px;
   color: #000000;
   text-indent: 15px;
   display:inline-block;
