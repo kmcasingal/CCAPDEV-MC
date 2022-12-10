@@ -74,10 +74,10 @@
                                         </p>
                                         <p class="postDate"> <%= posts[i].date.toLocaleString().substr(0,22).split("T")[0] %> </p>
                                         <div class="post-edit">
-                                            <a href="edit/<%= posts[i]._id %>">Edit</a>
+                                            <a href="edit/<%= posts[i]._id %>"> <img src="/public/assets/images/pencil.png"/> </a>
                                         </div>
                                         <div class="post-delete">
-                                            <a href="delete/<%= posts[i]._id %>">Delete</a>
+                                            <a href="delete/<%= posts[i]._id %>"> <img src="/public/assets/images/trash.png" /> </a>
                                         </div>
                                         <% if (posts[i].edited == "true") { %>  <p class="editedPost">(edited)</p> <%} %>
                                         <div class="post-content">

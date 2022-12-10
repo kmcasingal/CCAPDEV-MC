@@ -185,8 +185,8 @@ label{
 }
 
 .header-logo img:hover {
-  height: 65px;
-  width: 65px;
+  height: 50px;
+  width: 50px;
   cursor: pointer;
   filter: drop-shadow(-5px 10px 10px black);
   transition: 0.4s;
@@ -212,11 +212,11 @@ label{
 .search input[type=text] {
   height: 40px;
   min-width: 250%;
-  border-radius: 100px;
+  border-radius: 0.25rem;
   color: #000000;
   text-indent: 15px;
   display:inline-block;
-}
+} 
 
 .header-search img {
   position: relative;
@@ -495,6 +495,18 @@ font-size: 13px;
   top: -25px;
   right: -85%;
   display: inline-block;
+}
+
+.block-post img {
+  position: relative;
+  margin-left: 10px;
+  height: 25px;
+  width: 25px;
+  cursor: pointer;
+}
+
+.block-post img:hover {
+  opacity: 0.5;
 }
 
 .post-delete {
