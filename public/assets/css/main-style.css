@@ -276,6 +276,20 @@ label{
   color: #303030;
 }
 
+#submitPost {
+  width: 150px;
+  background-color: #303030;
+  font-size: large;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  margin-left: 42%;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+
 
 /* Drop down button */
 .dropbtn {
