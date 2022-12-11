@@ -36,7 +36,7 @@
             <a href="delete/<%= posts[i]._id %>"> <img src="/public/assets/images/trash.png" /> </a>
             <%} %>
             <h2 class="title"> <%= posts[i].title %></h2>
-            <p class="postDate"> <%= posts[i].date.toLocaleString().substr(0,22).split("T")[0] %> </p>
+            <p class="postDate"> <%= posts[i].date.toLocaleString().substr(0,22).split("T")[0] %> UTC </p>
             <p class="username">
               <% if (posts[i].anon == "true") { %>
                 by: Anonymous

@@ -20,4 +20,5 @@
 ##### username: user
 ##### password: 123
 #
-#### You can also check other existing profiles by using `db.users.find()` in the mongosh application by using the anonx db
+#### Take note that the posts and comments made are stored in the database in the UTC timezone.
+#### This means that on the deployed site it shows the time in UTC, but when you run the program locally it shows it in your PC's local time.
